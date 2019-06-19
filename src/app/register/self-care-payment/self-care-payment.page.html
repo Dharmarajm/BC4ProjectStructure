@@ -1,16 +1,18 @@
 <ion-header>
-        <ion-toolbar color="primary">
-          <ion-buttons slot="start">
-            <ion-back-button></ion-back-button>
-          </ion-buttons>
-          <ion-title>Registration</ion-title>
-          <ion-img slot="end" src="../../../assets/img/ico.png"></ion-img>
-        </ion-toolbar>
-      </ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registration</ion-title>
+    <ion-img slot="end" src="../../../assets/img/ico.png"></ion-img>
+  </ion-toolbar>
+</ion-header>
 <ion-content class="ion-padding ion-text-center">
-<h3>Finalize Your Registration</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-<h1>₹1350.00</h1>
-<ion-button color="secondary" expand="block" (click)="payment()">Make Subscription</ion-button>
-<a routerLink="register/offers" color="primary">Apply Coupon</a>
+  <h3>Finalize Your Registration</h3>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+  <h4>₹1350.00</h4>
+  <h1>₹1350.00</h1>
+  <ion-button color="secondary" expand="block" (click)="payment()">Make Subscription</ion-button>
+  <a (click)="coupon()" color="primary">Apply Coupon</a>
+  <p>20% Offer on Yearly Payment</p>
 </ion-content>

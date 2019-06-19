@@ -14,8 +14,9 @@ user_id: any;
 
   constructor(public userservice: UsermanagementService, public route:ActivatedRoute, public router:Router) {
 	   this.route.queryParams.subscribe(params => {
-		console.log(params['special'])
-		this.user_id=params['special'];
+       console.log(params)
+		console.log(params['user'])
+		this.user_id=params['user'];
 	 });
    }
 
@@ -30,6 +31,7 @@ updatePassword(){
     console.log(this.confirm_pwd);
         let data=password;
         data['user_id']=this.user_id;
+        console.log(data,'datapwd')
   	this.userservice.pwdUpdate(data).subscribe(res=>{
         let pwdDetails=res;
         console.log(pwdDetails)

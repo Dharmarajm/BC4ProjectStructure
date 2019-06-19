@@ -14,12 +14,13 @@ import { CoreModule } from './core/core.module';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
-
+import { TermsConditionsPage } from './login/terms-conditions/terms-conditions.page';
+import { AboutPage } from './login/about/about.page';
 
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent,TermsConditionsPage,AboutPage],
+  entryComponents: [TermsConditionsPage,AboutPage],
   imports: [
     BrowserModule,
     IonicModule.forRoot(), 

@@ -13,6 +13,7 @@ import { ToastController } from '@ionic/angular';
 export class selfCareRegisterPage {
 	detailForm: FormGroup
 	showBackdrop: boolean = false;
+
 	constructor(private router: Router, private fb: FormBuilder, public user_service: UsermanagementService, public navCtrl: NavController, public toastController: ToastController) { }
 
 	ngOnInit() {
@@ -82,11 +83,11 @@ export class selfCareRegisterPage {
 		toast.present();
 	}
 
-	showinfo(toast_message: string) {
+	showinfo() {
 		this.toastController.dismiss().then((obj) => {
 		}).catch(() => {
 		}).finally(() => {
-			this.toast(toast_message);
+			this.toast("test");
 		});
 	}
 }

@@ -4,6 +4,9 @@ import {DomSanitizer} from '@angular/platform-browser';
 import { Router, NavigationExtras } from '@angular/router';
 import { SettingServiceService } from './setting-service.service'
 import { AlertController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { TermsConditionsPage } from '../../login/terms-conditions/terms-conditions.page';
+import { AboutPage } from '../../login/about/about.page';
 
 @Component({
   selector: 'app-tab3',
@@ -18,7 +21,7 @@ export class Tab3Page {
   data:any;
   data1:any;
   data2:any;
-  constructor(public sanitizer: DomSanitizer, public serv: SettingServiceService, public actionSheetController: ActionSheetController, public router:Router, public alertController: AlertController) { }
+  constructor(public modalController: ModalController, public sanitizer: DomSanitizer, public serv: SettingServiceService, public actionSheetController: ActionSheetController, public router:Router, public alertController: AlertController) { }
 
   ngOnInit() {
   
@@ -171,9 +174,49 @@ const alert2 = await this.alertController.create({
 
     await alert2.present();
 }
-
-logout(){
-  localStorage.clear();
-  this.router.navigate(['/login'])
+async presentModal() {
+    const modal = await this.modalController.create({
+      component: TermsConditionsPage,
+      componentProps: { value: 123 }
+    });
+    return await modal.present();
+  }
+async aboutmodel() {
+  const modal = await this.modalController.create({
+    component: AboutPage,
+    componentProps: { value: 123 }
+  });
+  return await modal.present();
 }
+// logout(){
+//   localStorage.clear();
+//   this.router.navigate(['/login'])
+// }
+
+async logout() {
+    const alert = await this.alertController.create({
+      message: 'Are you sure want to logout from the Application?',
+      mode: "ios",
+      buttons: [ {
+          text: 'Logout',
+          handler: (res) => {
+            localStorage.clear();
+            this.router.navigate(['/login'])
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+
+            console.log('Confirm Cancel');
+          }
+        }
+      ] 
+    });
+
+    await alert.present();
+  }
+
 }

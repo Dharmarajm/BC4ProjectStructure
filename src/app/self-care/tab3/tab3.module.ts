@@ -31,7 +31,8 @@ import { TranslateModule } from '@ngx-translate/core';
   FileTransfer,
   File,
   WebView,
-  AlertController
-  ]
+  AlertController,
+  ],
+
 })
 export class Tab3PageModule {}

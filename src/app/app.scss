@@ -8,6 +8,15 @@
 $font_color: #2c2c2c;
 $dark_grey: #8b9398;
 $border-color: #BCBBCF;
+$primary: #483df6;
+$alert: #0E9BFF;
+$vitals: #60DC68;
+$health: #FF68AB;
+$appointment: #C7A254;
+$doc_visit: #5EE4A2;
+$prescription: #978AD2;
+$report: #EA4E4E;
+$expense: #FFD32C;
 
 %font-color {
   --color: #2c2c2c;
@@ -19,7 +28,7 @@ $border-color: #BCBBCF;
   --color: #483df6;
 }
 
-@mixin font($size, $weight, $letter, $transform, $align) {
+@mixin font($size, $weight, $letter, $transform, $align, $line_height) {
   font: {
     size: $size;
     weight: $weight;
@@ -27,6 +36,7 @@ $border-color: #BCBBCF;
   letter-spacing: $letter;
   text-transform: $transform;
   text-align: $align;
+  line-height: $line_height;
 }
 
 @mixin flex($flex, $wrap, $align, $justify) {
@@ -36,16 +46,54 @@ $border-color: #BCBBCF;
   justify-content: $justify;
 }
 
-ion-header {
-  &:after {
-    display: none;
-  }
+ion-header{
   ion-toolbar {
     ion-title {
       padding-left: 2px;
     }
     ion-img {
       padding: 0px 16px;
+    }
+    ion-avatar {
+      --border-radius: 50%;
+      background-color: #F3F3F3;
+      border: 1px solid #F3F3F3;
+      width: 45px;
+      height: 45px;
+      object-fit: cover;
+      margin: 0 0 0 12px;
+    }
+  }
+  &:not(.shadow){
+    &:after {
+      display: none;
+    }
+  }
+}
+
+ion-tab-button {
+  --color: #483df6;
+  --color-selected: #ffffff;
+  @include font(11px, 600, 0, capitalize, center, inherit);
+  svg{
+    margin: 2px 0;
+  }
+  &.tab-selected{
+      --background: #483df6;
+      svg{
+          path{
+              fill: #ffffff;
+          }
+      }
+  }
+
+  &:nth-child(2){
+    &.tab-selected{
+      svg{
+        path{
+          stroke: #ffffff;
+        }
+      }
     }
   }
 }

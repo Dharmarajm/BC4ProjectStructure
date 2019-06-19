@@ -6,13 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.page.scss'],
 })
 export class AboutPage implements OnInit {
-  sms:any;
-  email:any;
+
   constructor() { }
 
   ngOnInit() {
   }
-editProfileDetails(){
-  	console.log("edit")
-  }
+
 }

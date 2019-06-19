@@ -8,7 +8,7 @@ import { Router, NavigationExtras } from '@angular/router';
   styleUrls: ['./step1.page.scss'],
 })
 export class Step1Page implements OnInit {
-
+  email:any;
   constructor(public userservice: UsermanagementService, public router:Router) { }
 
   ngOnInit() {

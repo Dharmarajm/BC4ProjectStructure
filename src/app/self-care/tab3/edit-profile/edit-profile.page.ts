@@ -9,7 +9,7 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { ActivatedRoute , Router } from '@angular/router';
 import { SettingServiceService } from '../setting-service.service'
 import {Validators, FormBuilder, FormGroup, FormControl, AbstractControl  } from '@angular/forms';
-   
+import { environment } from '../../../../environments/environment'   
 
 @Component({
   selector: 'app-edit-profile',
@@ -173,11 +173,11 @@ sendEditProfile(val){
   //    headers:{ Connection: "close" }
   //   }
 
-  //   fileTransfer.upload(this.uploadURI,"http://192.168.1.238:4020/users").then(res=>{
-  //   console.log("working",res)
-  //   },function(error) {
-  //   console.log(error);
-  // });
+    fileTransfer.upload(this.uploadURI,"http://192.168.1.238:4020/users").then(res=>{
+    console.log("working",res)
+    },function(error) {
+    console.log(error);
+  });
 
   // const fileTransfer: TransferObject = this.transfer.create();
 

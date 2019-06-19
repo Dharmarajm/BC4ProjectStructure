@@ -8,12 +8,13 @@ import { ActivatedRoute , Router, NavigationExtras} from '@angular/router';
   styleUrls: ['./step2.page.scss'],
 })
 export class Step2Page implements OnInit {
-user_id: any;
+  user_id: any;
+  verify_code:any;
   constructor(public userservice: UsermanagementService,  public route:ActivatedRoute, public router: Router) { 
-this.route.queryParams.subscribe(params => {
-	console.log(params['special'],'spec')
-	this.user_id=params['special'];
-});
+   this.route.queryParams.subscribe(params => {
+	  console.log(params['special'],'spec')
+	  this.user_id=params['special'];
+   });
   }
 
   ngOnInit() {
@@ -27,7 +28,7 @@ this.userservice.VerifyCode(code,this.user_id).subscribe(res=>{
         let verify_details=res;
    let navigationExtras: NavigationExtras = {
       queryParams: {
-        special: verify_details['user_id'],
+        user: verify_details['user_id'],
       }
     };
     this.router.navigate(['/step3'])
@@ -36,4 +37,3 @@ this.userservice.VerifyCode(code,this.user_id).subscribe(res=>{
 
 
 }
-    

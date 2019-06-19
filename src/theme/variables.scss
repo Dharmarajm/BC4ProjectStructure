@@ -4,67 +4,67 @@
 /** Ionic CSS Variables **/
 
 @font-face {
-  font-family: 'Muli';
+  font-family: "Muli";
   font-style: normal;
   font-weight: 300;
-  src: url('../assets/fonts/Muli-Light.ttf');
+  src: url("../assets/fonts/Muli-Light.ttf");
 }
 
 @font-face {
-  font-family: 'Muli';
+  font-family: "Muli";
   font-style: normal;
   font-weight: 400;
-  src: url('../assets/fonts/Muli-Regular.ttf');
+  src: url("../assets/fonts/Muli-Regular.ttf");
 }
 
 @font-face {
-  font-family: 'Muli';
+  font-family: "Muli";
   font-style: italic;
   font-weight: 400;
-  src: url('../assets/fonts/Muli-Italic.ttf');
+  src: url("../assets/fonts/Muli-Italic.ttf");
 }
 
 @font-face {
-  font-family: 'Muli';
+  font-family: "Muli";
   font-style: normal;
   font-weight: 500;
-  src: url('../assets/fonts/Muli-SemiBold.ttf');
+  src: url("../assets/fonts/Muli-SemiBold.ttf");
 }
 
 @font-face {
-  font-family: 'Muli';
+  font-family: "Muli";
   font-style: normal;
   font-weight: 600;
-  src: url('../assets/fonts/Muli-Bold.ttf');
+  src: url("../assets/fonts/Muli-Bold.ttf");
 }
 
 :root {
   /** font-family **/
-  --ion-font-family: 'Muli';
+  --ion-font-family: "Muli";
 
   /** primary **/
-  --ion-color-primary: #483DF6;
+  --ion-color-primary: #483df6;
   --ion-color-primary-rgb: 72, 61, 246;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #4137E5;
-  --ion-color-primary-tint: #5C53F6;
+  --ion-color-primary-shade: #4137e5;
+  --ion-color-primary-tint: #5c53f6;
 
   /** secondary **/
-  --ion-color-secondary: #60DC68;
+  --ion-color-secondary: #60dc68;
   --ion-color-secondary-rgb: 96, 220, 104;
-  --ion-color-secondary-contrast: #2C2C2C;
+  --ion-color-secondary-contrast: #2c2c2c;
   --ion-color-secondary-contrast-rgb: 44, 44, 44;
-  --ion-color-secondary-shade: #4CC554;
-  --ion-color-secondary-tint: #6DDC74;
+  --ion-color-secondary-shade: #4cc554;
+  --ion-color-secondary-tint: #6ddc74;
 
   /** tertiary **/
-  --ion-color-tertiary: #EA4E4E;
+  --ion-color-tertiary: #ea4e4e;
   --ion-color-tertiary-rgb: 234, 78, 78;
   --ion-color-tertiary-contrast: #ffffff;
   --ion-color-tertiary-contrast-rgb: 255, 255, 255;
-  --ion-color-tertiary-shade: #D54747;
-  --ion-color-tertiary-tint: #EB5D5D;
+  --ion-color-tertiary-shade: #d54747;
+  --ion-color-tertiary-tint: #eb5d5d;
 
   /** success **/
   --ion-color-success: #10dc60;
@@ -121,4 +121,5 @@
   --ion-color-light-contrast-rgb: 255, 255, 255;
   --ion-color-light-shade: #ffffff;
   --ion-color-light-tint: #ffffff;
+
 }

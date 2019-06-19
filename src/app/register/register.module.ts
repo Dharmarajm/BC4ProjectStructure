@@ -11,7 +11,7 @@ import { selfCarePaymentPage } from './self-care-payment/self-care-payment.page'
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { offersPage } from './offers/offers.page';
+import { OffersPage } from './offers/offers.page';
 import { paymentSuccessPage } from './payment-success/payment-success.page';
 
 @NgModule({
@@ -23,11 +23,13 @@ import { paymentSuccessPage } from './payment-success/payment-success.page';
     TranslateModule,
     ReactiveFormsModule
   ],
-  declarations: [mainPage,
-  careGiverRegisterPage,
-  selfCareRegisterPage,
-  selfCarePaymentPage,
-  offersPage,
-  paymentSuccessPage]
+  declarations: [
+    mainPage,
+    careGiverRegisterPage,
+    selfCareRegisterPage,
+    selfCarePaymentPage,
+    OffersPage,
+    paymentSuccessPage
+  ]
 })
-export class registerPageModule {}
+export class registerPageModule { }

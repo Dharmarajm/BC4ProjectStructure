@@ -31,7 +31,7 @@ form {
     }
   }
   ion-button {
-    @include font(1.1rem, 500, 0, capitalize, center);
+    @include font(1.1rem, 500, 0, capitalize, center, inherit);
     --border-radius: 24px;
     --box-shadow: none;
     margin: 25px auto;
@@ -42,7 +42,7 @@ form {
     }
     &[type="submit"] {
       --box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-      @include font(1.25rem, 500, 0, capitalize, center);
+      @include font(1.25rem, 500, 0, capitalize, center, inherit);
     }
   }
 }
@@ -54,10 +54,10 @@ a{
   color: #fff;
   margin:10px 0 30px;
   text-decoration: none;
-  @include font(18px, 400, 0, capitalize, left);
+  @include font(18px, 400, 0, capitalize, left, inherit);
 }
 .tour {
-  @include font(1.1rem, 500, 0, capitalize, center);
+  @include font(1.1rem, 500, 0, capitalize, center, inherit);
   margin: 20px auto 0;
   --border-radius: 20px;
   --box-shadow: none;

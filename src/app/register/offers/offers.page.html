@@ -1,11 +1,21 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
     </ion-buttons>
-    <ion-title>offers</ion-title>
+    <ion-title>Apply Coupon</ion-title>
+    <ion-img slot="start" src="../../../assets/img/ico.png"></ion-img>
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
-  
+    <ion-list>
+        <ion-item (click)="select()">
+          <ion-label>
+            <h2>Offer1</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
 </ion-content>
