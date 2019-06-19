@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>editprofile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-row>
+	<ion-col  class="ion-align-self-center">
+		<ion-avatar>
+		  <img src="{{img}}">
+		  <ion-icon name="create" (click)="openImagePicker()" class="ion-float-right"></ion-icon>
+		</ion-avatar>
+	</ion-col>
+  </ion-row>
+
+	<!-- <ion-button (click)="takePicture()"> camera</ion-button>
+	<ion-button (click)="openImagePicker()">Choose Image</ion-button> -->
+	<!-- <ion-input   [(ngModel)]="usernameupdate"></ion-input>
+	<ion-input [(ngModel)]="useremailupdate"></ion-input>
+	<ion-input [(ngModel)]="userphoneupdate"></ion-input> -->
+	<!-- <ion-button (click)="sendEditProfile()">Submit</ion-button> -->
+
+	<form [formGroup]="editProfileForm" (ngSubmit) = "sendEditProfile(editProfileForm.value)">
+
+	<ion-item>
+		 <ion-label position = "floating">{{'name' | translate}}</ion-label>
+	     <ion-input placeholder="Name" type= "text"  formControlName="name"></ion-input>
+	</ion-item>
+
+	<ion-item>
+		 <ion-label position = "floating">{{'email_id' | translate}} </ion-label>
+	     <ion-input placeholder="Email Id" type= "text"  formControlName="email"></ion-input>
+	</ion-item>
+
+	<ion-item>
+		 <ion-label position = "floating">{{'mob' | translate}}</ion-label>
+	     <ion-input placeholder="Mobile#" type= "text"  formControlName="mobile_no"></ion-input>
+	</ion-item>
+
+	<ion-item class="ion-float-right">
+		 <ion-button type= "submit" [disabled]="editProfileForm.invalid">{{'save' | translate}}</ion-button>
+	</ion-item>
+
+	</form>
+</ion-content>
+	

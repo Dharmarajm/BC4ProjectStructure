@@ -1,0 +1,150 @@
+
+
+{ 
+
+	      "b-care":   "B-Cared 4",
+	      "email":    "Email",
+	      "password": "Password",
+	      "forgot":   "Forgot Password",
+	      "login":    "Login",
+	      "register_here":  "New User Register Here!",
+	      "tour":     "Take a Tour",
+
+	     
+	      "note":   "Note",
+	      "forgot_hint":   "please enter your authorized email ID to send a verification code.",
+	      "next":   "Next",
+	      "verify": "Enter verification code",
+	      "resend": "Resend the Code",
+	      "check_verification" : "Please check your mail for the verification code",
+	      "new_pwd": "New Password",
+	      "re_enter":"Re-enter the New Paswword",
+	      "pwd_hint":"please provide the new password to login again",
+	      "pwd_update":     "Update Password",
+
+          "reg":"Registration",
+          "self":"Self Care",
+          "giver":"Care Giver",
+          "reg_hint":"Choose your registration method for further registration process",
+          
+          "category_process":"Choose the category for further process",
+          "name": "Name",
+          "email_id": "Email ID",
+          "mail_hint":"Communication will be send to this ID",
+          "set_pwd": "Set Password",
+          "confirm_pwd":"Confirm Password",
+          "mob":  "Mobile #",
+          "address":"Address",
+          "address_hint":"QR code will be mailed to the address",
+          "country":"Country",
+          "giver_name":"Care Giver Name",
+          "giver_no": "Care Giver Mobile #",
+          "giver_hint":"Care Giver details is not mandatory,if you need to add a Care Giver after a registration option has been provided.",
+          "agree":"I agree",
+          "terms":"Terms & Conditions",
+          "reg_now":"Register Now",
+          "uid":"UID",
+          "uid_hint":"UID is mandatory, for details click on into icon which is in the field right corner",
+          
+
+		 "pay":"Payment",
+		 "finalize_reg":"Finalize your Registration",
+		 "make_pay":"Make Payment",
+		 "coupon":"Apply Coupon",
+		 "success_reg":"Successfully Registered for 365 days",
+		 "update_profile":"You can update your profiledetails after you logged into the BC4 app, options have been provided",
+	   
+
+		"alerts":"Alerts",
+		"vitals":"Vitals",
+		"health":"Health Diary",
+		"appointmets":"Appointments",
+		"doc_visits":"Doc Visits",
+		"prescriptions":"Prescriptions",
+		"reports":"Reports",
+		"expenses":"Expenses",
+        "analytics":"Analytics",
+	
+		"add_medication":"Add Medication",
+		"repeat":"Repeat",
+		"tablet":"Tablet/Syrup/Injection",
+		"add_quantity":"Add Quantity",
+		"dossage":"Dossage",
+		"description":"Description",
+		
+	
+		"add_vital":"Add Vital Alert",
+		"choose_vitals":"Choose Vitals",
+		"cancel":"Cancel",
+		"save":"Save",
+		"del" :"Delete",
+        "add":"Add",
+    	"del":"Delete",
+
+    	"other":"Add Other Alert",
+    	"other_alert":"Other Alert",
+    	  
+    	
+    	"relate":"related to",
+    	"doc_name":"Doctor Name",
+    	
+    	
+   
+    	"vital_reading":"Vitals Reading of",
+    	"food_time":"Fasting,pp,Lunch etc",
+    	"actual_reading":"Actual Reading",
+    	   
+    	"header":"Add Appointments",
+    	"appointment_with":"Appointment with",
+    	"name":"Name of",
+    	"reminder":"Set Reminder",
+    
+
+    	"add_prescription":"Add Prescription",
+    	"pres_date":"Prescription Date",
+    	
+   
+    
+    	"filter":"Filter",  
+    	"add_report":"Add Report",
+    	"report_type":"Report Type",   	
+    	"report_date":"Report Date",
+    	"view":"View All",
+   
+    	"add_expenses":"Add Expenses",
+    	"spent":"Spent on",
+    	"amount":"Amount",
+    	"spent_date":"Spent Date",
+    	
+       
+    	"emergency":"Emergency",
+    	"blood_group":"lood Group",
+    	"age":"Age",
+    	"sms":"Emergency SMS",
+    	"sms_alert":"Alert SMS send to emergency your contact",
+    	"add_emergency":"Add Emergency About",
+    	"mediclaim_policy":"Mediclaim Policy#",
+    	"issue_policy":"Policy Issuer#",
+    	
+    	"settings":"Settings",
+    	"uid":"UID",
+    	"alert_tone":"Alert Tone",
+    	"set_alert":"Set your alert tone",
+    	"reminder":"Reminder Tone",
+    	"set_reminder":"Set your reminder tone",
+    	"choose_cgiver":"Choose your care giver",
+    	"medication":"Medication Reorder Quantity",
+    	"set_quantity":"set yourmedication quantity",
+    	"auto_update":"Auto Update",
+    	"sync":"Which sync your app data to the cloud storage",
+    	"about":"About",
+    	"us":"Know about us",
+    	"read_terms":"Read to know the terms & conditions of us",
+    	"logout":"Logout",
+    	"logout_hint":"You will be logout from the application",
+    
+    	"help":"Help",
+    	"update":"Update",
+    	"notify":"Notify"
+    
+}

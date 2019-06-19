@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Forgot Password</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<ion-item  class="item">
+	<ion-label position = "floating">New Password<!-- {{'email' | translate }} --></ion-label>
+	<ion-input type = "text" [(ngModel)]="new_pwd"></ion-input>
+</ion-item>
+<ion-item  class="item">
+	<ion-label position = "floating">Re-enter the New Password<!-- {{'email' | translate }} --></ion-label>
+	<ion-input type = "text" [(ngModel)]="confirm_pwd"></ion-input>
+</ion-item>
+
+	<b>Note:</b>
+	<p>Please provide the new password to login again</p>
+
+	<ion-button expand="block" (click)="updatePassword()" >Update Password</ion-button>
+
+</ion-content>

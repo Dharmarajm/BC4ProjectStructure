@@ -1,0 +1,114 @@
+<ion-content>
+  <ion-row  class="ion-padding">
+    <ion-col size="4" class="ion-align-self-center">
+	   <ion-avatar> 
+         <img [src]="img">
+     </ion-avatar>
+   </ion-col>
+   <ion-col>
+	  <ion-text color="dark">
+			<h1>{{pic?.user_info.name}}</h1>
+			<h6>{{pic?.user_info.email}}</h6>
+	    <h6>ID : {{pic?.user_info.user_uid}}</h6>
+	  </ion-text>
+    <ion-icon name="create" size="large" (click)="edit()" class="ion-float-right"></ion-icon>
+  </ion-col>
+  
+  </ion-row>
+   <ion-list>
+    <ion-item>
+      <ion-row>
+        <ion-col>
+           <ion-label>Alert Tone</ion-label>
+            <p>set your tone for alert</p>
+        </ion-col>
+        <ion-col class="ion-float-right">
+           <p>alarm_bell_tones</p>
+        </ion-col>
+        
+       </ion-row>
+     </ion-item>
+ 
+     <ion-item >
+      <ion-row>
+        <ion-col>
+           <ion-label>Reminder Tone</ion-label>
+           <p>set your tone for reminder</p>
+        </ion-col>
+        <ion-col class="ion-float-right">
+           <p>alarm_bell_tones</p>
+        </ion-col>        
+       </ion-row>
+     </ion-item>
+
+      <ion-item (click)="careGiverName()">
+      <ion-row>
+        <ion-col>
+           <ion-label>Care Giver</ion-label>
+           <p>set your care giver for emergency</p>
+        </ion-col>
+        <ion-col class="ion-float-right">
+           <p>{{data1}}</p>
+        </ion-col>        
+       </ion-row>
+     </ion-item>
+    
+    
+       <ion-item (click)="medicineDuration()">
+      <ion-row>
+        <ion-col>
+           <ion-label>Medication Recorder Quantity</ion-label>
+           <p>set your medication recorder quantity</p>
+        </ion-col>
+        <ion-col class="ion-align-self-end">
+           <p>{{data}}</p>
+        </ion-col>
+      </ion-row>
+     </ion-item>
+
+
+     <ion-item (click)="aboutAsDuration()">
+      <ion-row>
+        <ion-col>
+           <ion-label>Auto Update</ion-label>
+           <p>Which sync your app data to the cloud storage</p>
+        </ion-col>
+        <ion-col class="ion-align-self-end">
+           <p>{{data2}}</p>
+        </ion-col>
+      </ion-row>
+     </ion-item>
+
+     <ion-item>
+      <ion-row>
+        <ion-col>
+           <ion-label>About us</ion-label>
+           <p>Know about us</p>
+        </ion-col>
+        <ion-col class="ion-align-self-end">
+           <p>{{data}}</p>
+        </ion-col>
+      </ion-row>
+     </ion-item>
+       
+       <ion-item>
+      <ion-row>
+        <ion-col>
+           <ion-label>Terms & Conditions</ion-label>
+           <p>Read to know the terms & conditions of us</p>
+        </ion-col>
+      </ion-row>
+     </ion-item>
+     
+     <ion-item (click)="logout()">
+      <ion-row>
+        <ion-col>
+           <ion-label>Logout</ion-label>
+           <p>You will be logout from the application</p>
+         </ion-col>
+      </ion-row>
+     </ion-item>
+
+  </ion-list>
+
+</ion-content>

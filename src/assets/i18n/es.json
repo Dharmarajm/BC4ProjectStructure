@@ -1,0 +1,150 @@
+
+
+{
+
+	      "b-care":   "B-Cared 4",
+	      "email":    "Email1",
+	      "password": "contraseña",
+	      "forgot":   "Se te olvidó tu contraseña",
+	      "login":    "Iniciar sesión",
+	      "register_here":  "Nuevo Usuario Registrarse Aquí!",
+	      "tour":     "Tomar un tour",
+
+	     
+	      "note":   "Nota",
+	      "forgot_hint":   "Por favor ingrese su ID de correo electrónico para enviar un código de verificación.",
+	      "next":   "siguiente",
+	      "verify": "ingrese el código de verificación",
+	      "resend": "Reenviar el código",
+	      "check_verification" : "Por favor revise su correo para el código de verificación",
+	      "new_pwd": "Nueva contraseña",
+	      "re_enter":"Vuelva a ingresar la nueva contraseña",
+	      "pwd_hint":"por favor proporcione la nueva contraseña para iniciar sesión de nuevo",
+	      "pwd_update":     "Actualiza contraseña",
+
+          "reg":"Registro",
+          "self":"Autocuidado",
+          "giver":"Cuidador",
+          
+          "category_process":"Elija la categoría para el proceso posterior",
+          "name": "Nombre",
+          "email_id": "Email ID",
+          "mail_hint":"La comunicación será enviada a este ID.",
+          "set_pwd": "Configurar la clave",
+          "confirm_pwd":"Confirmar contraseña",
+          "mob":  "Móvil # ",
+          "address":"Dirección",
+          "address_hint":"El código QR será enviado a la dirección",
+          "country":"País",
+          "giver_name":"Nombre del cuidador",
+          "giver_no": "Cuidado Dador Móvil #",
+          "giver_hint":"Los detalles de Care Giver no son obligatorios, si necesita agregar un Care Giver después de que se haya proporcionado una opción de registro.",
+          "agree":"estoy de acuerdo",
+          "terms":"Términos y condiciones",
+          "reg_now":"Regístrate ahora",
+          "uid":"UID",
+          "uid_hint":"UID es obligatorio, para más detalles, haga clic en el icono que se encuentra en la esquina derecha del campo",
+          
+
+		 "pay":"Pago",
+		 "finalize_reg":"Finalice su registro",
+		 "make_pay":"Hacer el pago",
+		 "coupon":"Aplicar cupón",
+		 "success_reg":"Registrado exitosamente por 365 d",
+		 "update_profile":"Puede actualizar sus datos detallados después de iniciar sesión en la aplicación BC4, se han proporcionado opciones",
+	   
+
+		"alerts":"Las alertas",
+		"vitals":"Partes vitales",
+		"health":"Diario de salud",
+		"appointmets":"Equipo",
+		"doc_visits":"Visitas Doc",
+		"prescriptions":"Prescripciones",
+		"reports":"Informes",
+		"expenses":"Gastos",
+        "analytics":"Analítica",
+	
+		"add_medication":"Añadir medicación",
+		"repeat":"Repetir",
+		"tablet":"Tableta / Jarabe / Inyección",
+		"add_quantity":"Añadir cantidad",
+		"dossage":"Dossage",
+		"description":"Descripción",
+		
+	
+		"add_vital":"Añadir alerta vital",
+		"choose_vitals":"Elige Vitals",
+		"cancel":"Cancelar",
+		"save":"Salvar",
+		"del" :"Borrar",
+        "add":"Añadir",
+    	
+
+    	"other":"Añadir otra alerta",
+    	"other_alert":"Otra alerta",
+    	  
+    	
+    	"relate":"relacionado con",
+    	"doc_name":"Nombre del doctor",
+    	
+    	
+   
+    	"vital_reading":"Lecturas vitales de",
+    	"food_time":"Ayuno, pp, almuerzo etc",
+    	"actual_reading":"Lectura real",
+    	   
+    	"header":"Añadir citas",
+    	"appointment_with":"Cita con",
+    	"name":"Nombre de",
+    	"reminder":"Establecer recordatorio",
+    
+
+    	"add_prescription":"Añadir receta",
+    	"pres_date":"Fecha de prescripción",
+    	
+   
+    
+    	"filter":"Filtrar",  
+    	"add_report":"Añadir informe",
+    	"report_type":"Tipo de informe",   	
+    	"report_date":"Fecha del informe",
+    	"view":"Ver todo",
+   
+    	"add_expenses":"Añadir gastos",
+    	"spent":"Gastado en",
+    	"amount":"Cantidad",
+    	"spent_date":"Fecha gastada",
+    	
+       
+    	"emergency":"Emergencia",
+    	"blood_group":"grupo sanguíneo",
+    	"age":"Años",
+    	"sms":"SMS de emergencia",
+    	"sms_alert":"Alerta de SMS enviar a emergencia su contacto.",
+
+    	"add_emergency":"Agregar emergencia sobre",
+    	"mediclaim_policy":"Póliza de reclamo médico #",
+    	"issue_policy":"# Del emisor de la póliza",
+    	
+    	"settings":"Ajustes",
+    	"uid":"UID",
+    	"alert_tone":"Tono de alerta",
+    	"set_alert":"Establece tu tono de alerta",
+    	"reminder":"Tono de recordatorio",
+    	"set_reminder":"Establece tu tono de recordatorio",
+    	"choose_cgiver":"Elija su cuidador",
+    	"medication":"Cantidad de pedidos de medicamentos",
+    	"set_quantity":"establece tu cantidad de medicación",
+    	"auto_update":"Auto actualización",
+    	"sync":"Que sincroniza los datos de tu aplicación con el almacenamiento en la nube.",
+    	"about":"Acerca de",
+    	"us":"Saber sobre nosotros",
+    	"read_terms":"Lea para conocer los términos y condiciones de nosotros.",
+    	"logout":"Cerrar sesión",
+    	"logout_hint":"Serás desconectado de la aplicación.n",
+    
+    	"help":"ayuda",
+    	"update":"actualizar",
+    	"notify":"notificar"
+    
+}

@@ -1,0 +1,100 @@
+@import "../../app.scss";
+
+ion-card {
+  --background: #ffffff;
+  --color: #483DF6;
+  box-shadow: 0 0px 6px rgba(0, 0, 0, 0.16);
+  border-radius: 0px;
+  margin: 40px 0;
+  ion-card-content {
+    @include font(1.4rem, 500, 0, capitalize, center);
+    @include flex(flex,nowrap,center,center);
+    min-height: 110px;
+  }
+}
+
+ion-note {
+  @extend %dark-gray;
+  @include font(0.9rem, 500, 0, capitalize, left);
+  margin-top: 30px;
+  display: block;
+  span{
+    color: $font_color;
+  }
+}
+
+form {
+  ion-item {
+    @extend %font-color;
+    --background: transparent;
+    --border-color: #BCBBCF;
+    --highlight-color-focused: #483DF6;
+    --highlight-color-valid: #483DF6;
+    --highlight-color-invalid: #ea4e4e;
+    --padding-start: 0;
+    @include font(1rem, 500, 0, none, left);
+    margin-bottom: 10px;
+    &.icon{
+      --padding-end: 40px;
+      overflow: visible;
+    }
+    ion-label {
+      --color: #BCBBCF;
+    }
+    ion-button{
+      position: absolute;
+      top: -10px;
+      right: -40px;
+      width: 42px;
+      --background: transprent;
+      --border-radius: 50%;
+      --box-shadow: none;
+      --ripple-color: #fa5e61;
+    }
+  }
+  p {
+    color: $font_color;
+    @include font(0.75rem, 500, 0, none, left);
+    margin-top: 0px;
+    display: block;
+  }
+  label{
+    @include flex(flex,nowrap,center,unset);
+    margin: 40px 0;
+    ion-checkbox {
+      margin-right: 10px;
+    }
+  }
+
+}
+ion-button {
+  @include font(1.2rem, 500, 0, capitalize, center);
+  --border-radius: 24px;
+  --box-shadow: none;
+  margin: 25px auto;
+  max-width: 260px;
+  min-height: 42px;
+  --box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+
+  & + a{
+    font-weight: 600;
+  }
+}
+// .item-has-focus .label-floating.sc-ion-label-md-h{
+//   color: #2c2c2c;
+// }
+h1{
+  @include font(2.3rem, 400, 0, none, center);
+  color: $font_color;
+  &:first-letter{
+    font-size: 26px;
+  }
+}
+h3{
+  @include font(1.5rem, 500, 0, none, center);
+  margin-top: 50px;
+}
+p{
+  color: $dark_grey;
+  font-size: 16px;
+}

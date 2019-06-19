@@ -1,0 +1,7 @@
+{
+  "name": "BC4",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

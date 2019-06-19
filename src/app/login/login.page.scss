@@ -1,0 +1,72 @@
+@import "../app.scss";
+
+ion-img {
+  width: 160px;
+  margin: 14px auto;
+}
+form {
+  ion-item {
+    --color: #fff;
+    --background: transparent;
+    --highlight-color-focused: #60dc68;
+    --highlight-color-valid: #60dc68;
+    --highlight-color-invalid: #ea4e4e;
+    --padding-start: 0;
+    --border-color: #ffffff;
+    font-size: 20px;
+    margin-bottom: 10px;
+    &.icon{
+      --padding-end: 40px;
+      overflow: visible;
+    }
+    ion-label {
+      --color: rgba(255, 255, 255, 0.5);
+    }
+    ion-button{
+      position: absolute;
+      top: -4px;
+      right: -40px;
+      width: 42px;
+      --border-radius: 50%;
+    }
+  }
+  ion-button {
+    @include font(1.1rem, 500, 0, capitalize, center);
+    --border-radius: 24px;
+    --box-shadow: none;
+    margin: 25px auto;
+    max-width: 260px;
+    min-height: 42px;
+    &.activated {
+      --box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    }
+    &[type="submit"] {
+      --box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+      @include font(1.25rem, 500, 0, capitalize, center);
+    }
+  }
+}
+.item-has-focus .label-floating.sc-ion-label-md-h{
+  color: rgba(255, 255, 255, 0.5);
+}
+a{
+  display: block;
+  color: #fff;
+  margin:10px 0 30px;
+  text-decoration: none;
+  @include font(18px, 400, 0, capitalize, left);
+}
+.tour {
+  @include font(1.1rem, 500, 0, capitalize, center);
+  margin: 20px auto 0;
+  --border-radius: 20px;
+  --box-shadow: none;
+  --background: none;
+  float: right;
+  --padding-start: 0;
+  --padding-end: 0;
+  --ripple-color: transparent;
+  svg{
+    margin-left: 5px;
+  }
+}

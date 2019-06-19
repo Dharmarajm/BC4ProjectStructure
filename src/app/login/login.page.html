@@ -1,0 +1,34 @@
+<ion-content color="primary" class="ion-padding">
+	<ion-img src="../../assets/img/Login-logo.png"></ion-img>
+	<form [formGroup]="loginForm" (ngSubmit)="login_values(loginForm.value)">
+		<ion-item>
+			<ion-label position="floating">Email</ion-label>
+			<ion-input type="email" formControlName="email" autofocus="true"></ion-input>
+		</ion-item>
+		<ion-item class="icon">
+			<ion-label position="floating">Password</ion-label>
+			<ion-input type="password" formControlName="password"></ion-input>
+			<ion-button>
+				<ion-icon name="eye-off"></ion-icon>
+			</ion-button>
+		</ion-item>
+		<a color="light" [routerLink]="['/step1']">Forgot Password ?</a>
+		<ion-button color="secondary" type="submit" expand="block">Login</ion-button>
+		<ion-button color="light" expand="block" [routerLink]="['/register']">New User Register Here!</ion-button> 
+		<!-- (click)="register()" -->
+	</form>
+	<ion-button class="tour">
+		Take a Tour
+		<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 21.669 24.663">
+			<g id="play-arrow" transform="translate(-7.556 0)">
+				<path id="Path_26" data-name="Path 26"
+					d="M28.631,11.292,9.339.16A1.191,1.191,0,0,0,7.556,1.19V23.473A1.191,1.191,0,0,0,9.339,24.5L28.631,13.371A1.207,1.207,0,0,0,28.631,11.292Z"
+					transform="translate(0 0)" fill="#fff" />
+			</g>
+		</svg>
+	</ion-button>
+	<!-- <select (change)="translatetest(langSelect)" [(ngModel)]="langSelect">
+		<option value="en">English</option>
+		<option value="es">Spanish</option>
+	</select> -->
+</ion-content>

@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+     <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<form [formGroup]="giverForm" (ngSubmit) = "CareGiverDetail(giverForm.value)">
+	
+     <ion-item>
+       <ion-label position= "floating">{{'uid' | translate}}</ion-label>
+	   <ion-input  type= "text"  formControlName="u_id" (change)="care_giverId()"></ion-input>
+     </ion-item>
+     <ion-item>
+      <ion-label position= "floating">{{'mob' | translate}}</ion-label>
+      <ion-input type= "text" formControlName="mobile_no"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position= "floating">{{'email' | translate}}</ion-label>
+      <ion-input type= "email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position= "floating">{{'name' | translate}}</ion-label>
+      <ion-input type= "text" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position= "floating">{{'set_pwd' | translate}}</ion-label>
+      <ion-input formControlName="password" [type]="passwordType">
+      <!-- <ion-icon  [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon> -->
+      </ion-input>
+    </ion-item>   
+       
+    <ion-checkbox></ion-checkbox>
+    <p>{{'agree' | translate}}<a routerLink="/" routerDirection="care-giver-login">{{'terms' | translate}}</a></p>
+
+     <ion-item class="ion-float-right">
+      <ion-button type= "submit" [disabled]="giverForm.invalid">{{'login' | translate}}<ion-icon name="arrow-forward"></ion-icon></ion-button>
+    </ion-item>
+</form>
+
+</ion-content>
+
+
+

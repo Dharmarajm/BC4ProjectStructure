@@ -1,0 +1,51 @@
+// App Styles
+// ----------------------------------------------------------------------------
+// Put style rules here that you want to apply to the entire application. These
+// styles are for the entire app and not just one component. Additionally, this
+// file can hold Sass mixins, functions, and placeholder classes to be imported
+// and used throughout the application.
+
+$font_color: #2c2c2c;
+$dark_grey: #8b9398;
+$border-color: #BCBBCF;
+
+%font-color {
+  --color: #2c2c2c;
+}
+%dark-gray {
+  --color: #8b9398;
+}
+%primary-color {
+  --color: #483df6;
+}
+
+@mixin font($size, $weight, $letter, $transform, $align) {
+  font: {
+    size: $size;
+    weight: $weight;
+  }
+  letter-spacing: $letter;
+  text-transform: $transform;
+  text-align: $align;
+}
+
+@mixin flex($flex, $wrap, $align, $justify) {
+  display: $flex;
+  flex-wrap: $wrap;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+ion-header {
+  &:after {
+    display: none;
+  }
+  ion-toolbar {
+    ion-title {
+      padding-left: 2px;
+    }
+    ion-img {
+      padding: 0px 16px;
+    }
+  }
+}
