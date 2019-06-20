@@ -6,18 +6,19 @@ ion-card {
   box-shadow: 0 0px 6px rgba(0, 0, 0, 0.16);
   border-radius: 0px;
   margin: 40px 0;
+
   ion-card-content {
-    @include font(1.4rem, 500, 0, capitalize, center, inherit);
+    @include font(1.4rem, 500, 0, capitalize, center, inherit, inherit);
     @include flex(flex,nowrap,center,center);
     min-height: 110px;
   }
 }
 
 ion-note {
-  @extend %dark-gray;
-  @include font(0.9rem, 500, 0, capitalize, left, inherit);
+  @include font(0.9rem, 500, 0, capitalize, left, inherit, $dark_grey);
   margin-top: 30px;
   display: block;
+
   span{
     color: $font_color;
   }
@@ -25,22 +26,24 @@ ion-note {
 
 form {
   ion-item {
-    @extend %font-color;
     --background: transparent;
     --border-color: #BCBBCF;
     --highlight-color-focused: #483DF6;
     --highlight-color-valid: #483DF6;
     --highlight-color-invalid: #ea4e4e;
     --padding-start: 0;
-    @include font(1rem, 500, 0, none, left, inherit);
+    @include font(1rem, 500, 0, none, left, inherit, $font_color);
     margin-bottom: 10px;
+
     &.icon{
       --padding-end: 40px;
       overflow: visible;
     }
+
     ion-label {
       --color: #BCBBCF;
     }
+
     ion-button{
       position: absolute;
       top: -10px;
@@ -52,24 +55,27 @@ form {
       --ripple-color: #fa5e61;
     }
   }
+
   p {
-    color: $font_color;
-    @include font(0.75rem, 500, 0, none, left, inherit);
+    @include font(0.75rem, 500, 0, none, left, inherit, $font_color);
     margin-top: 0px;
     display: block;
   }
+
   label{
     @include flex(flex,nowrap,center,unset);
     margin: 40px 0;
+
     ion-checkbox {
       margin-right: 10px;
     }
   }
 
 }
+
 ion-button {
   &:not(.button-has-icon-only){
-    @include font(1.2rem, 500, 0, capitalize, center, inherit);
+    @include font(1.2rem, 500, 0, capitalize, center, inherit, inherit);
     --border-radius: 25px;
     --box-shadow: none;
     margin: 25px auto;
@@ -77,39 +83,43 @@ ion-button {
     min-height: 50px;
     --box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   }
+
   & + a{
     font-weight: 600;
     text-decoration: underline;
   }
 }
+
 // .item-has-focus .label-floating.sc-ion-label-md-h{
 //   color: #2c2c2c;
 // }
+
 h1{
-  @include font(2.3rem, 400, 0, none, center, 36px);
-  color: $font_color;
+  @include font(2.3rem, 400, 0, none, center, 36px, $font_color);
+
   &:first-letter{
     font-size: 26px;
   }
 }
+
 h2{
-  @include font(1.25rem, 400, 0, none, left, inherit);
-  color: $font_color;
+  @include font(1.25rem, 400, 0, none, left, inherit, $font_color);
 }
+
 h3{
-  @include font(1.5rem, 500, 0, none, center, inherit);
-  color: $font_color;
+  @include font(1.5rem, 500, 0, none, center, inherit, $font_color);
   margin-top: 50px;
 }
+
 h4{
-  @include font(1.2rem, 400, 0, none, center, inherit);
+  @include font(1.2rem, 400, 0, none, center, inherit, $dark_grey);
   text-decoration: line-through;
-  color: $dark_grey;
 }
+
 p{
-  color: $dark_grey;
-  font-size: 16px;
+  @include font(16px, 400, 0, none, inherit, inherit, $dark_grey);
 }
+
 .sucess{
   margin: -16px -16px 100px;
   background-color: $primary;
@@ -121,24 +131,15 @@ p{
     top: 30px;
   }
 }
+
 ion-list{
   ion-item{
     --background: transparent;
     --padding-start: 0;
     --padding-end: 0;
+    
     p{
-      font-size: 12px;
+      @include font(12px, 400, 0, none, inherit, inherit, $dark_grey);
     }
   }
 }
-// :host {
-ion-tab-bar {
-  color: #ff3838;
-  --color: #ff3838;
-  --background: var(--ion-tab-bar-background,var(--ion-background-color,#fff));
-  --background-focused: var(--ion-tab-bar-background-focused,#e0e0e0);
-  --border: 1px solid var(--ion-tab-bar-border-color,var(--ion-border-color,var(--ion-color-step-150,rgba(0,0,0,0.07))));
-  --color: var(--ion-tab-bar-color,var(--ion-color-step-600,#666));
-  --color-selected: var(--ion-tab-bar-color-activated,var(--ion-color-primary,#ff3838));
-}
-// }

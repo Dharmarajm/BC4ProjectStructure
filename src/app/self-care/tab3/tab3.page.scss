@@ -1,3 +1,35 @@
-ion-label{
-	font-style: bold;
+@import "../../app.scss";
+
+ion-avatar {
+  width: 70px;
+  height: 70px;
+}
+
+ion-item {
+  --background: #ffffff;
+  --border-width: 0;
+  --border-style: unset;
+  --color: #2c2c2c;
+  --inner-padding-end: 0;
+  --inner-padding-start: 0;
+  --padding-end: 0;
+  --padding-start: 0;
+  @include border(0 0 1px 0, solid, #e3e3ef);
+
+  h3{
+	@include font(1.25rem, 400, 0, capitalize, inherit, inherit, $font_color);
+  }
+
+  h6{
+	@include font(0.9rem, 400, 0, unset, inherit, inherit, $font_color);
+  }
+}
+
+.trans_btn {
+  @include font(0.9rem, 400, 0, unset, center, inherit, $primary);
+  margin: 0;
+
+  svg {
+    margin: 1px 2px 0 0;
+  }
 }

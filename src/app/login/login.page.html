@@ -1,13 +1,13 @@
 <ion-content color="primary" class="ion-padding">
 	<ion-img src="../../assets/img/Login-logo.png"></ion-img>
-	<form [formGroup]="loginForm" (ngSubmit)="login_values(loginForm.value)">
+	<form [formGroup]="loginForm" (ngSubmit)="login_values(loginForm.value)" novalidate>
 		<ion-item>
 			<ion-label position="floating">Email</ion-label>
-			<ion-input type="email" formControlName="email" autofocus="true"></ion-input>
+			<ion-input type="email" name="email" formControlName="email" autofocus="true"></ion-input>
 		</ion-item>
 		<ion-item class="icon">
 			<ion-label position="floating">Password</ion-label>
-			<ion-input type="password" formControlName="password"></ion-input>
+			<ion-input type="password" name="password" formControlName="password"></ion-input>
 			<ion-button>
 				<ion-icon name="eye-off"></ion-icon>
 			</ion-button>

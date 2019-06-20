@@ -10,7 +10,19 @@ import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes=[
 
-{path: '',component: Tab2Page}
+ {  
+     path: '',
+     component: Tab2Page
+  },{
+     path: 'about-update',
+     loadChildren: './about/about.module#AboutPageModule'
+  },{
+     path: 'contact-add',
+     loadChildren: './contact/contact.module#ContactPageModule'
+  },{
+     path: 'health-update',
+     loadChildren: './health/health.module#HealthPageModule'
+  }
 
 ]
 /*const routes: Routes = [

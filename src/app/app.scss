@@ -5,6 +5,7 @@
 // file can hold Sass mixins, functions, and placeholder classes to be imported
 // and used throughout the application.
 
+$white: #ffffff;
 $font_color: #2c2c2c;
 $dark_grey: #8b9398;
 $border-color: #BCBBCF;
@@ -28,7 +29,7 @@ $expense: #FFD32C;
   --color: #483df6;
 }
 
-@mixin font($size, $weight, $letter, $transform, $align, $line_height) {
+@mixin font($size, $weight, $letter, $transform, $align, $line_height, $fn_color) {
   font: {
     size: $size;
     weight: $weight;
@@ -37,6 +38,13 @@ $expense: #FFD32C;
   text-transform: $transform;
   text-align: $align;
   line-height: $line_height;
+  color: $fn_color;
+}
+
+@mixin border($width, $style, $brcolor) {
+  border-width: $width;
+  border-style: $style;
+  border-color: $brcolor;
 }
 
 @mixin flex($flex, $wrap, $align, $justify) {
@@ -48,7 +56,7 @@ $expense: #FFD32C;
 
 ion-header{
   ion-toolbar {
-    ion-title {
+    ion-title:not(.ion-padding-start) {
       padding-left: 2px;
     }
     ion-img {
@@ -71,15 +79,66 @@ ion-header{
   }
 }
 
+.main-header{
+  ion-buttons{
+    margin-right: 12px;
+  }
+
+  ion-button {
+    @include flex(flex,nowrap,center,unset);
+    --border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin: 0;
+    position: relative;
+
+    svg{
+      margin-bottom: 16px;
+    }
+
+    &:after{
+      @include font(11px, 400, 0, capitalize, center, inherit, inherit);
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      margin-bottom: 5px;
+    }
+
+    &:first-child{
+      &:after{
+        content: 'Help';
+      }
+    }
+
+    &:nth-child(2){
+      &:after{
+        content: 'Update';
+      }
+    }
+
+    &:last-child{
+      &:after{
+        content: 'Notify';
+      }
+    }
+  }
+}
+
+ion-tab-bar {
+  border: 0;
+  box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.16);
+}
+
 ion-tab-button {
+  @include font(10px, 600, 0, capitalize, center, inherit, none);
   --color: #483df6;
   --color-selected: #ffffff;
-  @include font(11px, 600, 0, capitalize, center, inherit);
   svg{
     margin: 2px 0;
   }
   &.tab-selected{
       --background: #483df6;
+      transition: background-color 3ms linear;
       svg{
           path{
               fill: #ffffff;
@@ -88,6 +147,7 @@ ion-tab-button {
   }
 
   &:nth-child(2){
+    @include border(0px 1px, solid, #E3E3EF);
     &.tab-selected{
       svg{
         path{
@@ -96,4 +156,23 @@ ion-tab-button {
       }
     }
   }
+}
+
+.trans_btn {
+  --background: transparent;
+  --background-activated: transparent;
+  --background-focused: transparent;
+  --border-color: transparent;
+  --border-radius: 12px;
+  --border-style: solid;
+  --border-width: 0px;
+  --box-shadow: none;
+  --color: #483df6;
+  --color-activated: #483df6;
+  --opacity: 1;
+  --padding-bottom: 5px;
+  --padding-end: 12px;
+  --padding-start: 12px;
+  --padding-top: 5px;
+  --ripple-color: #1e1e1e;
 }

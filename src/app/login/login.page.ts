@@ -14,7 +14,7 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class LoginPage implements OnInit {
 loginForm: FormGroup;
-
+formSubmitted:boolean=false;
   constructor(private fb: FormBuilder, private router: Router, public userservice: UsermanagementService, public navCtrl: NavController, private translate: TranslateService) { 
   this.translate.setDefaultLang('en');
    
@@ -26,13 +26,22 @@ loginForm: FormGroup;
 }*/
   ngOnInit() {
 
-    this.loginForm = this.fb.group({
+    /*this.loginForm = this.fb.group({
        email: [null,[Validators.compose([
               Validators.required,
               Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
             ])]],
        password: [null,[Validators.required]],
-     }); 
+     }); */
+     this.loginForm = this.fb.group({
+       email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
+       password: new FormControl('', Validators.compose([
+         Validators.required
+         //Validators.minLength(8)
+         ])),
+     });
   }
   translatetest(lang){
     console.log(lang);
@@ -44,7 +53,10 @@ loginForm: FormGroup;
   } 
 
   login_values(credentials){
-     this.userservice.login_credential(credentials).subscribe(res=>{
+    console.log(credentials.valid)
+    this.formSubmitted=true;
+    if(this.loginForm.valid){
+       this.userservice.login_credential(credentials).subscribe(res=>{
        console.log(res);
        let data:any=res["token"];
        let role:any=res["user"];
@@ -62,10 +74,11 @@ loginForm: FormGroup;
          localStorage.clear();
        }
         
-      
     },error=>{
        alert("login faild,Please enter correct credentials")
      })
+   }
+     
   }
   // register(){
   //   this.navCtrl.push(Register);

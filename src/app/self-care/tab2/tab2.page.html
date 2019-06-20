@@ -8,20 +8,73 @@
 
 <ion-content>
 	
-	<ion-tabs>
-	  <ion-tab-bar slot="top">
-	    <ion-tab-button tab="about" href="self-care-tabs/tabs/tab2/about"> 
-	      <ion-label>Medications</ion-label>
-	    </ion-tab-button>
+<!-- 	<ion-segment [(ngModel)]="selectedSegment" (ionChange)="onSegmentChanged(selectedSegment)">
+    <ion-segment-button value="first">
+      About
+    </ion-segment-button>
+    <ion-segment-button value="second">
+      Contact
+    </ion-segment-button>
+    <ion-segment-button value="third">
+      Health
+    </ion-segment-button>
+  </ion-segment> -->
 
-	    <ion-tab-button tab="contact" href="self-care-tabs/tabs/tab2/contact">     
-	      <ion-label>Vitals</ion-label>
-	    </ion-tab-button>
 
-	    <ion-tab-button tab="health" href="self-care-tabs/tabs/tab2/health">      
-	      <ion-label>Others</ion-label>
-	    </ion-tab-button>
-	  </ion-tab-bar>
-	</ion-tabs>
 
+<!-- 
+  <div *ngIf="selectedSegment == 'first'">
+    first
+      <ion-card class="ion-padding"> 
+       <ion-card-content>     
+          <ion-img class="ion-float-center" src="assets/img/qrcode.jpg" style="width:30%;height:30%;" [routerLink]="['/qr-detail']"></ion-img>  
+          <ion-label >Name: {{Albert John}}</ion-label><br>
+
+         <ion-chip>
+             <ion-icon name="document"></ion-icon>       
+             <ion-label>Preview</ion-label>
+         </ion-chip>
+
+          <ion-chip (ionChange)="editProfileDetails()">
+             <ion-icon name="create"></ion-icon>       
+             <ion-label>Update</ion-label>
+         </ion-chip>       
+      </ion-card-content>
+     </ion-card>  
+  
+      <ion-list>
+         <ion-item>
+          <ion-label>Blood Group:{{}}</ion-label>   
+        </ion-item>
+        <ion-item>
+          <ion-label>Age:{{}}</ion-label>   
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Emergency SMS</ion-label>
+          <ion-toggle [(ngModel)]="sms"></ion-toggle><br>
+          <span>alert SMS send to emergency contact</span>  
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Mediclaim Policy#</ion-label>  {{}} 
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Policy Issuer# </ion-label> {{}} 
+        </ion-item>
+
+      </ion-list> 
+
+  </div>
+
+
+
+  <div *ngIf="selectedSegment=='second'">
+  	second
+  </div>
+  <div *ngIf="selectedSegment=='third'">
+  	third
+  </div>
+ -->
 </ion-content>

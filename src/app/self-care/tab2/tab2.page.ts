@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab2',
@@ -6,7 +7,25 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+   sms:any;
+  email:any;
+  selectedSegment:any="first"; 
+  constructor(private router: Router) {
 
-  constructor() {}
+  }
 
+
+  ngOnInit(){}
+
+
+
+  onSegmentChanged(ev) {
+  }
+
+
+/*editProfileDetails(){
+  	console.log("edit")
+ this.router.navigate(['/about'])
+  }*/
 }
+  
