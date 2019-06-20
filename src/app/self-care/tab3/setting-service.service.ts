@@ -15,4 +15,8 @@ export class SettingServiceService {
 	editprofile(val,id){
 		return this.http.put(environment.apiUrl+"users/"+id,val)
 	}
+	sendimage(val){
+	return this.http.post(environment.apiUrl+"users/profile_picture",val)
+    }
+
 }

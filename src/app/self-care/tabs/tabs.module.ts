@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { TabsPageRoutingModule } from './tabs.router.module';
 
 import { TabsPage } from './tabs.page';
+import { previewPage } from '../tab2/preview/preview.page';
 import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
@@ -16,6 +17,6 @@ import { TranslateModule } from '@ngx-translate/core';
     TranslateModule,
     TabsPageRoutingModule
   ],
-  declarations: [TabsPage]
+  declarations: [TabsPage,previewPage]
 })
 export class TabsPageModule {}

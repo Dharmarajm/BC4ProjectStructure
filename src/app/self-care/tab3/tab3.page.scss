@@ -16,20 +16,31 @@ ion-item {
   --padding-start: 0;
   @include border(0 0 1px 0, solid, #e3e3ef);
 
-  h3{
-	@include font(1.25rem, 400, 0, capitalize, inherit, inherit, $font_color);
-  }
+  ion-label {
+	margin: 0;
+	position: relative;
 
-  h6{
-	@include font(0.9rem, 400, 0, unset, inherit, inherit, $font_color);
-  }
-}
+    h3 {
+	  @include font(1.25rem, 400, 0, capitalize, inherit, inherit, $font_color);
+	  white-space: pre-wrap;
+    }
 
-.trans_btn {
-  @include font(0.9rem, 400, 0, unset, center, inherit, $primary);
-  margin: 0;
+    h6 {
+	  @include font(0.9rem, 400, 0, unset, inherit, inherit, $font_color);
+	  margin-top: 4px;
+    }
 
-  svg {
-    margin: 1px 2px 0 0;
+    .trans_btn {
+      @include font(0.9rem, 400, 0, unset, center, inherit, $primary);
+      margin: 0;
+      position: absolute;
+      right: 0;
+	  bottom: 0;
+	  height: auto;
+
+      svg {
+        margin: 1px 2px 0 0;
+      }
+    }
   }
 }

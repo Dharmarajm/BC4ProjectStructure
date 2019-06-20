@@ -8,6 +8,7 @@ import { mainPage } from './main/main.page';
 import { careGiverRegisterPage } from './care-giver-register/care-giver-register.page';
 import { selfCareRegisterPage } from './self-care-register/self-care-register.page';
 import { selfCarePaymentPage } from './self-care-payment/self-care-payment.page';
+import { selfCareOfferPaymentPage } from './self-care-offer-payment/self-care-off-payment.page';
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -28,6 +29,7 @@ import { paymentSuccessPage } from './payment-success/payment-success.page';
     careGiverRegisterPage,
     selfCareRegisterPage,
     selfCarePaymentPage,
+    selfCareOfferPaymentPage,
     OffersPage,
     paymentSuccessPage
   ]

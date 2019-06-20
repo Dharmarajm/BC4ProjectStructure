@@ -6,11 +6,11 @@ import { OffersPage } from '../offers/offers.page';
 declare var RazorpayCheckout: any; 
 
 @Component({
-  selector: 'app-self-care-payment',
-  templateUrl: 'self-care-payment.page.html',
+  selector: 'app-self-care-off-payment',
+  templateUrl: 'self-care-off-payment.page.html',
   styleUrls: ['../main/main.page.scss'],
 })
-export class selfCarePaymentPage {
+export class selfCareOfferPaymentPage {
   paymentAmount: number = 500;
   
   currencyIcon: string = '$';
@@ -45,17 +45,20 @@ payment(){
       }
     };
 
-var successCallback = function(success) {
-  alert('payment_id: ' + success.razorpay_payment_id)
-  var orderId = success.razorpay_order_id
-  var signature = success.razorpay_signature
-}
 
-var cancelCallback = function(error) {
-  alert(error.description + ' (Error '+error.code+')')
-}
+  var successCallback = function(success) {
+    alert('payment_id: ' + success.razorpay_payment_id)
+    var orderId = success.razorpay_order_id
+    var signature = success.razorpay_signature
+  }
 
-  RazorpayCheckout.open(options, successCallback, cancelCallback);
+  var cancelCallback = function(error) {
+    alert(error.description + ' (Error '+error.code+')')
+  }
+
+  RazorpayCheckout.on('payment.success', successCallback)
+  RazorpayCheckout.on('payment.cancel', cancelCallback)
+  RazorpayCheckout.open(options)
 
 }
 

@@ -4,6 +4,7 @@ import { mainPage } from './main/main.page';
 import { selfCareRegisterPage } from './self-care-register/self-care-register.page';
 import { careGiverRegisterPage } from './care-giver-register/care-giver-register.page';
 import { selfCarePaymentPage } from './self-care-payment/self-care-payment.page';
+import { selfCareOfferPaymentPage } from './self-care-offer-payment/self-care-off-payment.page';
 import { OffersPage } from './offers/offers.page';
 import { paymentSuccessPage } from './payment-success/payment-success.page';
 
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'self-care-payment',
     component: selfCarePaymentPage,
+  },
+  {
+    path: 'self-care-offer-payment',
+    component: selfCareOfferPaymentPage,
   },
   {
     path: 'offers',

@@ -10,6 +10,7 @@ import { ActivatedRoute , Router } from '@angular/router';
 import { SettingServiceService } from '../setting-service.service'
 import {Validators, FormBuilder, FormGroup, FormControl, AbstractControl  } from '@angular/forms';
 import { environment } from '../../../../environments/environment'   
+import { Base64 } from '@ionic-native/base64/ngx';
 
 @Component({
   selector: 'app-edit-profile',
@@ -29,7 +30,7 @@ linkSource:any;
 img:any;
 img1:any;
 editprofile:any;
-  constructor(private fb: FormBuilder,public sanitizer: DomSanitizer, public route:ActivatedRoute, private file: File, private transfer: FileTransfer, private camera: Camera, private imagePicker: ImagePicker, private webview: WebView, private crop: Crop, public serv:SettingServiceService) { 
+  constructor(private base64: Base64, private fb: FormBuilder,public sanitizer: DomSanitizer, public route:ActivatedRoute, private file: File, private transfer: FileTransfer, private camera: Camera, private imagePicker: ImagePicker, private webview: WebView, private crop: Crop, public serv:SettingServiceService) { 
 
   this.route.queryParams.subscribe(params => {
       if (params && params.special) {
@@ -97,100 +98,42 @@ openImagePicker(){
     let options= {
       maximumImagesCount: 1,
     }
-    this.photos = new Array<string>();
     this.imagePicker.getPictures(options).then((results) => {
-       console.log(options)
-    this.reduceImages(results).then(() => {
-      console.log("results",results[0])
+ 
+      console.log('Image URI: ' + results);
+       this.img=results.toString();
 
-      this.file.resolveLocalFilesystemUrl(results[0]).then((fileEntry: FileEntry) => {
-         return new Promise((resolve, reject) => {
-          fileEntry.file(meta => resolve(meta), error => reject(error));
-         });
-        }).then((fileMeta: IFile) => {
-          let type = fileMeta.type.split('/');
-          let dir = fileMeta['localURL']
-          this.uploadURI=dir;
-          console.log(this.uploadURI)
-          //this.playPath=this.uploadURI;
-         
-       }).catch(err=>console.log(err)); 
-      console.log('all images cropped!!');
-    //   this.photos = new Array<string>();
-    // this.crop.crop(results, {quality: 75}).then((newImage) => {
-    //   newImage=this.webview.convertFileSrc(newImage);
-    //   this.photos.push(newImage);
-    //   this.preview=(this.photos[0]);
-    // }, error => console.error("Error cropping image", error));
-      });
-   }, (err) => { console.log(err) });
+       this.reduceImages(results).then(() => {})}, 
+       (err) => { console.log(err)
+        });
   }
-
 reduceImages(selected_pictures: any) : any{
      return selected_pictures.reduce((promise:any, item:any) => {
      return promise.then((result) => {
      return this.crop.crop(item, {quality: 75}).then(cropped_image => {
+        console.log("jfgukhuigfh",cropped_image);
+        this.image=cropped_image;
           cropped_image=this.webview.convertFileSrc(cropped_image);
           this.photos.push(cropped_image)
          this.preview=this.photos[0];
+         console.log("jfgukhuigfh",this.image)
           
         });     
       });
     }, Promise.resolve());
-  }
+   }
 
-  takePicture(){
-  let options =
-  {
-    quality: 100,
-    correctOrientation: true,
-    saveToPhotoAlbum: true
-  };
-  this.camera.getPicture(options)
-  .then((data) => {
-    this.photos = new Array<string>();
-    this.crop.crop(data, {quality: 75}).then((newImage) => {
-      newImage=this.webview.convertFileSrc(newImage);
-      this.photos.push(newImage);
-      this.preview=(this.photos[0]);
-    }, error => console.error("Error cropping image", error));
-  }, function(error) {
-    console.log(error);
-  });
-}  
+
+   
 sendEditProfile(val){
-  console.log(val)
-     const fileTransfer: FileTransferObject = this.transfer.create();
-    
-  //   // let data ={path:this.preview, name : this.usernameupdate, email:this.useremailupdate, mobile_no:this.userphoneupdate}
-    
-  //   let options: FileUploadOptions = {
-  //    fileKey: 'video_upload_file',
-  //    fileName: "uri",
-  //    mimeType: 'multipart/form-data',
-  //    params: data,
-  //    chunkedMode: false,
-  //    headers:{ Connection: "close" }
-  //   }
-
-    fileTransfer.upload(this.uploadURI,"http://192.168.1.238:4020/users").then(res=>{
-    console.log("working",res)
-    },function(error) {
-    console.log(error);
-  });
-
-  // const fileTransfer: TransferObject = this.transfer.create();
-
-
-
-  let data=val;
-  let id=this.editprofile["user_info"]["id"];
-  console.log(data,"dataval")
-  this.serv.editprofile(data,id).subscribe(res=>{
-      console.log(res)
-    },error=>{
-      alert("Update Failed...")
-    })
+  this.base64.encodeFile(this.image).then((base64File: string) => {
+  let data={"user_picture" : base64File}
+  this.serv.sendimage(data).subscribe(res => {
+    console.log(res)
+  })
+}, (err) => {
+  console.log(err);
+});
 }
 
 
