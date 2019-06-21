@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Validators, FormBuilder, FormGroup, FormControl, AbstractControl  } from '@angular/forms';
 
 @Component({
   selector: 'app-health',
@@ -11,10 +12,20 @@ export class HealthPage implements OnInit {
   medication_name: string;
   autopopulate:boolean = false;
   autopopulate2:boolean = false;
-
-  constructor() { }
+  health:FormGroup;
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
+
+
+ this.health=this.fb.group({
+
+    "name":      ['',[Validators.required]],
+    "email":     ['',[Validators.required]],
+    "mobile_no": ['',[Validators.required]],
+    });
+
+
   }
   // Input_alergy(value: string){
   //   this.alergy_name = value;

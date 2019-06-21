@@ -10,6 +10,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { healthDiaryRecord } from './health-diary-record/health-diary-record.page';
 import { PipesModule } from '../self-common-service/pipe.module';
 
+
+import { MediaCapture, MediaFile, CaptureError, CaptureAudioOptions, CaptureImageOptions } from '@ionic-native/media-capture/ngx';
+import { File } from '@ionic-native/file/ngx';
+import { Media, MediaObject } from '@ionic-native/media/ngx';
+
 const routes: Routes = [
   {
     path: '',
@@ -29,6 +34,7 @@ const routes: Routes = [
     PipesModule,
     RouterModule.forChild(routes)
   ],
+  providers: [MediaCapture,File,Media],
   declarations: [HealthDiaryPage,healthDiaryRecord]
 })
 export class HealthDiaryPageModule {}

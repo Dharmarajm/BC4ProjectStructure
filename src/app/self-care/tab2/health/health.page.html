@@ -4,11 +4,12 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding">
+  <form [formGroup]="health">
   <ion-list>
     <ion-item-group class="alergies">
       <ion-item>
         <ion-label position="floating">Allergies</ion-label>
-        <ion-input type="text" #alergy (keyup)="0"></ion-input>
+        <ion-input formControlName="allergies" type="text" #alergy (keyup)="0"></ion-input>
       </ion-item>
       <ion-item button class="autocomplete" *ngIf="autopopulate">
         <ion-label color="primary" class="select">{{alergy.value}}</ion-label>
@@ -21,7 +22,7 @@
     </ion-item-group>
     <ion-item>
       <ion-label position="floating">Heart Condition</ion-label>
-      <ion-select>
+      <ion-select formControlName="heart_condditions">
         <ion-select-option value='Yes'>Yes</ion-select-option>
         <ion-select-option value='No'>No</ion-select-option>
       </ion-select>
@@ -35,14 +36,14 @@
     </ion-item> -->
     <ion-item>
       <ion-label position="floating">Diabetes</ion-label>
-      <ion-select>
+      <ion-select formControlName="diabutes">
         <ion-select-option value='Yes'>Yes</ion-select-option>
         <ion-select-option value='No'>No</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Blood Pressure</ion-label>
-      <ion-select>
+      <ion-select formControlName="bloodpressure">
         <ion-select-option value='High'>High</ion-select-option>
         <ion-select-option value='Normal'>Normal</ion-select-option>
         <ion-select-option value='Low'>Low</ion-select-option>
@@ -50,11 +51,11 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">Implant</ion-label>
-      <ion-input type="text" #alergy></ion-input>
+      <ion-input formControlName="implant" type="text" #alergy></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Cancer</ion-label>
-      <ion-select>
+      <ion-select formControlName="cancer">
         <ion-select-option value='Yes'>Yes</ion-select-option>
         <ion-select-option value='No'>No</ion-select-option>
       </ion-select>
@@ -62,7 +63,7 @@
     <ion-item-group class="alergies">
       <ion-item>
         <ion-label position="floating">Current Medication</ion-label>
-        <ion-input type="text" #medication (keypress)="Input_medication(medication.value)"></ion-input>
+        <ion-input formControlName="curent_medication" type="text" #medication (keypress)="Input_medication(medication.value)"></ion-input>
       </ion-item>
       <ion-item button class="autocomplete" *ngIf="autopopulate2">
         <ion-label color="primary" class="select">{{medication_name}}</ion-label>
@@ -75,9 +76,10 @@
     </ion-item-group>
     <ion-item>
         <ion-label position="floating">Recent Surgeries</ion-label>
-        <ion-textarea></ion-textarea>
+        <ion-textarea formControlName="recent_surgeries"></ion-textarea>
       </ion-item>
   </ion-list>
+  </form>
 </ion-content>
 
 
