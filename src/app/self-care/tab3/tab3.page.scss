@@ -14,20 +14,35 @@ ion-item {
   --inner-padding-start: 0;
   --padding-end: 0;
   --padding-start: 0;
-  @include border(0 0 1px 0, solid, #e3e3ef);
+  padding: 10px 5px;
+  &:not(:last-child) {
+    @include border(0 0 1px 0, solid, #e3e3ef);
+  }
 
   ion-label {
-	margin: 0;
-	position: relative;
+    margin: 0;
+    position: relative;
+
+    h2 {
+      @include font(1.05rem, 400, 0, unset, right, inherit, $font_color);
+    }
 
     h3 {
-	  @include font(1.25rem, 400, 0, capitalize, inherit, inherit, $font_color);
-	  white-space: pre-wrap;
+      @include font(1.25rem, 400, 0, capitalize, inherit, inherit, $font_color);
+      white-space: pre-wrap;
+    }
+
+    h4 {
+      @include font(1.05rem, 400, 0, unset, inherit, inherit, $font_color);
     }
 
     h6 {
-	  @include font(0.9rem, 400, 0, unset, inherit, inherit, $font_color);
-	  margin-top: 4px;
+      @include font(0.9rem, 400, 0, unset, inherit, inherit, $font_color);
+      margin-top: 4px;
+    }
+
+    p {
+      @include font(0.8rem, 400, 0, unset, inherit, inherit, $dark_grey);
     }
 
     .trans_btn {
@@ -35,8 +50,8 @@ ion-item {
       margin: 0;
       position: absolute;
       right: 0;
-	  bottom: 0;
-	  height: auto;
+      bottom: 0;
+      height: auto;
 
       svg {
         margin: 1px 2px 0 0;

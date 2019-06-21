@@ -7,7 +7,9 @@ import { IonicModule } from '@ionic/angular';
 
 import { ContactPage } from './contact.page';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { Contacts, Contact, ContactField, ContactName } from '@ionic-native/contacts/ngx';
+import { FileChooser } from '@ionic-native/file-chooser/ngx';
 const routes: Routes = [
   {
     path: '',
@@ -21,8 +23,13 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     TranslateModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
+  providers: [
+    Contacts,
+    FileChooser
+   ],
   declarations: [ContactPage]
 })
 export class ContactPageModule {}

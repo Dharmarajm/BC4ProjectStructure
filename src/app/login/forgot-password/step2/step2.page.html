@@ -10,11 +10,11 @@
 	<ion-label position = "floating">Enter Verification Code<!-- {{'email' | translate }} --></ion-label>
 	<ion-input type = "text" [(ngModel)]="verify_code"></ion-input>
 </ion-item>
-<a>Resend the code</a><br>
+<a (click)="resendCode()">Resend the code</a><br>
 <b>Note:</b>
 <p>Please check your email for the verification code</p>
 
-<ion-button expand="block"(click)="verify(verify_code)" >Next<ion-icon name="arrow-forward"></ion-icon>
+<ion-button expand="block" (click)="verify(verify_code)">Next<ion-icon name="arrow-forward"></ion-icon>
 </ion-button>
 
 </ion-content>

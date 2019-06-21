@@ -9,7 +9,9 @@
   <ion-row>
 	<ion-col  class="ion-align-self-center">
 		<ion-avatar>
-		  <img src="{{img}}">
+		  <!-- <img *ngIf="editprofile.profile_pic != null" src="{{editprofile.profile_pic}}">	 -->
+		  <span *ngIf="editprofile.profile_pic == null || preview == null"> {{insialLogo | uppercase}}</span>
+		  <span *ngIf="editprofile.profile_pic == null"><img src="{{preview}}"></span>
 		  <ion-icon name="create" (click)="openImagePicker()" class="ion-float-right"></ion-icon>
 		</ion-avatar>
 	</ion-col>
@@ -26,7 +28,7 @@
 
 	<ion-item>
 		 <ion-label position = "floating">{{'name' | translate}}</ion-label>
-	     <ion-input placeholder="Name" type= "text"  formControlName="name"></ion-input>
+	     <ion-input placeholder="Name" type="text"  formControlName="name"></ion-input>
 	</ion-item>
 
 	<ion-item>

@@ -28,7 +28,7 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">{{'mob' | translate}}</ion-label>
-      <ion-input type="text" formControlName="mobile_no"></ion-input>
+      <ion-input type="tel" formControlName="mobile_no" (keypress)="_keyPress($event)"></ion-input>
     </ion-item>
     <ion-item class="icon">
       <ion-label position="floating">{{'address' | translate}}</ion-label>
@@ -73,7 +73,7 @@
     </ion-item>
     <ion-item class="icon">
       <ion-label position="floating">{{'giver_no' | translate}}</ion-label>
-      <ion-input type="text" formControlName="care_mobile"></ion-input>
+      <ion-input type="tel" formControlName="care_mobile" (keypress)="_keyPress($event)"></ion-input>
       <ion-button (click)="showinfo()">
         <svg xmlns="http://www.w3.org/2000/svg" width="16.5" height="16.5" viewBox="0 0 16.5 16.5">
           <path
@@ -88,8 +88,8 @@
     <ion-note><span>{{'note' | translate}}</span><br>{{'giver_hint' | translate}}</ion-note>
 
     <label>
-      <ion-checkbox></ion-checkbox>
-      {{'agree' | translate}}<a color="primary" href="#">{{'terms' | translate}}</a>
+      <ion-checkbox [checked]="checkStatus" formControlName="checkStatus"></ion-checkbox>
+      {{'agree' | translate}}<a color="primary" [routerLink]="['/terms_conditions']">{{'terms' | translate}}</a>
     </label>
     <ion-button color="secondary" expand="block" type="submit">{{'reg_now' | translate}}</ion-button>
     <!-- <ion-item class="ion-float-right">

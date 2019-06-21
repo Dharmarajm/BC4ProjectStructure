@@ -16,7 +16,7 @@
      </ion-item>
      <ion-item>
       <ion-label position= "floating">{{'mob' | translate}}</ion-label>
-      <ion-input type= "text" formControlName="mobile_no"></ion-input>
+      <ion-input type= "tel" formControlName="mobile_no" (keypress)="_keyPress($event)"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position= "floating">{{'email' | translate}}</ion-label>
@@ -28,16 +28,23 @@
     </ion-item>
     <ion-item>
       <ion-label position= "floating">{{'set_pwd' | translate}}</ion-label>
-      <ion-input formControlName="password" [type]="passwordType">
+      <ion-input type="password" formControlName="password">
+      <!-- <ion-icon  [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon> -->
+      </ion-input>
+    </ion-item>   
+
+    <ion-item>
+      <ion-label position= "floating">{{'confirm_pwd' | translate}}</ion-label>
+      <ion-input type="password" formControlName="password1">
       <!-- <ion-icon  [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon> -->
       </ion-input>
     </ion-item>   
        
-    <ion-checkbox></ion-checkbox>
-    <p>{{'agree' | translate}}<a routerLink="/" routerDirection="care-giver-login">{{'terms' | translate}}</a></p>
+    <ion-checkbox [checked]="checkStatus" formControlName="checkStatus"></ion-checkbox>
+    <p>{{'agree' | translate}}<a [routerLink]="['/terms_conditions']">{{'terms' | translate}}</a></p>
 
      <ion-item class="ion-float-right">
-      <ion-button type= "submit" [disabled]="giverForm.invalid">{{'login' | translate}}<ion-icon name="arrow-forward"></ion-icon></ion-button>
+      <ion-button type= "submit">{{'login' | translate}}<ion-icon name="arrow-forward"></ion-icon></ion-button>
     </ion-item>
 </form>
 

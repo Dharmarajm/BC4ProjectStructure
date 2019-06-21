@@ -17,7 +17,6 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { TermsConditionsPage } from './login/terms-conditions/terms-conditions.page';
 import { AboutPage } from './login/about/about.page';
 
-
 @NgModule({
   declarations: [AppComponent,TermsConditionsPage,AboutPage],
   entryComponents: [TermsConditionsPage,AboutPage],

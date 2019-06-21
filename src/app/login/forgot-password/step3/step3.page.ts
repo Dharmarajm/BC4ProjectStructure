@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UsermanagementService } from '../../../core/services/usermanagement.service';
 import { ActivatedRoute , Router } from '@angular/router';
+import { Validators, FormBuilder, FormGroup, FormControl, ValidatorFn,AbstractControl  } from '@angular/forms';
 
 @Component({
   selector: 'app-step3',
@@ -10,33 +11,59 @@ import { ActivatedRoute , Router } from '@angular/router';
 export class Step3Page implements OnInit {
 new_pwd:any;
 confirm_pwd: any;
-user_id: any;
-
-  constructor(public userservice: UsermanagementService, public route:ActivatedRoute, public router:Router) {
-	   this.route.queryParams.subscribe(params => {
+userData: any;
+user: FormGroup;
+  constructor(public userservice: UsermanagementService, public route:ActivatedRoute, public router:Router, private fb: FormBuilder) {
+     this.route.queryParams.subscribe(params => {
        console.log(params)
-		console.log(params['user'])
-		this.user_id=params['user'];
-	 });
+    console.log(params['user'])
+    this.userData=params['user'];
+   });
    }
 
 
   ngOnInit() {
+    console.log("Step 3");
+
+    this.user = new FormGroup({
+password: new FormControl('', [Validators.required]),
+re_password: new FormControl('', [Validators.required,this.equalto('password')])
+});
   }
 
-updatePassword(){
-  	let password=this.new_pwd;
-  	let confirm_password=this.confirm_pwd;
-  	console.log(this.new_pwd);
-    console.log(this.confirm_pwd);
-        let data=password;
-        data['user_id']=this.user_id;
-        console.log(data,'datapwd')
-  	this.userservice.pwdUpdate(data).subscribe(res=>{
-        let pwdDetails=res;
-        console.log(pwdDetails)
-    this.router.navigate(['/login'])
-	})
-	
+equalto(field_name): ValidatorFn {
+return (control: AbstractControl): {[key: string]: any} => {
+
+let input = control.value;
+
+let isValid=control.root.value[field_name]==input
+if(!isValid){
+return { 'equalTo': {isValid} }
 }
+else{
+return null
+}
+}
+}
+
+updatePassword(val){
+  console.log(val)
+  console.log(this.user.valid)
+  console.log(this.user)
+      let data:any={"password": val['password'],"user_id":this.userData};
+      console.log(data,'datapwd')
+      if(val['password'] == val['re_password'] ){
+        this.userservice.pwdUpdate(data).subscribe(res=>{
+                let pwdDetails=res;
+                console.log(pwdDetails)
+            this.router.navigate(['/login'])
+          });
+
+      }else{
+        alert('Enter Correct Password')
+      }
+                   
+}
+
+
 }

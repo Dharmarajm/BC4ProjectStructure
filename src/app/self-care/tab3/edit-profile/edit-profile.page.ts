@@ -7,7 +7,7 @@ import { File, FileEntry, IFile } from '@ionic-native/file/ngx';
 import {DomSanitizer} from '@angular/platform-browser';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { ActivatedRoute , Router } from '@angular/router';
-import { SettingServiceService } from '../setting-service.service'
+import { settingsService } from '../../self-common-service/settings/settings.service';
 import {Validators, FormBuilder, FormGroup, FormControl, AbstractControl  } from '@angular/forms';
 import { environment } from '../../../../environments/environment'   
 import { Base64 } from '@ionic-native/base64/ngx';
@@ -29,14 +29,16 @@ user_details:any;
 linkSource:any;
 img:any;
 img1:any;
+insialLogo:any;
 editprofile:any;
-  constructor(private base64: Base64, private fb: FormBuilder,public sanitizer: DomSanitizer, public route:ActivatedRoute, private file: File, private transfer: FileTransfer, private camera: Camera, private imagePicker: ImagePicker, private webview: WebView, private crop: Crop, public serv:SettingServiceService) { 
+  constructor(private base64: Base64, private fb: FormBuilder,public sanitizer: DomSanitizer, public route:ActivatedRoute, private file: File, private transfer: FileTransfer, private camera: Camera, private imagePicker: ImagePicker, private webview: WebView, private crop: Crop, public serv:settingsService) { 
 
   this.route.queryParams.subscribe(params => {
       if (params && params.special) {
         console.log(params)
         this.editprofile = JSON.parse(params.special);
-        console.log( this.editprofile,"edit")
+        console.log(this.editprofile.profile_pic,"edit")
+         this.insialLogo = this.editprofile.user_info.name.charAt(0);
         if(this.editprofile["profile_pic"] == null){
           this.img=".././././assets/img/contact.png"
         }

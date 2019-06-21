@@ -1,84 +1,34 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Add Emergency About
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-
 <ion-content>
 
-<!--  <ion-card class="ion-padding"> 
-    <ion-card-content>     
-      <ion-img class="ion-float-center" src="assets/img/qrcode.jpg" style="width:30%;height:30%;" [routerLink]="['/qr-detail']"></ion-img>  
-	    <ion-label >Name: Albert John</ion-label><br>
-
-     <ion-chip>
-         <ion-icon name="document"></ion-icon>       
-         <ion-label>Preview</ion-label>
-     </ion-chip>
-
-      <ion-chip (ionChange)="editProfileDetails()">
-         <ion-icon name="create"></ion-icon>       
-         <ion-label>Update</ion-label>
-     </ion-chip>
-     
-     
-    </ion-card-content>
-</ion-card>  
-  
-<ion-list>
-   <ion-item>
-    <ion-label>Blood Group:</ion-label>   
-  </ion-item>
-  <ion-item>
-    <ion-label>Age:</ion-label>   
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Emergency SMS</ion-label>
-    <ion-toggle [(ngModel)]="sms"></ion-toggle><br>
-    <span>alert SMS send to emergency contact</span>  
-  </ion-item>
-
-  <ion-item>
-  	<ion-label>Mediclaim Policy#</ion-label>  2d678878s994 
-  </ion-item>
-
-  <ion-item>
-  	<ion-label>Policy Issuer# </ion-label> 2ds56878s994 
-  </ion-item>
-
-</ion-list> -->
+ 
 
 
-<!-- <form [formGroup]="update" (ngSubmit)="updateValues(update.value)">
+<form [formGroup]="update" (ngSubmit)="updateValues(update.value)">
     <ion-item>
       <ion-label position="floating">Blood group</ion-label>
-      <ion-input type="email" formControlName="email" autofocus="true"></ion-input>
+      <ion-input type="text" formControlName="blood_group" autofocus="true"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Age</ion-label>
-      <ion-input type="email" formControlName="email" autofocus="true"></ion-input>
+      <ion-input type="text" formControlName="age" autofocus="true"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Mediclaim Policy#</ion-label>
-      <ion-input type="email" formControlName="email" autofocus="true"></ion-input>
+      <ion-input type="text" formControlName="mediclaim_policy" autofocus="true"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Policy Issuer#</ion-label>
-      <ion-input type="email" formControlName="email" autofocus="true"></ion-input>
+      <ion-input type="text" formControlName="policy_issuer" autofocus="true"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-button [routerlinks]="['tab2']">Cancel</ion-button>
+      <ion-button >Cancel</ion-button>
       <ion-button type="submit">Save</ion-button>
     </ion-item>
     
-  </form> -->
+  </form>
 
 </ion-content>

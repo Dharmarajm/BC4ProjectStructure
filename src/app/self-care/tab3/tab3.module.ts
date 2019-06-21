@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab3Page } from './tab3.page';
-import { SettingServiceService } from './setting-service.service';
 import { ImagePicker, ImagePickerOptions  } from '@ionic-native/image-picker/ngx';
 import { Crop } from '@ionic-native/crop/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
@@ -24,7 +23,6 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   declarations: [Tab3Page],
   providers: [
-  SettingServiceService,
   ImagePicker,
   Crop,
   Camera,

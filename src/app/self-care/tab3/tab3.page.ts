@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
 import {DomSanitizer} from '@angular/platform-browser';
 import { Router, NavigationExtras } from '@angular/router';
-import { SettingServiceService } from './setting-service.service'
+import { settingsService } from '../self-common-service/settings/settings.service';
 import { AlertController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { TermsConditionsPage } from '../../login/terms-conditions/terms-conditions.page';
@@ -21,7 +21,8 @@ export class Tab3Page {
   data:any;
   data1:any;
   data2:any;
-  constructor(public modalController: ModalController, public sanitizer: DomSanitizer, public serv: SettingServiceService, public actionSheetController: ActionSheetController, public router:Router, public alertController: AlertController) { }
+  insialLogo:any;
+  constructor(public modalController: ModalController, public sanitizer: DomSanitizer, public serv: settingsService, public actionSheetController: ActionSheetController, public router:Router, public alertController: AlertController) { }
 
   ngOnInit() {
   
@@ -30,18 +31,19 @@ export class Tab3Page {
   ionViewWillEnter(){
     this.serv.setting().subscribe(res => {
       this.pic = res;
-      console.log(this.pic)
+      console.log(this.pic.user_info.name)
+      this.insialLogo=this.pic.user_info.name.charAt(0);
       this.caregiver = this.pic.caregiver;
       
-      if(this.pic.profile_pic == null)
-      {  
-         this.img="../../../assets/img/contact.png"
+      // if(this.pic.profile_pic == null)
+      // {  
+      //    this.img="../../../assets/img/contact.png"
         
-      }else{
-        this.linkSource = this.pic.profile_pic;
-        this.img= this.sanitizer.bypassSecurityTrustResourceUrl(this.linkSource)
-        console.log(this.img)
-      }
+      // }else{
+      //   this.linkSource = this.pic.profile_pic;
+      //   this.img= this.sanitizer.bypassSecurityTrustResourceUrl(this.linkSource)
+      //   console.log(this.img)
+      // }
       
     })
   }

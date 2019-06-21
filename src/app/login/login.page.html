@@ -3,13 +3,14 @@
 	<form [formGroup]="loginForm" (ngSubmit)="login_values(loginForm.value)" novalidate>
 		<ion-item>
 			<ion-label position="floating">Email</ion-label>
-			<ion-input type="email" name="email" formControlName="email" autofocus="true"></ion-input>
+			<ion-input type="email" name="email" #myInput formControlName="email" autofocus="true"></ion-input>
 		</ion-item>
 		<ion-item class="icon">
 			<ion-label position="floating">Password</ion-label>
-			<ion-input type="password" name="password" formControlName="password"></ion-input>
-			<ion-button>
-				<ion-icon name="eye-off"></ion-icon>
+			<ion-input [type]="show ? 'text' : 'password'" name="password" formControlName="password"></ion-input>
+			<ion-button (click)="show=!show">
+				<ion-icon name="eye-off" *ngIf="!show"></ion-icon>
+				<ion-icon name="eye" *ngIf="show"></ion-icon>
 			</ion-button>
 		</ion-item>
 		<a color="light" [routerLink]="['/step1']">Forgot Password ?</a>

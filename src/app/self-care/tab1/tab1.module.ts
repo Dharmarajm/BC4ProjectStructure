@@ -42,7 +42,7 @@ const routes: Routes = [
   { 
     path: 'vitals', 
     loadChildren: '../vitals/vitals.module#AppRoutingModule'
-  },
+  }
   
 
 ];

@@ -28,11 +28,16 @@ export class careGiverRegisterPage {
   ngOnInit() {
      
      this.giverForm=this.fb.group({
-      'u_id':      [null,[Validators.required]], 
-    	'name':      [null,[Validators.required]],
-    	'mobile_no': [null,[Validators.required]],
-      'password':  [null,[Validators.required]],
-      'email':     [null,[Validators.email,Validators.required]]
+      'u_id':      ['',[Validators.required]], 
+    	'name':      ['',[Validators.required]],
+    	'mobile_no': ['',[Validators.required,,Validators.minLength(10)]],
+      'password':  ['',[Validators.required, Validators.minLength(8)]],
+      'password1': ['', [Validators.required, Validators.minLength(8)]],
+      'email':     ['',[Validators.compose([
+                    Validators.required,
+                    Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+                  ])]],
+      'checkStatus':[this.checkStatus,[Validators.pattern('true')]]
      });
       this.giverForm.controls['u_id'].valueChanges.subscribe(val=>{     
        this.id=val;  
@@ -70,4 +75,16 @@ export class careGiverRegisterPage {
     this.router.navigate(['/care-giver-tabs/tabsc/tab1c']);
     
   }
+
+  _keyPress(event: any) {
+      const pattern = /[0-9]/;
+      let inputChar = String.fromCharCode(event.charCode);
+      
+      if(event.charCode!=0){
+        if (!pattern.test(inputChar)) {
+        // invalid character, prevent input
+        event.preventDefault();
+        }
+      }
+    }
 }

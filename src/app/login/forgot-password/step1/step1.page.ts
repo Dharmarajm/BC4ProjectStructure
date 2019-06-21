@@ -8,27 +8,35 @@ import { Router, NavigationExtras } from '@angular/router';
   styleUrls: ['./step1.page.scss'],
 })
 export class Step1Page implements OnInit {
-  email:any;
+
   constructor(public userservice: UsermanagementService, public router:Router) { }
 
   ngOnInit() {
+    console.log("step1")
   }
 
 
 next(mail){
-	this.userservice.emailVerify(mail).subscribe(res=>{
-		console.log(res)
-		let verify_details=res;
+  this.userservice.emailVerify(mail).subscribe(res=>{
+    console.log(res)
+    let verify_details: any=res;
+        verify_details['email']=mail;
        console.log(verify_details['user_id'])
-		let navigationExtras: NavigationExtras = {
+  if(verify_details['status']== true){
+
+    let navigationExtras: NavigationExtras = {
       queryParams: {
-        special: verify_details['user_id'],
+        special: JSON.stringify(verify_details)
       }
     };
     
     
     this.router.navigate(['/step2'], navigationExtras)
-	});
+  }
+  else{
+    alert("Enter Valid Email-ID")
+  }
+  });
 
 
 }
