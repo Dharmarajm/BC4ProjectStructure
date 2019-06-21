@@ -22,7 +22,7 @@ profile_pic:any;
       console.log(this.insialLogo)
       console.log(this.pic.user_info.name.charAt(0))
       console.log(this.pic) 
-  })
+    })
   }
   // test(){
   //  this.router.navigate(['/self-care-tabs/tabs/tab1/health-diary']);

@@ -7,16 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class HealthPage implements OnInit {
-  alergy_name:any;
+  alergy_name = "";
+  medication_name: string;
   autopopulate:boolean = false;
+  autopopulate2:boolean = false;
 
   constructor() { }
 
   ngOnInit() {
   }
-  Input_alergy(value: any){
-    this.alergy_name = value;
-    this.autopopulate = true;
-    console.log(value);
+  // Input_alergy(value: string){
+  //   this.alergy_name = value;
+  //   this.autopopulate = true;
+  // }
+
+  Input_medication(value: string){
+    this.medication_name = value;
+    this.autopopulate2 = true;
   }
 }

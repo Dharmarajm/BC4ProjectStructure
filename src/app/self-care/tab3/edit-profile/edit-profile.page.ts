@@ -52,14 +52,14 @@ editprofile:any;
   //     }
   //   });
 
-   var data=this.navParams.get('pics');
-   console.log(data)
+   this.editprofile=this.navParams.get('pics');
+
+   this.insialLogo = this.editprofile.user_info.name.charAt(0);
    
   }
  
 
   ngOnInit() {
-console.log(this.value)
 
     this.editProfileForm=this.fb.group({
 
@@ -69,17 +69,17 @@ console.log(this.value)
     }); 
 
 
-     /*this.serv.setting().subscribe(res => {
-       this.user_details = res;
-       this.linkSource = this.user_details.profile_pic;
-       this.img = this.sanitizer.bypassSecurityTrustUrl(this.linkSource)
-       this.img1=this.img.changingThisBreaksApplicationSecurity
-       console.log(this.img1)
-     this.userphoneupdate = this.user_details.user_info.mobile_no;
-     this.useremailupdate = this.user_details.user_info.email;
-     this.usernameupdate = this.user_details.user_info.name;
+     // this.serv.setting().subscribe(res => {
+     //   this.user_details = res;
+     //   this.linkSource = this.user_details.profile_pic;
+     //   this.img = this.sanitizer.bypassSecurityTrustUrl(this.linkSource)
+     //   this.img1=this.img.changingThisBreaksApplicationSecurity
+     //   console.log(this.img1)
+     this.userphoneupdate = this.editprofile.user_info.mobile_no;
+     this.useremailupdate = this.editprofile.user_info.email;
+     this.usernameupdate = this.editprofile.user_info.name;
 
-     })*/
+     // })
 
   }
 
@@ -133,6 +133,7 @@ reduceImages(selected_pictures: any) : any{
 
    
 sendEditProfile(val){
+  console.log(val)
   this.base64.encodeFile(this.image).then((base64File: string) => {
   let data={"user_picture" : base64File}
   this.serv.sendimage(data).subscribe(res => {
@@ -141,7 +142,16 @@ sendEditProfile(val){
 }, (err) => {
   console.log(err);
 });
+  let data ={id:this.editprofile.user_info.id, name : this.usernameupdate, email:this.useremailupdate, mobile_no:this.userphoneupdate}
+  console.log(data)
+  this.serv.editprofile(data, this.editprofile.user_info.id).subscribe(res=>{
+      console.log(res)
+    },error=>{
+      alert("Update Failed...")
+    })
 }
-
+close(){
+  this.modalController.dismiss();
+}
 
 }

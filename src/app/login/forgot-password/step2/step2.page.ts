@@ -11,6 +11,7 @@ import { NavController,ToastController } from '@ionic/angular';
 export class Step2Page implements OnInit {
 user_id: any;
 emailDetails: any;
+verify_code:any;
   constructor(public userservice: UsermanagementService,  public route:ActivatedRoute, public router: Router,public navCtrl: NavController, public toastController: ToastController) { 
 this.route.queryParams.subscribe(params => {
   console.log(params['special'],'spec')

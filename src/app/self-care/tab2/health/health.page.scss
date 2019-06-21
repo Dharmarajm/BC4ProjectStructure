@@ -9,6 +9,8 @@ ion-list {
     --highlight-color-invalid: #ea4e4e;
     --padding-start: 0;
     --padding-end: 0;
+    --inner-padding-end: 0;
+
     @include font(1rem, 500, 0, none, left, inherit, $font_color);
     margin-bottom: 10px;
 
@@ -17,7 +19,7 @@ ion-list {
       overflow: visible;
     }
 
-    ion-label {
+    ion-label:not(.select) {
       --color: #bcbbcf;
     }
 

@@ -7,11 +7,15 @@ import { IonicModule } from '@ionic/angular';
 
 import { HealthDiaryPage } from './health-diary.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { healthDiaryRecord } from './health-diary-record/health-diary-record.page';
 
 const routes: Routes = [
   {
     path: '',
     component: HealthDiaryPage
+  },{
+    path: 'health-diary-record',
+    component: healthDiaryRecord
   }
 ];
 
@@ -23,6 +27,6 @@ const routes: Routes = [
     TranslateModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [HealthDiaryPage]
+  declarations: [HealthDiaryPage,healthDiaryRecord]
 })
 export class HealthDiaryPageModule {}

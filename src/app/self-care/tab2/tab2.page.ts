@@ -13,7 +13,7 @@ policyDetail:any;
 sms:any;
   selectedSegment:any="first"; 
   //contact declarations
-  
+  user_type: any;
   info:any=[{'doctor':[],'emergency':[],'care_giver':[]}];
 
   constructor(private router: Router, public route:ActivatedRoute, public settingService: settingsService) {
