@@ -1,0 +1,38 @@
+@import "../../../app.scss";
+
+ion-item {
+  --background: transparent;
+  --border-color: #bcbbcf;
+  --highlight-color-focused: #483df6;
+  --highlight-color-valid: #483df6;
+  --highlight-color-invalid: #ea4e4e;
+  --padding-start: 0;
+  @include font(1rem, 500, 0, none, left, inherit, $font_color);
+  margin-bottom: 10px;
+
+  ion-label {
+    --color: #bcbbcf;
+  }
+}
+
+ion-note {
+  @include font(0.9rem, 500, 0, capitalize, left, inherit, $dark_grey);
+  margin-top: 30px;
+  display: block;
+
+  span {
+    color: $font_color;
+  }
+}
+
+ion-button {
+	&:not(.button-has-icon-only){
+	  @include font(1.2rem, 500, 0, capitalize, center, inherit, inherit);
+	  --border-radius: 25px;
+	  --box-shadow: none;
+	  margin: 25px auto;
+	  max-width: 260px;
+	  min-height: 50px;
+	  --box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	}
+}

@@ -1,27 +1,23 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="end">
-      <ion-button (click)="close()">
-        <ion-icon slot="icon-only" name="close"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>Edit Profile</ion-title>
-  </ion-toolbar>
+	<ion-toolbar color="primary">
+		<ion-buttons slot="end">
+			<ion-button (click)="close()">
+				<ion-icon slot="icon-only" name="close"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title class="ion-padding-start">Edit Profile</ion-title>
+	</ion-toolbar>
 </ion-header>
 
-<ion-content>
-
-  <ion-row>
-	<ion-col  class="ion-align-self-center">
-		<ion-avatar>
-		  <!-- <img *ngIf="editprofile.profile_pic != null" src="{{editprofile.profile_pic}}">	 -->
-		  <span *ngIf="editprofile.profile_pic == null || preview == null"> {{insialLogo | uppercase}}</span>
-		  <span *ngIf="editprofile.profile_pic == null"><img src="{{preview}}"></span>
-		  <ion-icon name="create" (click)="openImagePicker()" class="ion-float-right"></ion-icon>
-		</ion-avatar>
-	</ion-col>
-  </ion-row>
-
+<ion-content class="ion-padding">
+	<ion-avatar>
+		<span *ngIf="editprofile.profile_pic == null || preview == null"> {{insialLogo | uppercase}}</span>
+		<span *ngIf="editprofile.profile_pic == null"><img src="{{preview}}"></span>
+	</ion-avatar>
+	<ion-button (click)="openImagePicker()">
+		<svg xmlns="http://www.w3.org/2000/svg" width="12.568" height="10.2" viewBox="0 0 12.568 10.2"> <g id="photo-camera_1_" data-name="photo-camera (1)" transform="translate(0 -46.15)"> <g id="Group_517" data-name="Group 517" transform="translate(0 46.15)"> <path id="Path_1268" data-name="Path 1268" d="M0,49.271v5.545A1.535,1.535,0,0,0,1.534,56.35h9.5a1.535,1.535,0,0,0,1.534-1.534V49.271a1.46,1.46,0,0,0-1.459-1.459H9.067L9.018,47.6A1.864,1.864,0,0,0,7.192,46.15H5.373A1.869,1.869,0,0,0,3.547,47.6l-.049.213H1.459A1.462,1.462,0,0,0,0,49.271Zm3.75-.831a.313.313,0,0,0,.305-.244l.105-.457a1.241,1.241,0,0,1,1.213-.962H7.192A1.241,1.241,0,0,1,8.4,47.74l.105.457a.315.315,0,0,0,.305.244h2.29a.831.831,0,0,1,.831.831v5.545a.905.905,0,0,1-.905.905h-9.5a.905.905,0,0,1-.905-.905V49.271a.831.831,0,0,1,.831-.831Z" transform="translate(0 -46.15)" fill="#483df6"/> <circle id="Ellipse_397" data-name="Ellipse 397" cx="0.421" cy="0.421" r="0.421" transform="translate(1.706 3.211)" fill="#483df6"/> <path id="Path_1269" data-name="Path 1269" d="M144.739,180.428a2.639,2.639,0,1,0-2.639-2.639A2.643,2.643,0,0,0,144.739,180.428Zm0-4.65a2.011,2.011,0,1,1-2.011,2.011A2.014,2.014,0,0,1,144.739,175.778Z" transform="translate(-138.455 -171.841)" fill="#483df6"/> </g> </g> </svg>
+		Choose
+	</ion-button>
 	<!-- <ion-button (click)="takePicture()"> camera</ion-button>
 	<ion-button (click)="openImagePicker()">Choose Image</ion-button> -->
 	<!-- <ion-input   [(ngModel)]="usernameupdate"></ion-input>
@@ -29,27 +25,21 @@
 	<ion-input [(ngModel)]="userphoneupdate"></ion-input> -->
 	<!-- <ion-button (click)="sendEditProfile()">Submit</ion-button> -->
 
-	<form [formGroup]="editProfileForm" (ngSubmit) = "sendEditProfile(editProfileForm.value)">
-
-	<ion-item>
-		 <ion-label position = "floating">{{'name' | translate}}</ion-label>
-	     <ion-input placeholder="Name" type="text"  formControlName="name"></ion-input>
-	</ion-item>
-
-	<ion-item>
-		 <ion-label position = "floating">{{'email_id' | translate}} </ion-label>
-	     <ion-input placeholder="Email Id" type= "text"  formControlName="email"></ion-input>
-	</ion-item>
-
-	<ion-item>
-		 <ion-label position = "floating">{{'mob' | translate}}</ion-label>
-	     <ion-input placeholder="Mobile#" type= "text"  formControlName="mobile_no"></ion-input>
-	</ion-item>
-
-	<ion-item class="ion-float-right">
-		 <ion-button type= "submit" [disabled]="editProfileForm.invalid">{{'save' | translate}}</ion-button>
-	</ion-item>
-
+	<form [formGroup]="editProfileForm" (ngSubmit)="sendEditProfile(editProfileForm.value)">
+		<ion-item>
+			<ion-label position="floating">{{'name' | translate}}</ion-label>
+			<ion-input placeholder="Name" type="text" formControlName="name"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label position="floating">{{'email_id' | translate}} </ion-label>
+			<ion-input placeholder="Email Id" type="text" formControlName="email"></ion-input>
+		</ion-item>
+		<ion-item>
+			<ion-label position="floating">{{'mob' | translate}}</ion-label>
+			<ion-input placeholder="Mobile#" type="text" formControlName="mobile_no"></ion-input>
+		</ion-item>
+		<ion-item class="ion-float-right">
+			<ion-button type="submit" [disabled]="editProfileForm.invalid">{{'save' | translate}}</ion-button>
+		</ion-item>
 	</form>
 </ion-content>
-	

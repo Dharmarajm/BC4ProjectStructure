@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { settingsService } from '../self-common-service/settings/settings.service';
-
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -14,8 +13,11 @@ sms:any;
   selectedSegment:any="first"; 
   //contact declarations
   user_type: any;
+  care_giver:boolean=false;
+  emergency:boolean=false;
+  doctor:boolean=false;
   info:any=[{'doctor':[],'emergency':[],'care_giver':[]}];
-
+  contact_details:any;
   constructor(private router: Router, public route:ActivatedRoute, public settingService: settingsService) {
 
   }
@@ -27,7 +29,7 @@ sms:any;
 
   // About segment code
 
-  ionViewDidEnter(){
+  ionViewWillEnter(){
   this.info=[{'doctor':[],'emergency':[],'care_giver':[]}];
     this.settingService.aboutDetail().subscribe(res=>{
   //console.log(res);
@@ -40,24 +42,47 @@ sms:any;
 // contact service
  this.settingService.contactDetails().subscribe(res=>{
    console.log(res);
-   let contact_details:any=res["emergency_detail"];
-   for(let i=0;i<=contact_details.length;i++){
-     if(contact_details[i]['user_type'] == 'Emergency'){
-       this.info[0]['emergency'].push(contact_details[i])
+   this.contact_details = res;
+   for(let i=0;i<this.contact_details.count;i++){
+
+
+     console.log(this.contact_details.emergency_detail[i].user_type)
+
+
+     if(this.contact_details.emergency_detail[i].user_type == 'Emergency'){
+       this.info[0]['emergency'].push(this.contact_details.emergency_detail[i])
 
      }
-     else if(contact_details[i]['user_type'] == 'Doctor'){
-       this.info[0]['doctor'].push(contact_details[i])
+     else if(this.contact_details.emergency_detail[i].user_type == 'Doctor'){
+       this.info[0]['doctor'].push(this.contact_details.emergency_detail[i])
 
      }
-     else if(contact_details[i]['user_type'] == 'Care Giver'){
-        this.info[0]['care_giver'].push(contact_details[i])
+     else if(this.contact_details.emergency_detail[i].user_type == 'Care Giver'){
+        this.info[0]['care_giver'].push(this.contact_details.emergency_detail[i])
 
      }
    }
    console.log(this.info,'info')
-
- })
+    // console.log("dfdajlshfulik",this.info.emergency_detail[i].user_type)
+     for(let i=0; i<this.info.length; i++){
+       // console.log("dfhuashfgjkagkda",this.info.emergency_detail[i].user_type)
+      if(this.info[0].care_giver.length != 0){
+         this.care_giver=true
+       }else{
+         this.care_giver=false
+       }
+        if(this.info[0].emergency.length != 0){
+         this.emergency = true;
+       }else{
+         this.emergency = false;
+       }
+        if(this.info[0].doctor.length != 0){
+         this.doctor = true;
+       }else{
+         this.doctor = false;
+       } 
+     }
+    })
 
   }
 

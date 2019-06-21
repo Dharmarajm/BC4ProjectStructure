@@ -14,15 +14,19 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private router:Router
+    private router:Router,
   ) {
     this.initializeApp();
   }
 
   initializeApp() {
+    
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.statusBar.overlaysWebView(true);
+    this.statusBar.backgroundColorByHexString('#ffffff');
+
       if(localStorage.getItem('token')!=undefined){
         if(localStorage.getItem('rold_id')=="1"){
           this.router.navigate(['self-care-tabs/tabs/tab1']);

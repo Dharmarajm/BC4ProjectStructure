@@ -4,15 +4,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab2Page } from './tab2.page';
+import { ModalController } from '@ionic/angular';
 
 import { TranslateModule } from '@ngx-translate/core';
-
+import { contactListPage } from './contact-list/contact-list.page';
 
 const routes: Routes=[
-
- {  
-     path: '',
-     component: Tab2Page
+  {  
+   path: '',
+   component: Tab2Page
   },{
      path: 'about-update',
      loadChildren: './about/about.module#AboutPageModule'
@@ -22,8 +22,10 @@ const routes: Routes=[
   },{
      path: 'health-update',
      loadChildren: './health/health.module#HealthPageModule'
+  },{
+    path: 'contact-list',
+    component: contactListPage
   }
-
 ]
 /*const routes: Routes = [
   {
@@ -78,6 +80,6 @@ const routes: Routes=[
     TranslateModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [Tab2Page]
+  declarations: [Tab2Page,contactListPage]
 })
 export class Tab2PageModule {}

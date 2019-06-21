@@ -70,15 +70,20 @@
     </ion-list> 
   </ng-container>
 
+
+
+
+
   <ng-container *ngIf="selectedSegment=='second'">
+
     <ion-toolbar class="action_tools">
       <ion-button slot="end" color="secondary" class="btn" (click)="addContact()">
         <svg xmlns="http://www.w3.org/2000/svg" width="11.965" height="11.965" viewBox="0 0 11.965 11.965"><g transform="translate(-291.035 -86.035)"><rect width="1.391" height="11.965" rx="0.696" transform="translate(296.322 86.035)" fill="#2c2c2c"/><rect width="1.391" height="11.965" rx="0.696" transform="translate(291.035 92.713) rotate(-90)" fill="#2c2c2c"/></g></svg>
         Add
       </ion-button>
     </ion-toolbar>
-    <ion-list class="ion-no-padding ion-padding-start ion-padding-end">
-      <ion-list-header>
+    <ion-list  class="ion-no-padding ion-padding-start ion-padding-end">
+      <ion-list-header *ngIf="doctor == true">
         <ion-label>Doctor</ion-label>
       </ion-list-header>
       <ion-item *ngFor="let i of info[0]?.doctor" > 
@@ -96,7 +101,7 @@
       </ion-item>
     </ion-list>
     <ion-list class="ion-no-padding ion-padding-start ion-padding-end">
-        <ion-list-header>
+        <ion-list-header *ngIf="care_giver == true">
           <ion-label>Care Giver</ion-label>
         </ion-list-header>
         <ion-item *ngFor="let i of info[0]?.care_giver">
@@ -114,7 +119,7 @@
         </ion-item>
       </ion-list>
        <ion-list class="ion-no-padding ion-padding-start ion-padding-end">
-        <ion-list-header>
+        <ion-list-header *ngIf="emergency == true">
           <ion-label>Emergency</ion-label>
         </ion-list-header>
         <ion-item *ngFor="let i of info[0]?.emergency">

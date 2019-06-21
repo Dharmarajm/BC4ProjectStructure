@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { HealthDiaryPage } from './health-diary.page';
 import { TranslateModule } from '@ngx-translate/core';
 import { healthDiaryRecord } from './health-diary-record/health-diary-record.page';
+import { PipesModule } from '../self-common-service/pipe.module';
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     TranslateModule,
+    PipesModule,
     RouterModule.forChild(routes)
   ],
   declarations: [HealthDiaryPage,healthDiaryRecord]

@@ -4,6 +4,8 @@ import { Contacts, Contact, ContactField, ContactFieldType } from '@ionic-native
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { settingsService } from '../../self-common-service/settings/settings.service';
+import { ModalController } from '@ionic/angular';
+import { contactListPage } from '../contact-list/contact-list.page';
 
 @Component({
   selector: 'app-contact',
@@ -13,10 +15,11 @@ import { settingsService } from '../../self-common-service/settings/settings.ser
 export class ContactPage implements OnInit {
 user_type: any;
 contactForm: FormGroup
+contact_details:any;
 dataDetail: any=[{label:"Emergency",user_type:1},
                  {label:"Doctor",user_type:2},
                  {label:"Care Giver",user_type:3}]
-  constructor(private router: Router, public route:ActivatedRoute, private fb: FormBuilder, private contacts: Contacts, private fileChooser: FileChooser, public userservice: settingsService) { 
+  constructor(public modalController: ModalController,private router: Router, public route:ActivatedRoute, private fb: FormBuilder, private contacts: Contacts, private fileChooser: FileChooser, public userservice: settingsService) { 
 
  }
 
@@ -37,6 +40,7 @@ contact(){
       this.contacts.find(['*']).then((contacts)=>{
       alert(JSON.stringify(contacts[4]));
       console.log(JSON.stringify(contacts))
+      this.contact_details=contacts;
     })
   }
 chooseUserType(data){
@@ -57,5 +61,13 @@ savecontact(val){
     alert('Enter All fields');
   }
 }
+
+ async presentModal() {
+    const modal = await this.modalController.create({
+      component: contactListPage,
+      componentProps: { value: this.contact_details }
+    });
+    return await modal.present();
+  }
 
 }

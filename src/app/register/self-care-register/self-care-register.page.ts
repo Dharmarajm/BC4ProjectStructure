@@ -102,7 +102,7 @@ export class selfCareRegisterPage {
     }
 
 	async toast(toast_message: string) {
-		toast_message = "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+		toast_message = "consectetur adipiscing elit";
 		const toast = await this.toastController.create({
 			message: toast_message,
 			position: 'bottom',

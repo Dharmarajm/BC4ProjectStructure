@@ -39,6 +39,7 @@ import { AboutPage } from './login/about/about.page';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
+  exports:[],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

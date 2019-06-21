@@ -99,7 +99,7 @@ export class LoginPage implements OnInit {
       }
      })
    }else{
-      this.presentToast('Please enter the crendentials'); 
+      this.presentToast('Please enter the valid crendentials'); 
    }
      
   }

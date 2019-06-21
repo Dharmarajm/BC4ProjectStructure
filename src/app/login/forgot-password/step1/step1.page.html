@@ -1,21 +1,20 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Forgot Password</ion-title>
-  </ion-toolbar>
+	<ion-toolbar color="primary">
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>Forgot Password</ion-title>
+		<ion-img slot="end" src="../../../assets/img/ico.png"></ion-img>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-
-<ion-item  class="item">
-	<ion-label position = "floating">Email ID<!-- {{'email' | translate }} --></ion-label>
-	<ion-input type = "email" [(ngModel)]="email"></ion-input>
-</ion-item>
-
-	<b>Note:</b>
-	<p>Please enter your authorized email ID to 
-	send a verification code.</p>
-	
-<ion-button type="submit" (click)="next(email)" floating="center">Next<ion-icon name="arrow-forward"></ion-icon> 
-</ion-button>
-
+	<ion-item>
+		<ion-label position="floating">Email ID</ion-label>
+		<ion-input type="email" [(ngModel)]="email"></ion-input>
+	</ion-item>
+	<ion-note><span>Note:</span><br>Please enter your authorized email ID to send a verification code.</ion-note>
+	<ion-button type="submit" (click)="next(email)" color="secondary" expand="block">Next<ion-icon name="arrow-forward">
+		</ion-icon>
+	</ion-button>
 </ion-content>

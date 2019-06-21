@@ -12,6 +12,8 @@ import {Validators, FormBuilder, FormGroup, FormControl, AbstractControl  } from
 import { environment } from '../../../../environments/environment'   
 import { Base64 } from '@ionic-native/base64/ngx';
 import { NavParams } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-edit-profile',
@@ -19,7 +21,9 @@ import { NavParams } from '@ionic/angular';
   styleUrls: ['./edit-profile.page.scss'],
 })
 export class EditProfilePage implements OnInit {
-  
+userphoneupdate:any;
+useremailupdate:any;
+usernameupdate  :any;
 editProfileForm:FormGroup
 image:any;
 preview:any;
@@ -33,7 +37,7 @@ img:any;
 img1:any;
 insialLogo:any;
 editprofile:any;
-  constructor(private base64: Base64, private fb: FormBuilder,public sanitizer: DomSanitizer, public route:ActivatedRoute, private file: File, private transfer: FileTransfer, private camera: Camera, private imagePicker: ImagePicker, private webview: WebView, private crop: Crop, public serv:settingsService,public navParams: NavParams) { 
+  constructor(private base64: Base64, private fb: FormBuilder,public sanitizer: DomSanitizer, public route:ActivatedRoute, private file: File, private transfer: FileTransfer, private camera: Camera, private imagePicker: ImagePicker, private webview: WebView, private crop: Crop, public serv:settingsService,public navParams: NavParams,public modalController: ModalController) { 
 
   // this.route.queryParams.subscribe(params => {
   //     if (params && params.special) {
@@ -133,6 +137,9 @@ reduceImages(selected_pictures: any) : any{
 
    
 sendEditProfile(val){
+     this.userphoneupdate = val.mobile_no;
+     this.useremailupdate = val.email;
+     this.usernameupdate = val.name;
   console.log(val)
   this.base64.encodeFile(this.image).then((base64File: string) => {
   let data={"user_picture" : base64File}
