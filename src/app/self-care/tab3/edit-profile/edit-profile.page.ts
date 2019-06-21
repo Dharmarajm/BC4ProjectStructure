@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { ImagePicker, ImagePickerOptions  } from '@ionic-native/image-picker/ngx';
 import { Crop } from '@ionic-native/crop/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
@@ -11,6 +11,7 @@ import { settingsService } from '../../self-common-service/settings/settings.ser
 import {Validators, FormBuilder, FormGroup, FormControl, AbstractControl  } from '@angular/forms';
 import { environment } from '../../../../environments/environment'   
 import { Base64 } from '@ionic-native/base64/ngx';
+import { NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-edit-profile',
@@ -18,6 +19,7 @@ import { Base64 } from '@ionic-native/base64/ngx';
   styleUrls: ['./edit-profile.page.scss'],
 })
 export class EditProfilePage implements OnInit {
+  
 editProfileForm:FormGroup
 image:any;
 preview:any;
@@ -31,31 +33,34 @@ img:any;
 img1:any;
 insialLogo:any;
 editprofile:any;
-  constructor(private base64: Base64, private fb: FormBuilder,public sanitizer: DomSanitizer, public route:ActivatedRoute, private file: File, private transfer: FileTransfer, private camera: Camera, private imagePicker: ImagePicker, private webview: WebView, private crop: Crop, public serv:settingsService) { 
+  constructor(private base64: Base64, private fb: FormBuilder,public sanitizer: DomSanitizer, public route:ActivatedRoute, private file: File, private transfer: FileTransfer, private camera: Camera, private imagePicker: ImagePicker, private webview: WebView, private crop: Crop, public serv:settingsService,public navParams: NavParams) { 
 
-  this.route.queryParams.subscribe(params => {
-      if (params && params.special) {
-        console.log(params)
-        this.editprofile = JSON.parse(params.special);
-        console.log(this.editprofile.profile_pic,"edit")
-         this.insialLogo = this.editprofile.user_info.name.charAt(0);
-        if(this.editprofile["profile_pic"] == null){
-          this.img=".././././assets/img/contact.png"
-        }
-        else{
-              this.linkSource = this.editprofile["profile_pic"];
-              this.img= this.sanitizer.bypassSecurityTrustResourceUrl(this.linkSource)
-              console.log(this.img)
-        }
-      }
-    });
+  // this.route.queryParams.subscribe(params => {
+  //     if (params && params.special) {
+  //       console.log(params)
+  //       this.editprofile = JSON.parse(params.special);
+  //       console.log(this.editprofile.profile_pic,"edit")
+  //        this.insialLogo = this.editprofile.user_info.name.charAt(0);
+  //       if(this.editprofile["profile_pic"] == null){
+  //         this.img=".././././assets/img/contact.png"
+  //       }
+  //       else{
+  //             this.linkSource = this.editprofile["profile_pic"];
+  //             this.img= this.sanitizer.bypassSecurityTrustResourceUrl(this.linkSource)
+  //             console.log(this.img)
+  //       }
+  //     }
+  //   });
 
-  
-
+   var data=this.navParams.get('pics');
+   console.log(data)
+   
   }
  
 
   ngOnInit() {
+console.log(this.value)
+
     this.editProfileForm=this.fb.group({
 
     "name":      [this.editprofile["user_info"]["name"],[Validators.required]],

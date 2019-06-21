@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute,Router,NavigationExtras } from '@angular/router';
 import { settingsService } from '../self-common-service/settings/settings.service';
+//import { Platform} from '@ionic/angular';
 
 
 @Component({
@@ -26,4 +27,10 @@ profile_pic:any;
   // test(){
   //  this.router.navigate(['/self-care-tabs/tabs/tab1/health-diary']);
   // }
+
+
+ /* ionViewDidEnter()
+  { 
+   this.subscription = this.platform.backButton.subscribe(()=>{ navigator['app'].exitApp(); });
+  } */
 }

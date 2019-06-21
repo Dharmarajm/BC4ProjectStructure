@@ -36,7 +36,6 @@ ion-item {
   ion-thumbnail {
     --size: 96px;
     margin: 0 auto;
-    padding: 16px;
     @include border(1px, solid, #ececec);
   }
 
@@ -127,13 +126,6 @@ ion-item-group {
     }
   }
 
-  &.alergies {
-    ion-chip {
-      --background: #978ad2;
-      --color: #ffffff;
-    }
-  }
-
   &.pre_conditon {
     ion-item {
       ion-label {
@@ -163,13 +155,6 @@ ion-item-group {
           }
         }
       }
-    }
-  }
-
-  &.medication {
-    ion-chip {
-      --background: #5ee4a2;
-      --color: #2c2c2c;
     }
   }
 

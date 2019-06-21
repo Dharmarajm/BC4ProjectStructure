@@ -4,6 +4,7 @@ import {Validators, FormBuilder, FormGroup, FormControl  } from '@angular/forms'
 import { NavController,ToastController } from '@ionic/angular';
 import { UsermanagementService } from '../core/services/usermanagement.service';
 import {TranslateService} from '@ngx-translate/core';
+//import { Platform} from '@ionic/angular';
 
 //import { Register } from '../register/main/main';
 
@@ -41,11 +42,12 @@ export class LoginPage implements OnInit {
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
        password: new FormControl('', Validators.compose([
-         Validators.required
-         //Validators.minLength(8)
+         Validators.required,
+         Validators.minLength(8)
          ])),
      });
   }
+  
 
   ionViewDidLoad(){
     window.setTimeout(() => {
@@ -76,10 +78,10 @@ export class LoginPage implements OnInit {
        localStorage.setItem('rold_id',role["role_id"]);
        localStorage.setItem('user',role);
        if(role["role_id"]==1){
-         this.presentToast('You have Logged in successfully');
+         //this.presentToast('You have Logged in successfully');
          this.router.navigate(['/self-care-tabs/tabs/tab1']);
        }else if(role["role_id"]==2){
-         this.presentToast('You have Logged in successfully');
+         //this.presentToast('You have Logged in successfully');
          this.router.navigate(['/care-giver-tabs/tabsc/tab1c']);
        }else{
          //alert("Invalid credentials");
@@ -124,4 +126,10 @@ export class LoginPage implements OnInit {
   // register(){
   //   this.navCtrl.push(Register);
   // }
+
+
+    /*ionViewDidEnter()
+  { 
+   this.subscription = this.platform.backButton.subscribe(()=>{ navigator['app'].exitApp(); });
+  } */
 }

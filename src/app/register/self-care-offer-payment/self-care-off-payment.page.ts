@@ -29,7 +29,7 @@ payment(){
       /*image: 'https://i.imgur.com/3g7nmJC.png',*/
       currency: "INR",
       amount: this.paymentAmount * 100,
-      name: 'foo',
+      name: 'BC4',
       prefill: {
         email: 'adhvik@gmail.com',
         contact: '9621323231',

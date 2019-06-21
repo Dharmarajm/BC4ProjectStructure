@@ -300,3 +300,17 @@ ion-segment {
 //     }
 //   }
 // }
+
+.alergies {
+  ion-chip {
+    --background: #978ad2;
+    --color: #ffffff;
+  }
+}
+
+.medication {
+  ion-chip {
+    --background: #5ee4a2;
+    --color: #2c2c2c;
+  }
+}

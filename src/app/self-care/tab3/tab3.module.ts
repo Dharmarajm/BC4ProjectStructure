@@ -12,22 +12,26 @@ import { File, FileEntry, IFile } from '@ionic-native/file/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { AlertController } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { Base64 } from '@ionic-native/base64/ngx';
+import { EditProfilePage } from './edit-profile/edit-profile.page';
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
     TranslateModule,
-    RouterModule.forChild([{ path: '', component: Tab3Page },{ path: 'edit-profile', loadChildren: './edit-profile/edit-profile.module#EditProfilePageModule'}])
+    ReactiveFormsModule,
+    RouterModule.forChild([{ path: '', component: Tab3Page },{ path: 'edit-profile', component:EditProfilePage}])
   ],
-  declarations: [Tab3Page],
+  declarations: [Tab3Page,EditProfilePage],
   providers: [
   ImagePicker,
   Crop,
   Camera,
   FileTransfer,
   File,
+  Base64,
   WebView,
   AlertController,
   ],

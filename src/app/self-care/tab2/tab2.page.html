@@ -81,15 +81,15 @@
       <ion-list-header>
         <ion-label>Doctor</ion-label>
       </ion-list-header>
-      <ion-item *ngFor="let i of info"> 
+      <ion-item *ngFor="let i of info[0]?.doctor" > 
         <ion-avatar slot="start">
           <span>E</span>
         </ion-avatar>
         <ion-label>
-          <h3>{{i?.doctor.contact_name}}</h3>
-          <p>+{{i?.docotr.emergency_no}}</p>
+          <h3>{{i?.contact_name}}</h3>
+          <p>{{i?.emergency_no}}</p>
         </ion-label>
-        <ion-button class="trans_btn">
+        <ion-button class="trans_btn" (click)="deleteItem(i.id)">
           <svg xmlns="http://www.w3.org/2000/svg" width="10.873" height="13.398" viewBox="0 0 10.873 13.398"><g transform="translate(0.1 0.1)"><g transform="translate(0)"><path d="M55.32,1.581H53.266a1.786,1.786,0,0,0-3.548,0H47.663a1.51,1.51,0,0,0-1.508,1.508v.077a1.509,1.509,0,0,0,.953,1.4V11.69A1.51,1.51,0,0,0,48.616,13.2h5.752a1.51,1.51,0,0,0,1.508-1.508V4.567a1.509,1.509,0,0,0,.953-1.4V3.089A1.51,1.51,0,0,0,55.32,1.581ZM51.491.715a1.073,1.073,0,0,1,1.052.866h-2.1A1.073,1.073,0,0,1,51.491.715ZM55.16,11.69a.794.794,0,0,1-.793.793H48.616a.794.794,0,0,1-.793-.793V4.674H55.16Zm.953-8.524a.794.794,0,0,1-.793.793H47.663a.794.794,0,0,1-.793-.793V3.089a.794.794,0,0,1,.793-.793H55.32a.794.794,0,0,1,.793.793v.077Z" transform="translate(-46.155)" fill="#fa5457" stroke="#fa5457" stroke-width="0.2"/><path d="M158.433,254.312a.358.358,0,0,0,.358-.358v-4.026a.358.358,0,1,0-.715,0v4.026A.358.358,0,0,0,158.433,254.312Z" transform="translate(-155.013 -242.743)" fill="#fa5457" stroke="#fa5457" stroke-width="0.2"/><path d="M228.5,254.312a.358.358,0,0,0,.358-.358v-4.026a.358.358,0,1,0-.715,0v4.026A.358.358,0,0,0,228.5,254.312Z" transform="translate(-223.166 -242.743)" fill="#fa5457" stroke="#fa5457" stroke-width="0.2"/><path d="M298.572,254.312a.358.358,0,0,0,.358-.358v-4.026a.358.358,0,1,0-.715,0v4.026A.358.358,0,0,0,298.572,254.312Z" transform="translate(-291.318 -242.743)" fill="#fa5457" stroke="#fa5457" stroke-width="0.2"/></g></g></svg>
           Delete
         </ion-button>
@@ -99,15 +99,33 @@
         <ion-list-header>
           <ion-label>Care Giver</ion-label>
         </ion-list-header>
-        <ion-item>
+        <ion-item *ngFor="let i of info[0]?.care_giver">
           <ion-avatar slot="start">
             <span>E</span>
           </ion-avatar>
           <ion-label>
-             <h3>{{i?.care_giver.contact_name}}</h3>
-             <p>+{{i?.care_giver.emergency_no}}</p>
+             <h3>{{i?.contact_name}}</h3>
+             <p>{{i?.emergency_no}}</p>
           </ion-label>
-          <ion-button class="trans_btn">
+          <ion-button class="trans_btn" (click)="deleteItem(i.id)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="10.873" height="13.398" viewBox="0 0 10.873 13.398"><g transform="translate(0.1 0.1)"><g transform="translate(0)"><path d="M55.32,1.581H53.266a1.786,1.786,0,0,0-3.548,0H47.663a1.51,1.51,0,0,0-1.508,1.508v.077a1.509,1.509,0,0,0,.953,1.4V11.69A1.51,1.51,0,0,0,48.616,13.2h5.752a1.51,1.51,0,0,0,1.508-1.508V4.567a1.509,1.509,0,0,0,.953-1.4V3.089A1.51,1.51,0,0,0,55.32,1.581ZM51.491.715a1.073,1.073,0,0,1,1.052.866h-2.1A1.073,1.073,0,0,1,51.491.715ZM55.16,11.69a.794.794,0,0,1-.793.793H48.616a.794.794,0,0,1-.793-.793V4.674H55.16Zm.953-8.524a.794.794,0,0,1-.793.793H47.663a.794.794,0,0,1-.793-.793V3.089a.794.794,0,0,1,.793-.793H55.32a.794.794,0,0,1,.793.793v.077Z" transform="translate(-46.155)" fill="#fa5457" stroke="#fa5457" stroke-width="0.2"/><path d="M158.433,254.312a.358.358,0,0,0,.358-.358v-4.026a.358.358,0,1,0-.715,0v4.026A.358.358,0,0,0,158.433,254.312Z" transform="translate(-155.013 -242.743)" fill="#fa5457" stroke="#fa5457" stroke-width="0.2"/><path d="M228.5,254.312a.358.358,0,0,0,.358-.358v-4.026a.358.358,0,1,0-.715,0v4.026A.358.358,0,0,0,228.5,254.312Z" transform="translate(-223.166 -242.743)" fill="#fa5457" stroke="#fa5457" stroke-width="0.2"/><path d="M298.572,254.312a.358.358,0,0,0,.358-.358v-4.026a.358.358,0,1,0-.715,0v4.026A.358.358,0,0,0,298.572,254.312Z" transform="translate(-291.318 -242.743)" fill="#fa5457" stroke="#fa5457" stroke-width="0.2"/></g></g></svg>
+            Delete
+          </ion-button>
+        </ion-item>
+      </ion-list>
+       <ion-list class="ion-no-padding ion-padding-start ion-padding-end">
+        <ion-list-header>
+          <ion-label>Emergency</ion-label>
+        </ion-list-header>
+        <ion-item *ngFor="let i of info[0]?.emergency">
+          <ion-avatar slot="start">
+            <span>E</span>
+          </ion-avatar>
+          <ion-label>
+             <h3>{{i?.contact_name}}</h3>
+             <p>{{i?.emergency_no}}</p>
+          </ion-label>
+          <ion-button class="trans_btn" (click)="deleteItem(i.id)">
             <svg xmlns="http://www.w3.org/2000/svg" width="10.873" height="13.398" viewBox="0 0 10.873 13.398"><g transform="translate(0.1 0.1)"><g transform="translate(0)"><path d="M55.32,1.581H53.266a1.786,1.786,0,0,0-3.548,0H47.663a1.51,1.51,0,0,0-1.508,1.508v.077a1.509,1.509,0,0,0,.953,1.4V11.69A1.51,1.51,0,0,0,48.616,13.2h5.752a1.51,1.51,0,0,0,1.508-1.508V4.567a1.509,1.509,0,0,0,.953-1.4V3.089A1.51,1.51,0,0,0,55.32,1.581ZM51.491.715a1.073,1.073,0,0,1,1.052.866h-2.1A1.073,1.073,0,0,1,51.491.715ZM55.16,11.69a.794.794,0,0,1-.793.793H48.616a.794.794,0,0,1-.793-.793V4.674H55.16Zm.953-8.524a.794.794,0,0,1-.793.793H47.663a.794.794,0,0,1-.793-.793V3.089a.794.794,0,0,1,.793-.793H55.32a.794.794,0,0,1,.793.793v.077Z" transform="translate(-46.155)" fill="#fa5457" stroke="#fa5457" stroke-width="0.2"/><path d="M158.433,254.312a.358.358,0,0,0,.358-.358v-4.026a.358.358,0,1,0-.715,0v4.026A.358.358,0,0,0,158.433,254.312Z" transform="translate(-155.013 -242.743)" fill="#fa5457" stroke="#fa5457" stroke-width="0.2"/><path d="M228.5,254.312a.358.358,0,0,0,.358-.358v-4.026a.358.358,0,1,0-.715,0v4.026A.358.358,0,0,0,228.5,254.312Z" transform="translate(-223.166 -242.743)" fill="#fa5457" stroke="#fa5457" stroke-width="0.2"/><path d="M298.572,254.312a.358.358,0,0,0,.358-.358v-4.026a.358.358,0,1,0-.715,0v4.026A.358.358,0,0,0,298.572,254.312Z" transform="translate(-291.318 -242.743)" fill="#fa5457" stroke="#fa5457" stroke-width="0.2"/></g></g></svg>
             Delete
           </ion-button>

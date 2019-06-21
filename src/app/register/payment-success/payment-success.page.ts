@@ -11,10 +11,9 @@ export class paymentSuccessPage {
 	constructor(private router: Router) { }
 
 	ngOnInit() {
-
-
 	}
-	registered() {
-		this.router.navigate(['self-care-tabs/tabs/tab1']);
+	
+	Login() {
+		this.router.navigate(['login']);
 	}
 }

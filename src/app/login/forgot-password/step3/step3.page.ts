@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsermanagementService } from '../../../core/services/usermanagement.service';
 import { ActivatedRoute , Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup, FormControl, ValidatorFn,AbstractControl  } from '@angular/forms';
+import { NavController,ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-step3',
@@ -13,7 +14,7 @@ new_pwd:any;
 confirm_pwd: any;
 userData: any;
 user: FormGroup;
-  constructor(public userservice: UsermanagementService, public route:ActivatedRoute, public router:Router, private fb: FormBuilder) {
+  constructor(public userservice: UsermanagementService, public route:ActivatedRoute, public router:Router, private fb: FormBuilder,public navCtrl: NavController, public toastController: ToastController) {
      this.route.queryParams.subscribe(params => {
        console.log(params)
     console.log(params['user'])
@@ -60,10 +61,18 @@ updatePassword(val){
           });
 
       }else{
-        alert('Enter Correct Password')
+        //alert('Enter Correct Password')
       }
                    
 }
 
+    /*async presentToast(message) {
+      const toast = await this.toastController.create({
+        message: message,
+        duration: 2000
+      });
+      toast.present();
+    }
+*/
 
 }

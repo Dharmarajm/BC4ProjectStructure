@@ -11,6 +11,7 @@ export class Tab1cPage {
   constructor(private router: Router) {}
   
   test(){
+  	localStorage.clear();
    this.router.navigate(['register/main']);
   }
 }

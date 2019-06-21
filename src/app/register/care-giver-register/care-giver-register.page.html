@@ -1,18 +1,20 @@
 <ion-header>
-  <ion-toolbar>
-     <ion-buttons slot="start">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
+    <ion-title>Registration</ion-title>
+    <ion-img slot="end" src="../../../assets/img/ico.png"></ion-img>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content  class="ion-padding">
 
 <form [formGroup]="giverForm" (ngSubmit) = "CareGiverDetail(giverForm.value)">
 	
      <ion-item>
        <ion-label position= "floating">{{'uid' | translate}}</ion-label>
-	   <ion-input  type= "text"  formControlName="u_id" (change)="care_giverId()"></ion-input>
+	   <ion-input  type= "text"  formControlName="user_uid" (change)="care_giverId()"></ion-input>
      </ion-item>
      <ion-item>
       <ion-label position= "floating">{{'mob' | translate}}</ion-label>
@@ -39,13 +41,18 @@
       <!-- <ion-icon  [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon> -->
       </ion-input>
     </ion-item>   
-       
-    <ion-checkbox [checked]="checkStatus" formControlName="checkStatus"></ion-checkbox>
-    <p>{{'agree' | translate}}<a [routerLink]="['/terms_conditions']">{{'terms' | translate}}</a></p>
 
-     <ion-item class="ion-float-right">
+    <ion-note><span>{{'note' | translate}}:</span><br>UID is mandatory, for details click on info icon which is in the field right corner</ion-note>
+
+    <label>
+      <ion-checkbox [checked]="checkStatus" formControlName="checkStatus"></ion-checkbox>
+      {{'agree' | translate}}<a color="primary" [routerLink]="['/terms_conditions']">{{'terms' | translate}}</a>
+    </label>
+    <ion-button color="secondary" expand="block" type="submit">{{'login' | translate}}</ion-button>
+
+     <!-- <ion-item class="ion-float-right">
       <ion-button type= "submit">{{'login' | translate}}<ion-icon name="arrow-forward"></ion-icon></ion-button>
-    </ion-item>
+    </ion-item> -->
 </form>
 
 </ion-content>

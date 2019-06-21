@@ -40,4 +40,7 @@ export class settingsService {
       return this.http.post(environment.apiUrl+"emergency_details",user_details)
 
   }
+  deleteData(id){
+    return this.http.delete(environment.apiUrl+"emergency_details/"+id)
+  }
 }

@@ -29,7 +29,7 @@ payment(){
       /*image: 'https://i.imgur.com/3g7nmJC.png',*/
       currency: "INR",
       amount: this.paymentAmount * 100,
-      name: 'foo',
+      name: 'BC4',
       prefill: {
         email: 'adhvik@gmail.com',
         contact: '9621323231',
@@ -46,13 +46,15 @@ payment(){
     };
 
 var successCallback = function(success) {
-  alert('payment_id: ' + success.razorpay_payment_id)
-  var orderId = success.razorpay_order_id
-  var signature = success.razorpay_signature
+  //alert('payment_id: ' + success.razorpay_payment_id)
+  var orderId = success.razorpay_order_id;
+  var signature = success.razorpay_signature;
+  this.router.navigate(['register/payment-success'])
 }
 
 var cancelCallback = function(error) {
-  alert(error.description + ' (Error '+error.code+')')
+  
+  //alert(error.description + ' (Error '+error.code+')')
 }
 
   RazorpayCheckout.open(options, successCallback, cancelCallback);

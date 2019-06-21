@@ -7,7 +7,7 @@ import { AlertController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { TermsConditionsPage } from '../../login/terms-conditions/terms-conditions.page';
 import { AboutPage } from '../../login/about/about.page';
-
+import { EditProfilePage } from './edit-profile/edit-profile.page'
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
@@ -18,9 +18,9 @@ export class Tab3Page {
   linkSource:any;
   img:any;
   caregiver:any;
-  data:any;
-  data1:any;
-  data2:any;
+  data:any = "5 days";
+  data1:any = "5 days";
+  data2:any = "Never";
   insialLogo:any;
   constructor(public modalController: ModalController, public sanitizer: DomSanitizer, public serv: settingsService, public actionSheetController: ActionSheetController, public router:Router, public alertController: AlertController) { }
 
@@ -48,23 +48,34 @@ export class Tab3Page {
     })
   }
 
-  edit(){
+ async edit(){
+    
+    let data={ 
+        pics: this.pic
+      }  
 
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        special: JSON.stringify(this.pic)
-      }
-    };
+    const modal = await this.modalController.create({
+      component: EditProfilePage,
+      componentProps: data
+    });
+    return await modal.present();
+
+    // let navigationExtras: NavigationExtras = {
+    //   queryParams: {
+    //     special: JSON.stringify(this.pic)
+    //   }
+    // };
     
     //this.navCtrl.navigateForward(['/editprofile']);
     //this.router.navigate(['/editprofile',{item:this.pic}])
-    this.router.navigate(['self-care-tabs/tabs/tab3/edit-profile'], navigationExtras)
+    // this.router.navigate(['self-care-tabs/tabs/tab3/edit-profile'], navigationExtras)
     //this.navCtrl.navigate(['/self-care-tabs/tabs/tab3/editprofile']);
   }
  async careGiverName(){
 
      const alert = await this.alertController.create({
       header: 'Radio',
+
       backdropDismiss: false,
       inputs: [
         {
@@ -150,7 +161,8 @@ const alert2 = await this.alertController.create({
                 {name:'day2',type:'radio',label:'3 Days',value:"3 Days"},
                 {name:'day3',type:'radio',label:'5 Days',value:"5 Days"},
                 {name:'day4',type:'radio',label:'10 Days',value:"10 Days"},
-                {name:'day5',type:'radio',label:'15 Days',value:"15 Days"}
+                {name:'day5',type:'radio',label:'15 Days',value:"15 Days"},
+                {name:'never',type:'radio',label:'Never',value:"Never"}
               ],
       buttons: [
         {

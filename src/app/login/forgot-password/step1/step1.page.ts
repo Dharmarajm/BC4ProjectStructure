@@ -34,7 +34,7 @@ next(mail){
     this.router.navigate(['/step2'], navigationExtras)
   }
   else{
-    alert("Enter Valid Email-ID")
+    //alert("Enter Valid Email-ID")
   }
   });
 

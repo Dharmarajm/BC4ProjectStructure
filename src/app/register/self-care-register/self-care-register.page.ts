@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl,ValidatorFn,AbstractControl } from '@angular/forms';
 import { UsermanagementService } from '../../core/services/usermanagement.service';
-import { NavController } from '@ionic/angular';
+import { NavController,ToastController } from '@ionic/angular';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
-import { ToastController } from '@ionic/angular';
 
 @Component({
 	selector: 'app-self-care-register',
@@ -76,6 +75,8 @@ export class selfCareRegisterPage {
           this.presentToast('Please enter the password')
 	  }else if(this.detailForm.value["password"]!=this.detailForm.value["password1"]){
           this.presentToast("Password doesn't match")
+	  }else if(this.detailForm.value["checkStatus"]==false){
+          this.presentToast("Please agree terms and conditions")
 	  }else{
 	  	console.log(this.detailForm.value)
 	  	   this.presentToast('Please fill all the mandatory fields')

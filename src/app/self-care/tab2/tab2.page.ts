@@ -28,6 +28,7 @@ sms:any;
   // About segment code
 
   ionViewDidEnter(){
+  this.info=[{'doctor':[],'emergency':[],'care_giver':[]}];
     this.settingService.aboutDetail().subscribe(res=>{
   //console.log(res);
   this.details=res;
@@ -55,7 +56,6 @@ sms:any;
      }
    }
    console.log(this.info,'info')
-
 
  })
 
@@ -96,7 +96,15 @@ addContact(){
    this.router.navigate(['/self-care-tabs/tabs/tab2/contact-add'])
 
 }
+deleteItem(id){
 
+this.settingService.deleteData(id).subscribe(res=>
+ {
+   console.log(res);
+   alert('Contact Deleted')
+   this.ionViewDidEnter()
+ })
+}
 
 
 // Health segment code
