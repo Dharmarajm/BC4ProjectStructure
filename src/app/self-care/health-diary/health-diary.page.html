@@ -26,9 +26,29 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <ion-list class="ion-padding-start ion-padding-end" *ngFor="let data of health_records | groupby">
+  <ion-list>
+      <ion-list-header>
+        <ion-label>31-06-2019</ion-label>
+      </ion-list-header>
+      <ion-item button>
+        <ion-label text-wrap>
+          <h3>Heart</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore nobis, in architecto soluta iusto cumque dicta corporis voluptate harum esse aspernatur deserunt laboriosam cum eligendi ea quasi delectus, et aliquam.</p>
+          <h6>
+            <span>
+              12:49am
+              <i><svg id="play-arrow" xmlns="http://www.w3.org/2000/svg" width="10.144" height="11.545" viewBox="0 0 10.144 11.545"> <path id="Path_26" data-name="Path 26" d="M17.422,5.286,8.391.075a.557.557,0,0,0-.835.482V10.989a.557.557,0,0,0,.835.482L17.422,6.26A.565.565,0,0,0,17.422,5.286Z" transform="translate(-7.556 0)" fill="#43b920"/> </svg></i>
+            </span>
+            <ion-button class="trans_btn" (click)="deleteEvent(event.id)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10.873" height="13.398" viewBox="0 0 10.873 13.398"><g transform="translate(0.1 0.1)"><g transform="translate(0)"><path d="M55.32,1.581H53.266a1.786,1.786,0,0,0-3.548,0H47.663a1.51,1.51,0,0,0-1.508,1.508v.077a1.509,1.509,0,0,0,.953,1.4V11.69A1.51,1.51,0,0,0,48.616,13.2h5.752a1.51,1.51,0,0,0,1.508-1.508V4.567a1.509,1.509,0,0,0,.953-1.4V3.089A1.51,1.51,0,0,0,55.32,1.581ZM51.491.715a1.073,1.073,0,0,1,1.052.866h-2.1A1.073,1.073,0,0,1,51.491.715ZM55.16,11.69a.794.794,0,0,1-.793.793H48.616a.794.794,0,0,1-.793-.793V4.674H55.16Zm.953-8.524a.794.794,0,0,1-.793.793H47.663a.794.794,0,0,1-.793-.793V3.089a.794.794,0,0,1,.793-.793H55.32a.794.794,0,0,1,.793.793v.077Z" transform="translate(-46.155)" fill="#fa5457" stroke="#fa5457" stroke-width="0.2"/><path d="M158.433,254.312a.358.358,0,0,0,.358-.358v-4.026a.358.358,0,1,0-.715,0v4.026A.358.358,0,0,0,158.433,254.312Z" transform="translate(-155.013 -242.743)" fill="#fa5457" stroke="#fa5457" stroke-width="0.2"/><path d="M228.5,254.312a.358.358,0,0,0,.358-.358v-4.026a.358.358,0,1,0-.715,0v4.026A.358.358,0,0,0,228.5,254.312Z" transform="translate(-223.166 -242.743)" fill="#fa5457" stroke="#fa5457" stroke-width="0.2"/><path d="M298.572,254.312a.358.358,0,0,0,.358-.358v-4.026a.358.358,0,1,0-.715,0v4.026A.358.358,0,0,0,298.572,254.312Z" transform="translate(-291.318 -242.743)" fill="#fa5457" stroke="#fa5457" stroke-width="0.2"/></g></g></svg>
+              Delete
+            </ion-button>
+          </h6>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  <!-- <ion-list class="ion-padding-start ion-padding-end" *ngFor="let data of health_records | groupby">
     <ion-list-header>
-      
       <ion-label>{{data.created_at | date:"dd MMMM,y"}}</ion-label>
     </ion-list-header>
     <ion-item button *ngFor="let event of data.events">
@@ -40,12 +60,12 @@
             {{event.created_at | date:'shortTime'}}
             <svg id="play-arrow" xmlns="http://www.w3.org/2000/svg" width="10.144" height="11.545" viewBox="0 0 10.144 11.545"> <path id="Path_26" data-name="Path 26" d="M17.422,5.286,8.391.075a.557.557,0,0,0-.835.482V10.989a.557.557,0,0,0,.835.482L17.422,6.26A.565.565,0,0,0,17.422,5.286Z" transform="translate(-7.556 0)" fill="#43b920"/> </svg>
           </span>
-          <ion-button class="trans_btn">
+          <ion-button class="trans_btn" (click)="deleteEvent(event.id)">
             <svg xmlns="http://www.w3.org/2000/svg" width="10.873" height="13.398" viewBox="0 0 10.873 13.398"><g transform="translate(0.1 0.1)"><g transform="translate(0)"><path d="M55.32,1.581H53.266a1.786,1.786,0,0,0-3.548,0H47.663a1.51,1.51,0,0,0-1.508,1.508v.077a1.509,1.509,0,0,0,.953,1.4V11.69A1.51,1.51,0,0,0,48.616,13.2h5.752a1.51,1.51,0,0,0,1.508-1.508V4.567a1.509,1.509,0,0,0,.953-1.4V3.089A1.51,1.51,0,0,0,55.32,1.581ZM51.491.715a1.073,1.073,0,0,1,1.052.866h-2.1A1.073,1.073,0,0,1,51.491.715ZM55.16,11.69a.794.794,0,0,1-.793.793H48.616a.794.794,0,0,1-.793-.793V4.674H55.16Zm.953-8.524a.794.794,0,0,1-.793.793H47.663a.794.794,0,0,1-.793-.793V3.089a.794.794,0,0,1,.793-.793H55.32a.794.794,0,0,1,.793.793v.077Z" transform="translate(-46.155)" fill="#fa5457" stroke="#fa5457" stroke-width="0.2"/><path d="M158.433,254.312a.358.358,0,0,0,.358-.358v-4.026a.358.358,0,1,0-.715,0v4.026A.358.358,0,0,0,158.433,254.312Z" transform="translate(-155.013 -242.743)" fill="#fa5457" stroke="#fa5457" stroke-width="0.2"/><path d="M228.5,254.312a.358.358,0,0,0,.358-.358v-4.026a.358.358,0,1,0-.715,0v4.026A.358.358,0,0,0,228.5,254.312Z" transform="translate(-223.166 -242.743)" fill="#fa5457" stroke="#fa5457" stroke-width="0.2"/><path d="M298.572,254.312a.358.358,0,0,0,.358-.358v-4.026a.358.358,0,1,0-.715,0v4.026A.358.358,0,0,0,298.572,254.312Z" transform="translate(-291.318 -242.743)" fill="#fa5457" stroke="#fa5457" stroke-width="0.2"/></g></g></svg>
             Delete
           </ion-button>
         </h6>
       </ion-label>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 </ion-content>

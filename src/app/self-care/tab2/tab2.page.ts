@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { settingsService } from '../self-common-service/settings/settings.service';
+import { ModalController } from '@ionic/angular';
+import { AboutPage } from './about/about.page';
+import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
@@ -18,7 +22,7 @@ sms:any;
   doctor:boolean=false;
   info:any=[{'doctor':[],'emergency':[],'care_giver':[]}];
   contact_details:any;
-  constructor(private router: Router, public route:ActivatedRoute, public settingService: settingsService) {
+  constructor(public alertController: AlertController, public modalController: ModalController,private router: Router, public route:ActivatedRoute, public settingService: settingsService) {
 
   }
 
@@ -32,9 +36,15 @@ sms:any;
   ionViewWillEnter(){
   this.info=[{'doctor':[],'emergency':[],'care_giver':[]}];
     this.settingService.aboutDetail().subscribe(res=>{
-  //console.log(res);
+  console.log(res);
   this.details=res;
-  this.policyDetail=res['policies'][0]['attribute_name_value'];
+  
+  if(this.details['policies'].length!=0){
+    this.policyDetail = this.details['policies'][0]['attribute_name_value'];  
+  }else{
+    this.policyDetail = this.details['policies'];
+  }
+  
   console.log(this.policyDetail)
 
 });
@@ -43,15 +53,16 @@ sms:any;
  this.settingService.contactDetails().subscribe(res=>{
    console.log(res);
    this.contact_details = res;
+   var dineh;
    for(let i=0;i<this.contact_details.count;i++){
+     this.contact_details.emergency_detail[i].firstleter=this.contact_details.emergency_detail[i].contact_name.charAt(0);
 
-
-     console.log(this.contact_details.emergency_detail[i].user_type)
+     console.log(this.contact_details.emergency_detail[i])
 
 
      if(this.contact_details.emergency_detail[i].user_type == 'Emergency'){
        this.info[0]['emergency'].push(this.contact_details.emergency_detail[i])
-
+         
      }
      else if(this.contact_details.emergency_detail[i].user_type == 'Doctor'){
        this.info[0]['doctor'].push(this.contact_details.emergency_detail[i])
@@ -91,16 +102,46 @@ sms:any;
   onSegmentChanged(ev) {
 
   }
-editProfileDetails(){
 
+  // async openUserModal() {
+  //   const modal = await this.modalController.create({
+  //     component: UserModalComponent,
+  //     componentProps: { users: this.users },
+  //   });
+
+  //   modal.onDidDismiss()
+  //     .then((data) => {
+  //       //const user = data['data']; // Here's your selected user!
+  //      this.ionViewWillEnter(); 
+  //   });
+
+  //   return await modal.present();
+  // }
+  
+  editProfileDetails(){
+    
     let navigationExtras: NavigationExtras = {
       queryParams: {
         special: JSON.stringify(this.details)
       }
     }; 
 
- this.router.navigate(['/self-care-tabs/tabs/tab2/about-update'],navigationExtras)
+    this.router.navigate(['/self-care-tabs/tabs/tab2/about-update'],navigationExtras)
   }
+
+  /*async openUserModal() {
+    const modal = await this.modalController.create({
+      component: AboutPage,
+      componentProps: { special: this.details },
+    });
+
+    modal.onDidDismiss()
+      .then((data) => {
+        const user = data['data']; // Here's your selected user!
+    });
+
+    return await modal.present();
+  }*/
  
   previewData(){
 
@@ -121,14 +162,35 @@ addContact(){
    this.router.navigate(['/self-care-tabs/tabs/tab2/contact-add'])
 
 }
-deleteItem(id){
+async deleteItem(id){
 
-this.settingService.deleteData(id).subscribe(res=>
- {
-   console.log(res);
-   alert('Contact Deleted')
-   this.ionViewDidEnter()
- })
+
+  const alert = await this.alertController.create({
+      header: 'Alert',
+      message: 'Are you sure?',
+      mode: 'ios',
+      buttons: [
+        {
+          text: 'Confirm',
+          handler: () => {
+            console.log('Confirm Ok');
+            this.settingService.deleteData(id).subscribe(res=>{
+                 this.ionViewWillEnter()
+            })
+          }
+        },
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }
+      ]
+    });
+   await alert.present();
+
 }
 
 

@@ -10,10 +10,11 @@ import { NavController,ToastController } from '@ionic/angular';
   styleUrls: ['./step3.page.scss'],
 })
 export class Step3Page implements OnInit {
-new_pwd:any;
-confirm_pwd: any;
-userData: any;
-user: FormGroup;
+  new_pwd:any;
+  confirm_pwd: any;
+  userData: any;
+  user: FormGroup;
+  registerProgress:boolean=false;
   constructor(public userservice: UsermanagementService, public route:ActivatedRoute, public router:Router, private fb: FormBuilder,public navCtrl: NavController, public toastController: ToastController) {
      this.route.queryParams.subscribe(params => {
        console.log(params)
@@ -27,52 +28,57 @@ user: FormGroup;
     console.log("Step 3");
 
     this.user = new FormGroup({
-password: new FormControl('', [Validators.required]),
-re_password: new FormControl('', [Validators.required,this.equalto('password')])
-});
+     password: new FormControl('', [Validators.required]),
+     re_password: new FormControl('', [Validators.required,this.equalto('password')])
+    });
   }
 
-equalto(field_name): ValidatorFn {
-return (control: AbstractControl): {[key: string]: any} => {
+  equalto(field_name): ValidatorFn {
+      return (control: AbstractControl): {[key: string]: any} => {
 
-let input = control.value;
+        let input = control.value;
 
-let isValid=control.root.value[field_name]==input
-if(!isValid){
-return { 'equalTo': {isValid} }
-}
-else{
-return null
-}
-}
-}
+        let isValid=control.root.value[field_name]==input
+        if(!isValid){
+        return { 'equalTo': {isValid} }
+        }
+        else{
+        return null
+        }
+      }
+  }
 
-updatePassword(val){
-  console.log(val)
-  console.log(this.user.valid)
-  console.log(this.user)
+  updatePassword(val){
+      console.log(val)
+      console.log(this.user.valid)
+      console.log(this.user)
       let data:any={"password": val['password'],"user_id":this.userData};
       console.log(data,'datapwd')
       if(val['password'] == val['re_password'] ){
+        this.registerProgress=true;
         this.userservice.pwdUpdate(data).subscribe(res=>{
-                let pwdDetails=res;
-                console.log(pwdDetails)
+            let pwdDetails=res;
+            console.log(pwdDetails)
+            this.registerProgress=false;
             this.router.navigate(['/login'])
+          },error=>{
+            this.registerProgress=false;
           });
 
       }else{
         //alert('Enter Correct Password')
+        this.presentToast("your Password doesn't match")
       }
                    
-}
+  }
 
-    /*async presentToast(message) {
+    async presentToast(message) {
       const toast = await this.toastController.create({
         message: message,
         duration: 2000
       });
       toast.present();
     }
-*/
+
 
 }

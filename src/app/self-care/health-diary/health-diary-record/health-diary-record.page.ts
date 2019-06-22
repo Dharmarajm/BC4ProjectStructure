@@ -6,7 +6,8 @@ import { Platform,AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-health-diary-record',
-  templateUrl: 'health-diary-record.page.html'
+  templateUrl: 'health-diary-record.page.html',
+  styleUrls: ['../health-diary.page.scss'],
 })
 export class healthDiaryRecord {
   
@@ -30,9 +31,11 @@ export class healthDiaryRecord {
   recordStart:boolean= false;
   Stop:boolean = false;
   Pause:boolean =false;
-  
+  tabBar:any;
   constructor(private mediaCapture: MediaCapture,private media: Media,private file: File,public platform: Platform,public alertController: AlertController) {
     this.show=3; 
+    this.tabBar = document.getElementById('myTabBar');
+    this.tabBar.style.display = 'none';
   }
 
   ngOnInit() {
@@ -222,6 +225,10 @@ export class healthDiaryRecord {
        console.log(this.filePath)
        //this.audio = this.media.create(this.filePath);
        this.audio.play();
+    }
+
+    ionViewWillLeave(){
+     this.tabBar.style.display = 'flex'; 
     } 
 
  

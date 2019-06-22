@@ -27,4 +27,31 @@ ion-list {
       @include font(12px, 400, 0, none, inherit, inherit, $dark_grey);
     }
   }
+
+  ion-item-group{
+    ion-item{
+
+      &:first-child{
+        margin-bottom: 0;
+      }
+
+      &.autocomplete {
+        --border-width: 0;
+        --border-style: unset;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+        --padding-start: 16px !important;
+      }
+    }
+  }
+}
+
+ion-chip {
+  @include font(0.9rem, 400, 0, unset, inherit, inherit, none);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  padding: 5px 15px;
+  height: 24px;
+
+  ion-icon {
+    font-size: 14px;
+  }
 }

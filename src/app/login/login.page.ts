@@ -85,7 +85,7 @@ export class LoginPage implements OnInit {
          this.router.navigate(['/care-giver-tabs/tabsc/tab1c']);
        }else{
          //alert("Invalid credentials");
-         this.presentToast('Login failed,Invalid credentials');
+         this.presentToast('Please enter the valid crendentials');
          this.loginForm.reset();
          localStorage.clear();
        }
@@ -93,7 +93,7 @@ export class LoginPage implements OnInit {
     },error=>{
       console.log(error.status==401)
       if(error.status==401){
-       this.presentToast('Login failed,Invalid credentials'); 
+       this.presentToast('Please enter the valid crendentials'); 
       }else{
         
       }

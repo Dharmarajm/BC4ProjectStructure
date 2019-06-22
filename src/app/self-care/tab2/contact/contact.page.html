@@ -1,25 +1,28 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-padding-start">Add Emergency About</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
 
-<ion-content>
-
-<form [formGroup]="contactForm" (ngSubmit) = "savecontact(contactForm.value)">
-	     <ion-button (click)="contact()">Create Contact</ion-button>
+  <form class="footerform" [formGroup]="contactForm" (ngSubmit)="savecontact(contactForm.value)">
+    <!-- <ion-button (click)="contact()">Create Contact</ion-button> -->
 
     <ion-item>
-      <ion-label position= "floating">Name</ion-label>
-      <ion-input type= "text" formControlName="contact_name"></ion-input>
+      <ion-label position="floating">Name</ion-label>
+      <ion-input type="text" formControlName="contact_name" autofocus="true"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position= "floating">Contact</ion-label>
-      <ion-input formControlName="emergency_no" type="text">
-        <ion-icon name="contact" (click)="presentModal()"></ion-icon>
-      </ion-input>
+      <ion-label position="floating">Contact</ion-label>
+      <ion-input formControlName="emergency_no" (keypress)="_keyPress($event)" type="phone"></ion-input>
+      <!-- <ion-icon name="contact" (click)="presentModal()"></ion-icon> -->
     </ion-item>
     <ion-radio-group>
-     <ion-item *ngFor="let data of dataDetail" (click)="chooseUserType(data.user_type)">
-      <ion-label>{{data.label}}</ion-label>
-      <ion-radio type="radio" slot="start" value="{{data.user_type}}"></ion-radio>
-    </ion-item>
-    <!-- <ion-item>
+      <ion-item *ngFor="let data of dataDetail" (click)="chooseUserType(data.user_type)">
+        <ion-label>{{data.label}}</ion-label>
+        <ion-radio type="radio" slot="start" value="{{data.user_type}}"></ion-radio>
+      </ion-item>
+      <!-- <ion-item>
       <ion-label>doctor</ion-label>
       <ion-radio slot="start" value="doctor"></ion-radio>
     </ion-item>
@@ -27,10 +30,17 @@
       <ion-label>Care Giver</ion-label>
       <ion-radio slot="start" value="care-giver"></ion-radio>
     </ion-item> -->
-  </ion-radio-group>  
-    <ion-item class="ion-float-right">
-      <ion-button type= "submit">Save</ion-button>
-    </ion-item>
-
-</form>
+    </ion-radio-group>
+    <!-- <ion-item class="ion-float-right">
+      <ion-button type="submit">Save</ion-button>
+    </ion-item> -->
+    <div class="footer">
+      <ion-button expand="block" (click)="close()">
+        Cancel
+      </ion-button>
+      <ion-button type="submit" color="secondary" expand="block">
+        Save
+      </ion-button>
+    </div>
+  </form>
 </ion-content>

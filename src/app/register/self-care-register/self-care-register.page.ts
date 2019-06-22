@@ -3,7 +3,8 @@ import { Validators, FormBuilder, FormGroup, FormControl,ValidatorFn,AbstractCon
 import { UsermanagementService } from '../../core/services/usermanagement.service';
 import { NavController,ToastController } from '@ionic/angular';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
-
+import { ModalController } from '@ionic/angular';
+import { TermsConditionsPage } from '../../login/terms-conditions/terms-conditions.page';
 @Component({
 	selector: 'app-self-care-register',
 	templateUrl: 'self-care-register.page.html',
@@ -13,8 +14,8 @@ export class selfCareRegisterPage {
 	detailForm: FormGroup
 	showBackdrop: boolean = false;
 	checkStatus:boolean=false;
-
-	constructor(private router: Router, private fb: FormBuilder, public user_service: UsermanagementService, public navCtrl: NavController, public toastController: ToastController) { }
+    registerProgress:boolean=false;
+	constructor(public modalController: ModalController, private router: Router, private fb: FormBuilder, public user_service: UsermanagementService, public toastController: ToastController) { }
 
 	ngOnInit() {
 		this.detailForm = this.fb.group({
@@ -38,6 +39,7 @@ export class selfCareRegisterPage {
 	self_detail(detail) {
 		console.log(detail)
 	  if(this.detailForm.valid){
+	  	this.registerProgress=true;
 	  	 let data = {
 			"user": {
 				'name': detail.name,
@@ -61,10 +63,11 @@ export class selfCareRegisterPage {
 
 		this.user_service.care_detail(data).subscribe(res => {
 			console.log(res)
+			this.registerProgress=false;
             this.presentToast('You have registered successfully')  
 			this.router.navigate(['register/self-care-payment']);
 		},error=>{
-			
+			this.registerProgress=false;
 			this.presentToast(error["error"]["error"])
 		});
 	  }else if(this.detailForm.value["name"]==''){
@@ -144,5 +147,13 @@ export class selfCareRegisterPage {
 	      duration: 2000
 	    });
 	    toast.present();
+    }
+
+    async terms(){
+        const modal = await this.modalController.create({
+      component: TermsConditionsPage,
+      componentProps: { value: 123 }
+    });
+    return await modal.present();
     }
 }

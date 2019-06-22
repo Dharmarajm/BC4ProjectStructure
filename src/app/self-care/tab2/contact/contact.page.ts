@@ -4,7 +4,7 @@ import { Contacts, Contact, ContactField, ContactFieldType } from '@ionic-native
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { settingsService } from '../../self-common-service/settings/settings.service';
-import { ModalController } from '@ionic/angular';
+import { ToastController,ModalController } from '@ionic/angular';
 import { contactListPage } from '../contact-list/contact-list.page';
 
 @Component({
@@ -16,58 +16,93 @@ export class ContactPage implements OnInit {
 user_type: any;
 contactForm: FormGroup
 contact_details:any;
+tabBar:any;
 dataDetail: any=[{label:"Emergency",user_type:1},
                  {label:"Doctor",user_type:2},
                  {label:"Care Giver",user_type:3}]
-  constructor(public modalController: ModalController,private router: Router, public route:ActivatedRoute, private fb: FormBuilder, private contacts: Contacts, private fileChooser: FileChooser, public userservice: settingsService) { 
-
- }
+  constructor(private router: Router, public route:ActivatedRoute, private fb: FormBuilder, private contacts: Contacts, private fileChooser: FileChooser, public userservice: settingsService,public toastController: ToastController,public modalController: ModalController) { 
+    this.tabBar = document.getElementById('myTabBar');
+    this.tabBar.style.display = 'none';
+  }
 
     ngOnInit() {
 
-  	 this.contactForm=this.fb.group({
-     
-  	'contact_name': [null,[Validators.required]],
-  	'emergency_no': [null,[Validators.required]],
-    
-   });
-  }
+    	 this.contactForm=this.fb.group({
+       
+    	'contact_name': [null,[Validators.required]],
+    	'emergency_no': [null,[Validators.required, Validators.minLength(10), Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
+      
+     });
+    }
 
   
 
-contact(){
+    contact(){
 
-      this.contacts.find(['*']).then((contacts)=>{
-      alert(JSON.stringify(contacts[4]));
-      console.log(JSON.stringify(contacts))
-      this.contact_details=contacts;
-    })
-  }
-chooseUserType(data){
- this.user_type=data;
-}
-savecontact(val){
-	if(this.contactForm.valid){
-    let user_details:any=val;
-    user_details['user_type']=this.user_type
-     this.userservice.addContacts(user_details).subscribe(res=>{
-    	console.log(res)
+        this.contacts.find(['*']).then((contacts)=>{
+        alert(JSON.stringify(contacts[4]));
+        console.log(JSON.stringify(contacts))
+        this.contact_details=contacts;
+      })
+    }
+    chooseUserType(data){
+     this.user_type=data;
+    }
 
-    	this.router.navigate(['self-care-tabs/tabs/tab2'])
-       });
+    savecontact(val){
+    	if(this.contactForm.valid){
+        let user_details:any=val;
+        user_details['user_type']=this.user_type
+          this.userservice.addContacts(user_details).subscribe(res=>{
+        	
+            this.presentToast('Contact has been added successfully');
+          	this.router.navigate(['self-care-tabs/tabs/tab2'])
+          },error=>{
+             this.presentToast('Please enter all the details');
+          });
 
-	 
-	}else{
-    alert('Enter All fields');
-  }
-}
+    	 
+    	}else{
+        
+          this.presentToast('Please enter all the fields')
+      }
+    }
 
- async presentModal() {
-    const modal = await this.modalController.create({
-      component: contactListPage,
-      componentProps: { value: this.contact_details }
-    });
-    return await modal.present();
-  }
+    async presentModal() {
+        const modal = await this.modalController.create({
+          component: contactListPage,
+          componentProps: { value: this.contact_details }
+        });
+        return await modal.present();
+    }
 
+    _keyPress(event: any) {
+      const pattern = /[0-9]/;
+      let inputChar = String.fromCharCode(event.charCode);
+      
+      if(event.charCode!=0){
+        if (!pattern.test(inputChar)) {
+        // invalid character, prevent input
+        event.preventDefault();
+        }
+      }
+    }
+
+    async presentToast(message) {
+      const toast = await this.toastController.create({
+        message: message,
+        duration: 2000
+      });
+      toast.present();
+    }
+
+
+
+    ionViewWillLeave(){
+       this.tabBar.style.display = 'flex'; 
+    }
+
+    close(){
+     this.router.navigate(['/self-care-tabs/tabs/tab2'])
+    }  
 }

@@ -5,7 +5,8 @@ import { UsermanagementService } from '../../core/services/usermanagement.servic
 //import { NavController } from '@ionic/angular';
 import { NavController,ToastController } from '@ionic/angular';
 import {TranslateService} from '@ngx-translate/core';
-
+import { ModalController } from '@ionic/angular';
+import { TermsConditionsPage } from '../../login/terms-conditions/terms-conditions.page'
 @Component({
   selector: 'app-care-giver-register',
   templateUrl: 'care-giver-register.page.html',
@@ -20,7 +21,9 @@ export class careGiverRegisterPage {
   value: any;
   language:any;
   checkStatus:boolean=false;
-  constructor(private fb: FormBuilder,private router:Router,public user_service: UsermanagementService,  private translate: TranslateService,public navCtrl: NavController, public toastController: ToastController) { 
+  registerProgress:boolean=false;
+
+  constructor(public modalController: ModalController, private fb: FormBuilder,private router:Router,public user_service: UsermanagementService,  private translate: TranslateService,public navCtrl: NavController, public toastController: ToastController) { 
    // this.language=localStorage.getItem('language');
    // console.log(this.language,'ss');
     this.translate.use('en');    
@@ -71,14 +74,17 @@ export class careGiverRegisterPage {
 
   CareGiverDetail(giver_detail){
     if(this.giverForm.valid){
+      this.registerProgress=true;
       let role_id;
       let care_data= giver_detail;
       care_data[role_id]=2
       this.user_service.CGdetails(care_data).subscribe(res=>{
+       this.registerProgress=false; 
        this.presentToast('You have registered successfully')  
        this.router.navigate(['/care-giver-tabs/tabsc/tab1c']);
 
       },error=>{
+        this.registerProgress=false;
         if(error.status==401){
          this.presentToast('UID not valid')   
         }
@@ -138,4 +144,12 @@ export class careGiverRegisterPage {
         }
       }
     }
+   async terms(){
+       const modal = await this.modalController.create({
+    component: TermsConditionsPage,
+    componentProps: { value: 123 }
+  });
+  return await modal.present();
+    }
+
 }

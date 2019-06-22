@@ -6,15 +6,16 @@
 		<ion-title>Forgot Password</ion-title>
 		<ion-img slot="end" src="../../../assets/img/ico.png"></ion-img>
 	</ion-toolbar>
+	<ion-progress-bar color="tertiary" type="indeterminate" *ngIf="registerProgress"></ion-progress-bar>
 </ion-header>
 
 <ion-content class="ion-padding">
 	<ion-item>
 		<ion-label position="floating">Email ID</ion-label>
-		<ion-input type="email" [(ngModel)]="email"></ion-input>
+		<ion-input type="email" [(ngModel)]="email" autofocus="true"></ion-input>
 	</ion-item>
 	<ion-note><span>Note:</span><br>Please enter your authorized email ID to send a verification code.</ion-note>
-	<ion-button type="submit" (click)="next(email)" color="secondary" expand="block">Next<ion-icon name="arrow-forward">
+	<ion-button type="submit" (click)="next(email)" color="secondary" expand="block" [disabled]="registerProgress">Next<ion-icon name="arrow-forward">
 		</ion-icon>
 	</ion-button>
 </ion-content>

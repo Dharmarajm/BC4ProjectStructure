@@ -3,7 +3,8 @@ import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-preview',
-  templateUrl: './preview.page.html'
+  templateUrl: './preview.page.html',
+  styleUrls: ['../tab2.page.scss']
 })
 export class previewPage implements OnInit {
 

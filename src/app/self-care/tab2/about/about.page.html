@@ -1,9 +1,10 @@
-<ion-content>
-
- 
-
-
-<form [formGroup]="update" (ngSubmit)="updateValues(update.value)">
+<ion-header>
+	<ion-toolbar color="primary">
+		<ion-title class="ion-padding-start">Add Emergency About</ion-title>
+	</ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <form class="footerform" [formGroup]="update" (ngSubmit)="updateValues(update.value)">
     <ion-item>
       <ion-label position="floating">Blood group</ion-label>
       <ion-input type="text" formControlName="blood_group" autofocus="true"></ion-input>
@@ -11,24 +12,26 @@
 
     <ion-item>
       <ion-label position="floating">Age</ion-label>
-      <ion-input type="text" formControlName="age" autofocus="true"></ion-input>
+      <ion-input type="text" formControlName="age" (keypress)="_keyPress($event)"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Mediclaim Policy#</ion-label>
-      <ion-input type="text" formControlName="mediclaim_policy" autofocus="true"></ion-input>
+      <ion-input type="text" formControlName="mediclaim_policy"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Policy Issuer#</ion-label>
-      <ion-input type="text" formControlName="policy_issuer" autofocus="true"></ion-input>
+      <ion-input type="text" formControlName="policy_issuer"></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-button >Cancel</ion-button>
-      <ion-button type="submit">Save</ion-button>
-    </ion-item>
-    
+    <div class="footer">
+      <ion-button expand="block" (click)="close()">
+        Cancel
+      </ion-button>
+      <ion-button type="submit" color="secondary" expand="block">
+        Save
+      </ion-button>
+    </div>
   </form>
-
 </ion-content>

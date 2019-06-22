@@ -83,6 +83,12 @@ ion-header {
   }
 }
 
+ion-header {
+  ion-toolbar {
+    --background: #ffffff;
+  }
+}
+
 .main-header {
   ion-buttons {
     margin-right: 12px;
@@ -181,7 +187,8 @@ ion-tab-button {
   --ripple-color: #1e1e1e;
 }
 
-.btn, ion-buttons .btn {
+.btn,
+ion-buttons .btn {
   --border-radius: 18px;
   --box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   --padding-bottom: 8px;
@@ -192,9 +199,9 @@ ion-tab-button {
   margin: 0;
   @include font(1rem, 500, 0, capitalize, center, inherit, none);
 
-  svg{
+  svg {
     margin-right: 2px;
-    path{
+    path {
       fill: #2c2c2c;
     }
   }
@@ -236,7 +243,7 @@ ion-segment {
 
   ion-buttons {
     margin-right: 0;
-    
+
     .btn {
       --background: #60dc68;
       --background-activated: #60dc68;
@@ -258,9 +265,9 @@ ion-segment {
     height: 32px;
     padding: 0;
     width: 100px;
-    @include border(1px, solid, #E9E9E9);
+    @include border(1px, solid, #e9e9e9);
 
-    .searchbar-input.sc-ion-searchbar-ios{
+    .searchbar-input.sc-ion-searchbar-ios {
       padding-left: 26px !important;
       padding-right: 16px;
       // --background: url(../assets/icon/search.svg) 0 0/100% 100% no-repeat;
@@ -272,23 +279,22 @@ ion-segment {
       // }
     }
 
-    & + ion-buttons{
+    & + ion-buttons {
       display: block;
     }
 
-    &.searchbar-has-focus{
+    &.searchbar-has-focus {
       transition: width 0.3s ease;
       width: 100%;
       --placeholder-opacity: 0.5;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
       @include border(1px, solid, $white);
-      
-      & + ion-buttons{
+
+      & + ion-buttons {
         display: none;
       }
     }
   }
-
 }
 
 // :host {
@@ -322,4 +328,51 @@ ion-toast {
   --min-height: 24px;
   --min-width: 92px;
   @include font(14px, 400, 0, unset, center, inherit, none);
+}
+
+.footerform {
+  padding-bottom: 60px;
+}
+
+.footer {
+  @include flex(flex, nowrap, center, unset);
+  box-shadow: 0 -3px 6px rgba(0, 0, 0, 0.16);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  ion-button {
+    margin: 0;
+    --border-radius: 0;
+    width: 100%;
+    --box-shadow: none;
+    @include font(1rem, 500, 0, capitalize, center, inherit, none);
+    height: 50px;
+
+    &:first-child {
+      --background: #ffffff;
+      --background-activated: #ffffff;
+      --background-focused: #ffffff;
+      --color: #2c2c2c;
+      --color-activated: #2c2c2c;
+    }
+  }
+
+  &:before {
+    display: none;
+  }
+}
+
+ion-radio {
+  --color: #d7d7e2;
+  --color-checked: #483df6;
+  --border-width: 8px;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+}
+
+ion-radio-group {
+  @include flex(flex, wrap, center, space-between);
 }

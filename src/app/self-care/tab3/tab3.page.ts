@@ -58,6 +58,12 @@ export class Tab3Page {
       component: EditProfilePage,
       componentProps: data
     });
+
+    modal.onDidDismiss()
+      .then((data) => {
+        //const user = data['data']; // Here's your selected user!
+       this.ionViewWillEnter(); 
+    });
     return await modal.present();
 
     // let navigationExtras: NavigationExtras = {
@@ -210,7 +216,7 @@ async aboutmodel() {
 async logout() {
     const alert = await this.alertController.create({
       message: 'Are you sure want to logout from the Application?',
-      mode: "ios",
+      mode: "md",
       buttons: [ {
           text: 'Logout',
           handler: (res) => {

@@ -11,9 +11,7 @@ import { settingsService } from '../../self-common-service/settings/settings.ser
 import {Validators, FormBuilder, FormGroup, FormControl, AbstractControl  } from '@angular/forms';
 import { environment } from '../../../../environments/environment'   
 import { Base64 } from '@ionic-native/base64/ngx';
-import { NavParams } from '@ionic/angular';
-import { ModalController } from '@ionic/angular';
-
+import { NavParams, ModalController,ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-edit-profile',
@@ -21,23 +19,23 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./edit-profile.page.scss'],
 })
 export class EditProfilePage implements OnInit {
-userphoneupdate:any;
-useremailupdate:any;
-usernameupdate  :any;
-editProfileForm:FormGroup
-image:any;
-preview:any;
-photos:any;
-uploadURI:any;  
-getValue:any;
-refresh:any;
-user_details:any;
-linkSource:any;
-img:any;
-img1:any;
-insialLogo:any;
-editprofile:any;
-  constructor(private base64: Base64, private fb: FormBuilder,public sanitizer: DomSanitizer, public route:ActivatedRoute, private file: File, private transfer: FileTransfer, private camera: Camera, private imagePicker: ImagePicker, private webview: WebView, private crop: Crop, public serv:settingsService,public navParams: NavParams,public modalController: ModalController) { 
+  userphoneupdate:any;
+  useremailupdate:any;
+  usernameupdate  :any;
+  editProfileForm:FormGroup
+  image:any;
+  preview:any;
+  photos:any;
+  uploadURI:any;  
+  getValue:any;
+  refresh:any;
+  user_details:any;
+  linkSource:any;
+  img:any;
+  img1:any;
+  insialLogo:any;
+  editprofile:any;
+  constructor(private base64: Base64, private fb: FormBuilder,public sanitizer: DomSanitizer, public route:ActivatedRoute, private file: File, private transfer: FileTransfer, private camera: Camera, private imagePicker: ImagePicker, private webview: WebView, private crop: Crop, public serv:settingsService,public navParams: NavParams,public modalController: ModalController,public toastController: ToastController) { 
 
   // this.route.queryParams.subscribe(params => {
   //     if (params && params.special) {
@@ -68,8 +66,11 @@ editprofile:any;
     this.editProfileForm=this.fb.group({
 
     "name":      [this.editprofile["user_info"]["name"],[Validators.required]],
-    "email":     [this.editprofile["user_info"]["email"],[Validators.required]],
-    "mobile_no": [this.editprofile["user_info"]["mobile_no"],[Validators.required]],
+    "email":     [this.editprofile["user_info"]["email"],[Validators.compose([
+                    Validators.required,
+                    Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+                  ])]],
+    "mobile_no": [this.editprofile["user_info"]["mobile_no"],[Validators.required,Validators.minLength(10)]],
     }); 
 
 
@@ -105,7 +106,7 @@ editprofile:any;
 
   // }
 
-openImagePicker(){
+  openImagePicker(){
     let options= {
       maximumImagesCount: 1,
     }
@@ -118,7 +119,8 @@ openImagePicker(){
        (err) => { console.log(err)
         });
   }
-reduceImages(selected_pictures: any) : any{
+  
+  reduceImages(selected_pictures: any) : any{
      return selected_pictures.reduce((promise:any, item:any) => {
      return promise.then((result) => {
      return this.crop.crop(item, {quality: 75}).then(cropped_image => {
@@ -132,33 +134,62 @@ reduceImages(selected_pictures: any) : any{
         });     
       });
     }, Promise.resolve());
-   }
+  }
 
 
    
-sendEditProfile(val){
-     this.userphoneupdate = val.mobile_no;
-     this.useremailupdate = val.email;
-     this.usernameupdate = val.name;
-  console.log(val)
-  this.base64.encodeFile(this.image).then((base64File: string) => {
-  let data={"user_picture" : base64File}
-  this.serv.sendimage(data).subscribe(res => {
-    console.log(res)
-  })
-}, (err) => {
-  console.log(err);
-});
-  let data ={id:this.editprofile.user_info.id, name : this.usernameupdate, email:this.useremailupdate, mobile_no:this.userphoneupdate}
-  console.log(data)
-  this.serv.editprofile(data, this.editprofile.user_info.id).subscribe(res=>{
-      console.log(res)
-    },error=>{
-      alert("Update Failed...")
-    })
-}
-close(){
-  this.modalController.dismiss();
-}
+  sendEditProfile(val){
+    if(this.editProfileForm.valid){
+       this.userphoneupdate = val.mobile_no;
+       this.useremailupdate = val.email;
+       this.usernameupdate = val.name;
+       console.log(val)
+       this.base64.encodeFile(this.image).then((base64File: string) => {
+        let data={"user_picture" : base64File}
+        this.serv.sendimage(data).subscribe(res => {
+          console.log(res)
+        })
+       }, (err) => {
+        console.log(err);
+       });
+       let data ={id:this.editprofile.user_info.id, name : this.usernameupdate, email:this.useremailupdate, mobile_no:this.userphoneupdate}
+       console.log(data)
+       this.serv.editprofile(data, this.editprofile.user_info.id).subscribe(res=>{
+        console.log(res)
+        this.presentToast('Profile updated successfully');
+        this.modalController.dismiss();
+       },error=>{
+        //alert("Update Failed...")
+       })
+    }else{
+        this.presentToast('Please enter all the fields'); 
+    }
+       
+  }
+
+  close(){
+    this.modalController.dismiss();
+  }
+
+  async presentToast(message) {
+      const toast = await this.toastController.create({
+        message: message,
+        duration: 2000
+      });
+      toast.present();
+    }
+
+
+    _keyPress(event: any) {
+      const pattern = /[0-9]/;
+      let inputChar = String.fromCharCode(event.charCode);
+      
+      if(event.charCode!=0){
+        if (!pattern.test(inputChar)) {
+        // invalid character, prevent input
+        event.preventDefault();
+        }
+      }
+    }
 
 }

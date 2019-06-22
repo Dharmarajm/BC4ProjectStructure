@@ -6,6 +6,7 @@
     <ion-title>Forgot Password</ion-title>
     <ion-img slot="end" src="../../../assets/img/ico.png"></ion-img>
   </ion-toolbar>
+  <ion-progress-bar color="tertiary" type="indeterminate" *ngIf="registerProgress"></ion-progress-bar>
 </ion-header>
 
 <ion-content class="ion-padding">
@@ -15,7 +16,7 @@
   </ion-item>
   <a (click)="resendCode()">Resend the code</a>
   <ion-note><span>Note:</span><br>Please check your email for the verification code</ion-note>
-  <ion-button (click)="verify(verify_code)" color="secondary" expand="block">Next<ion-icon name="arrow-forward">
+  <ion-button (click)="verify(verify_code)" color="secondary" expand="block" [disabled]="registerProgress">Next<ion-icon name="arrow-forward">
     </ion-icon>
   </ion-button>
 </ion-content>

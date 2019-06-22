@@ -1,23 +1,48 @@
 @import "../../../app.scss";
 
 form {
-    ion-item {
-        --background: transparent;
-        --border-color: #BCBBCF;
-        --highlight-color-focused: #483DF6;
-        --highlight-color-valid: #483DF6;
-        --highlight-color-invalid: #ea4e4e;
-        --padding-start: 0;
-        @include font(1rem, 500, 0, none, left, inherit, $font_color);
-        margin-bottom: 10px;
+  ion-item {
+    --background: transparent;
+    --border-color: #bcbbcf;
+    --highlight-color-focused: #483df6;
+    --highlight-color-valid: #483df6;
+    --highlight-color-invalid: #ea4e4e;
+    --padding-start: 0;
+    @include font(1rem, 500, 0, none, left, inherit, $font_color);
+    margin-bottom: 10px;
+
+    ion-label {
+      --color: #bcbbcf;
     }
+  }
 }
 
 ion-avatar {
-    width: 130px;
-    height: 130px;
-    margin: 0 auto;
-    span{
-        @include font(5rem, 500, 0, none, left, inherit, $font_color);
-    }
+  width: 130px;
+  height: 130px;
+  margin: 0 auto;
+  span {
+    @include font(5rem, 500, 0, none, left, inherit, #72708b);
+  }
+}
+
+.trans_btn {
+  --background: #ffffff;
+  --box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  --border-color: #ddd;
+  --border-radius: 20px;
+  @include font(0.9rem, 400, 0, capitalize, left, inherit, none);
+  margin: 0;
+  position: relative;
+  top: -15px;
+  height: auto;
+
+  svg {
+    margin-right: 2px;
+  }
+}
+
+h5 {
+  @include font(1.15rem, 400, 0, none, center, inherit, none);
+  margin: 5px 0 20px;
 }

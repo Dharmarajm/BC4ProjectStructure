@@ -41,5 +41,11 @@ export class HealthDiaryPage implements OnInit {
   onCancel(event){
     console.log(event)
   }
-
+  
+  deleteEvent(id){
+    this.settingService.healthDiaryDeleteEvent(id).subscribe(res=>{
+     console.log(res)
+    //this.health_records=res['event_list'];
+   })
+  }
 }

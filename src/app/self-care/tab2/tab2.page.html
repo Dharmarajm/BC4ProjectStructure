@@ -32,7 +32,8 @@
   <ng-container *ngIf="selectedSegment=='first'">
     <div class="ion-padding-top ion-padding-start ion-padding-end qr_preview ion-text-center">
       <ion-thumbnail>
-        <img src={{details?.qrcode_image}}>
+        <img src= "../../../assets/img/QR.png">
+        <!-- {{details?.qrcode_image}} -->
       </ion-thumbnail>
       <h1>{{details?.user_info.name}}</h1>
       <ion-button color="warning" (click)="previewData()">
@@ -46,8 +47,8 @@
     </div>  
     <ion-list class="ion-padding-start ion-padding-end">
         <ion-item>
-        <ion-label>Blood Group:&nbsp;{{details?.user_info.blood_group || Nill}}</ion-label>
-        <ion-label class="ion-text-end">Age:&nbsp;{{details?.user_info.age || Nill}}</ion-label>
+        <ion-label>Blood Group:&nbsp;{{details?.user_info.blood_group || '-'}}</ion-label>
+        <ion-label class="ion-text-end">Age:&nbsp;{{details?.user_info.age || '-'}}</ion-label>
       </ion-item>
 
       <ion-item>
@@ -60,12 +61,12 @@
 
       <ion-item>
         <ion-label>Mediclaim Policy#</ion-label> 
-        <ion-label class="ion-text-end">{{policyDetail?.mediclaim_policy || 'No policy available'}}</ion-label>  
+        <ion-label class="ion-text-end">{{policyDetail?.mediclaim_policy || '-'}}</ion-label>  
       </ion-item>
 
       <ion-item>
         <ion-label>Policy Issuer# </ion-label>
-        <ion-label class="ion-text-end">{{policyDetail?.mediclaim_policy || 'No Issuer Policy'}}</ion-label>  
+        <ion-label class="ion-text-end">{{policyDetail?.mediclaim_policy || '-'}}</ion-label>  
       </ion-item>
     </ion-list> 
   </ng-container>
@@ -88,10 +89,10 @@
       </ion-list-header>
       <ion-item *ngFor="let i of info[0]?.doctor" > 
         <ion-avatar slot="start">
-          <span>E</span>
+          <span>{{i?.firstleter}}</span>
         </ion-avatar>
         <ion-label>
-          <h3>{{i?.contact_name}}</h3>
+          <h3>{{i?.contact_name | uppercase}}</h3>
           <p>{{i?.emergency_no}}</p>
         </ion-label>
         <ion-button class="trans_btn" (click)="deleteItem(i.id)">
@@ -106,7 +107,7 @@
         </ion-list-header>
         <ion-item *ngFor="let i of info[0]?.care_giver">
           <ion-avatar slot="start">
-            <span>E</span>
+            <span>{{i?.firstleter | uppercase}}</span>
           </ion-avatar>
           <ion-label>
              <h3>{{i?.contact_name}}</h3>
@@ -124,7 +125,7 @@
         </ion-list-header>
         <ion-item *ngFor="let i of info[0]?.emergency">
           <ion-avatar slot="start">
-            <span>E</span>
+            <span>{{i?.firstleter | uppercase }}</span>
           </ion-avatar>
           <ion-label>
              <h3>{{i?.contact_name}}</h3>

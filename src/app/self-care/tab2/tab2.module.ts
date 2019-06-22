@@ -7,7 +7,9 @@ import { Tab2Page } from './tab2.page';
 import { ModalController } from '@ionic/angular';
 
 import { TranslateModule } from '@ngx-translate/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { contactListPage } from './contact-list/contact-list.page';
+
 
 const routes: Routes=[
   {  
@@ -77,6 +79,7 @@ const routes: Routes=[
     IonicModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     TranslateModule,
     RouterModule.forChild(routes)
   ],

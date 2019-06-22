@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,Response } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment'
 import { Observable } from 'rxjs/Rx';
 import { map } from 'rxjs/operators';
@@ -57,11 +57,15 @@ export class settingsService {
     return this.http.get(environment.apiUrl+"events?event_type=health_diary&&search="+search)
   }
 
+  healthDiaryDeleteEvent(id){
+    return this.http.delete(environment.apiUrl+"events/"+id)
+  }
+
   healthDiaryRecord(record){
     return this.http.post(environment.apiUrl+"events",record)
   }
 
-  private extractData(res: Response) {
+  private extractData(res) {
     /*var data = res.json().data || [];
     data.forEach((d) => {
       d.timestamp = new Date(d.timestamp);

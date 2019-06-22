@@ -9,7 +9,7 @@ import { NavParams } from '@ionic/angular';
 })
 export class contactListPage {
 
-	constructor(private router: Router, public navParams: NavParams) { 
+	constructor(private router: Router, public navParams: NavParams,public modalController:ModalController) { 
 		let data=this.navParams.get('value')
          console.log(data)
          let contact_name:any=data[0]['_objectInstance']['Name']
