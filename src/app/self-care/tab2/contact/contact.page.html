@@ -17,10 +17,10 @@
       <ion-input formControlName="emergency_no" (keypress)="_keyPress($event)" type="phone"></ion-input>
       <!-- <ion-icon name="contact" (click)="presentModal()"></ion-icon> -->
     </ion-item>
-    <ion-radio-group>
-      <ion-item *ngFor="let data of dataDetail" (click)="chooseUserType(data.user_type)">
-        <ion-label>{{data.label}}</ion-label>
-        <ion-radio type="radio" slot="start" value="{{data.user_type}}"></ion-radio>
+    <ion-radio-group [(ngModel)]="contactType" [ngModelOptions]="{standalone: true}">
+      <ion-item *ngFor="let contactType of userContactType">
+        <ion-label>{{contactType.label}}</ion-label>
+        <ion-radio type="radio" slot="start" [value]="contactType.user_type"></ion-radio>
       </ion-item>
       <!-- <ion-item>
       <ion-label>doctor</ion-label>

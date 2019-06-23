@@ -14,19 +14,19 @@ export class Step1Page implements OnInit {
   constructor(public userservice: UsermanagementService, public router:Router,public toastController: ToastController) { }
 
     ngOnInit() {
-      console.log("step1")
+      
     }
 
 
     next(mail){
-      console.log(mail!="" , mail!=undefined , mail!=null)
+      
       if(mail!="" || mail!=undefined || mail!=null){
         this.registerProgress=true;
          this.userservice.emailVerify(mail).subscribe(res=>{
-        console.log(res)
+        
         let verify_details: any=res;
             verify_details['email']=mail;
-           console.log(verify_details['user_id'])
+           
          this.registerProgress=false;   
         if(verify_details['status']== true){
         

@@ -27,6 +27,9 @@ form {
     }
 
     ion-button{
+      --background: transparent;
+      --background-activated: transparent;
+      --background-focused: transparent;
       position: absolute;
       top: -4px;
       right: -40px;

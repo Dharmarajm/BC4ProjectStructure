@@ -21,6 +21,7 @@ ion-avatar {
   width: 130px;
   height: 130px;
   margin: 0 auto;
+  overflow: hidden;
   span {
     @include font(5rem, 500, 0, none, left, inherit, #72708b);
   }
@@ -28,6 +29,8 @@ ion-avatar {
 
 .trans_btn {
   --background: #ffffff;
+  --background-activated: #ffffff;
+  --background-focused: #ffffff;
   --box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   --border-color: #ddd;
   --border-radius: 20px;

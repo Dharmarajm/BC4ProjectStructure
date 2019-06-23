@@ -12,6 +12,6 @@ export class Tab1cPage {
   
   test(){
   	localStorage.clear();
-   this.router.navigate(['register/main']);
+   this.router.navigate(['/login']);
   }
 }

@@ -3,6 +3,9 @@ import { MediaCapture, MediaFile, CaptureError, CaptureAudioOptions, CaptureImag
 import { File,FileEntry, IFile } from '@ionic-native/file/ngx';
 import { Media, MediaObject } from '@ionic-native/media/ngx';
 import { Platform,AlertController } from '@ionic/angular';
+import { settingsService } from '../../self-common-service/settings/settings.service';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-health-diary-record',
@@ -16,7 +19,7 @@ export class healthDiaryRecord {
   filePath: string;
   fileName: string;
   OriginalFileName:any;
-  uploadURI:any;
+  audioRecordPath:any;
   audio: MediaObject;
   audioList: any[] = [];
   sec:number = 0;
@@ -32,8 +35,8 @@ export class healthDiaryRecord {
   Stop:boolean = false;
   Pause:boolean =false;
   tabBar:any;
-  constructor(private mediaCapture: MediaCapture,private media: Media,private file: File,public platform: Platform,public alertController: AlertController) {
-    this.show=3; 
+  constructor(private transfer: FileTransfer,private mediaCapture: MediaCapture,private media: Media,private file: File,public platform: Platform,public alertController: AlertController,public service:settingsService) {
+    this.show=3;
     this.tabBar = document.getElementById('myTabBar');
     this.tabBar.style.display = 'none';
   }
@@ -126,6 +129,8 @@ export class healthDiaryRecord {
      localStorage.setItem("audiolist", JSON.stringify(this.audioList));
      this.recording = false;
      //this.getAudioList();
+
+
     }
 
 
@@ -151,7 +156,7 @@ export class healthDiaryRecord {
         return obj;
     }
 
-    async confirm(){
+    async upload(){
         
         let fileName = this.fileName;
         
@@ -179,7 +184,7 @@ export class healthDiaryRecord {
             }, {
               text: 'Okay',
               handler: (data) => {
-                
+                console.log(data)
                 this.description = data["description"];
                 let file_name = data['File name'];
                 
@@ -188,20 +193,43 @@ export class healthDiaryRecord {
                 let OldfileName= this.fileName;
                 let NewfileName= file_name+'.mp3';
                 this.file.copyFile(fromDirectory , OldfileName , toDirectory , NewfileName).then((res) => {
-                  
+                  console.log(res)
                   this.OriginalFileName=res['name'];
                   let nativeFileURL=res['nativeURL'];
                   let localPlayURL = this.file.externalDataDirectory.replace(/file:\/\//g, '') + this.OriginalFileName;
-                  
-                  this.file.resolveLocalFilesystemUrl(localPlayURL).then((fileEntry: FileEntry) => {
+                  console.log(nativeFileURL)
+                  this.file.resolveLocalFilesystemUrl(nativeFileURL).then((fileEntry: FileEntry) => {
                     return new Promise((resolve, reject) => {
                      fileEntry.file(meta => resolve(meta), error => reject(error));
                     });
                   }).then((fileMeta: IFile) => {
+                    console.log(fileMeta)
                      let type = fileMeta.type.split('/');
                      let dir = fileMeta['localURL']
-                     this.uploadURI=dir;
+                     this.audioRecordPath=dir;
                       //this.playPath=this.uploadURI;
+
+                      const fileTransfer: FileTransferObject = this.transfer.create();
+    
+                      let recordParams={
+                        "event_name": "Blood Pressure",
+                        "description": this.description,
+                        "event_type": "health_diary"
+                      }
+
+                      let options: FileUploadOptions = {
+                       fileKey: 'event_assets',
+                       fileName: this.fileName,
+                       mimeType: 'multipart/form-data',
+                       params:recordParams,
+                       chunkedMode: false,
+                       headers:{ 'Authorization': 'Bearer '+localStorage.getItem('token') }
+                      }
+
+                      fileTransfer.upload(this.audioRecordPath,environment.apiUrl+'events',options).then(res=>{
+
+                      }).catch();
+
                      
                   }).catch(err=>console.log(err)); 
                 },err => {
@@ -227,8 +255,14 @@ export class healthDiaryRecord {
        this.audio.play();
     }
 
+
     ionViewWillLeave(){
-     this.tabBar.style.display = 'flex'; 
+     if(this.audioTrack==true){
+       this.audioTrack=false;
+       this.audio.stop();
+       this.audio.release();
+     }
+     this.tabBar.style.display = 'flex';
     } 
 
  

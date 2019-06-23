@@ -9,7 +9,7 @@ import { ModalController } from '@ionic/angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { contactListPage } from './contact-list/contact-list.page';
-
+import { previewPage } from './preview/preview.page';
 
 const routes: Routes=[
   {  
@@ -27,6 +27,9 @@ const routes: Routes=[
   },{
     path: 'contact-list',
     component: contactListPage
+  },{
+    path: 'preview',
+    component: previewPage
   }
 ]
 /*const routes: Routes = [
@@ -83,6 +86,6 @@ const routes: Routes=[
     TranslateModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [Tab2Page,contactListPage]
+  declarations: [Tab2Page,contactListPage,previewPage]
 })
 export class Tab2PageModule {}

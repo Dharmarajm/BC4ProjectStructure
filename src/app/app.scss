@@ -148,7 +148,7 @@ ion-tab-button {
   }
   &.tab-selected {
     --background: #483df6;
-    transition: background-color 3ms linear;
+    transition: background-color 0.5s linear;
     svg {
       path {
         fill: #ffffff;
@@ -217,7 +217,7 @@ ion-segment {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
   background: $white;
   position: sticky;
-  top: 1px;
+  top: 0;
   z-index: 1;
 
   ion-segment-button {
@@ -341,6 +341,7 @@ ion-toast {
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 99;
 
   ion-button {
     margin: 0;

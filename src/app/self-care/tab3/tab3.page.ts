@@ -21,7 +21,7 @@ export class Tab3Page {
   data:any = "5 days";
   data1:any = "5 days";
   data2:any = "Never";
-  insialLogo:any;
+  initialLogo:any;
   constructor(public modalController: ModalController, public sanitizer: DomSanitizer, public serv: settingsService, public actionSheetController: ActionSheetController, public router:Router, public alertController: AlertController) { }
 
   ngOnInit() {
@@ -32,7 +32,7 @@ export class Tab3Page {
     this.serv.setting().subscribe(res => {
       this.pic = res;
       console.log(this.pic.user_info.name)
-      this.insialLogo=this.pic.user_info.name.charAt(0);
+      this.initialLogo=this.pic.user_info.name.charAt(0);
       this.caregiver = this.pic.caregiver;
       
       // if(this.pic.profile_pic == null)
@@ -80,22 +80,22 @@ export class Tab3Page {
  async careGiverName(){
 
      const alert = await this.alertController.create({
-      header: 'Radio',
+      header: 'CareGiver',
 
       backdropDismiss: false,
       inputs: [
         {
           name: 'radio1',
           type: 'radio',
-          label: 'Bravo',
-          value: 'Bravo',
+          label: 'James Edwin',
+          value: 'James Edwin',
          
         },
         {
           name: 'radio2',
           type: 'radio',
-          label: 'Russel',
-          value: 'Russel'
+          label: 'Henry Wilson',
+          value: 'Henry Wilson'
         }
         
       ],
@@ -125,7 +125,7 @@ export class Tab3Page {
 async medicineDuration(){
  
 const alert1 = await this.alertController.create({
-      header: 'Radio',
+      header: 'Choose Reorder Days',
       backdropDismiss: false,
       inputs:  [{name:'day1',type:'radio',label:'1 Day',value:"1 Day"},
                 {name:'day2',type:'radio',label:'3 Days',value:"3 Days"},
@@ -161,7 +161,7 @@ const alert1 = await this.alertController.create({
 async aboutAsDuration(){
  
 const alert2 = await this.alertController.create({
-      header: 'Radio',
+      header: 'Choose Auto Update Days',
       backdropDismiss: false,
       inputs:  [{name:'day1',type:'radio',label:'1 Day',value:"1 Day"},
                 {name:'day2',type:'radio',label:'3 Days',value:"3 Days"},

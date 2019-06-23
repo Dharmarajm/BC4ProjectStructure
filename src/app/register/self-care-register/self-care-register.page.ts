@@ -37,7 +37,7 @@ export class selfCareRegisterPage {
 	}
 
 	self_detail(detail) {
-		console.log(detail)
+		
 	  if(this.detailForm.valid){
 	  	this.registerProgress=true;
 	  	 let data = {
@@ -62,7 +62,7 @@ export class selfCareRegisterPage {
 
 
 		this.user_service.care_detail(data).subscribe(res => {
-			console.log(res)
+			
 			this.registerProgress=false;
             this.presentToast('You have registered successfully')  
 			this.router.navigate(['register/self-care-payment']);
@@ -81,7 +81,7 @@ export class selfCareRegisterPage {
 	  }else if(this.detailForm.value["checkStatus"]==false){
           this.presentToast("Please agree terms and conditions")
 	  }else{
-	  	console.log(this.detailForm.value)
+	  	
 	  	   this.presentToast('Please fill all the mandatory fields')
 	  }	
 		

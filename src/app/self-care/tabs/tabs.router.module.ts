@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
-import { previewPage } from '../tab2/preview/preview.page';
-//import { Tab2Page } from '../tab2/tab2.page'
+
 const routes: Routes = [
   {
     path: 'tabs',
@@ -76,9 +75,6 @@ const routes: Routes = [
         pathMatch: 'full'
       }
     ]
-  },{
-     path: 'preview',
-     component: previewPage
   },
   {
     path: '',

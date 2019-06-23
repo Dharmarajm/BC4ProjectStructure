@@ -17,7 +17,7 @@
 <ion-content class="ion-padding">
    <ion-item>
       <ion-avatar slot="start">
-         <span *ngIf="pic?.profile_pic == null">{{insialLogo}}</span>
+         <span *ngIf="pic?.profile_pic == null">{{initialLogo}}</span>
          <img *ngIf="pic?.profile_pic != null" [src]="pic?.profile_pic">
       </ion-avatar>
       <ion-label>

@@ -20,6 +20,7 @@
     "@angular/platform-browser": "^7.2.2",
     "@angular/platform-browser-dynamic": "^7.2.2",
     "@angular/router": "^7.2.2",
+    "@ionic-native/android-permissions": "^5.8.0",
     "@ionic-native/base64": "^5.8.0",
     "@ionic-native/camera": "^5.7.0",
     "@ionic-native/contacts": "^5.8.0",
@@ -41,6 +42,7 @@
     "com.razorpay.cordova": "1.4.5",
     "cordova-android": "8.0.0",
     "cordova-browser": "6.0.0",
+    "cordova-plugin-android-permissions": "1.0.0",
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-contacts": "3.0.1",
     "cordova-plugin-crop": "^0.4.0",
@@ -84,6 +86,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "node-sass": "^4.12.0",
     "protractor": "~5.4.0",
     "ts-node": "~8.2.0",
     "tslint": "~5.17.0",
@@ -110,7 +113,8 @@
       "cordova-plugin-contacts": {},
       "cordova-plugin-filechooser": {},
       "cordova-plugin-media": {},
-      "cordova-plugin-media-capture": {}
+      "cordova-plugin-media-capture": {},
+      "cordova-plugin-android-permissions": {}
     },
     "platforms": [
       "browser",

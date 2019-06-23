@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { TabsPageRoutingModule } from './tabs.router.module';
 
 import { TabsPage } from './tabs.page';
-import { previewPage } from '../tab2/preview/preview.page';
+
 import { TranslateModule } from '@ngx-translate/core';
 import { settingsService } from '../self-common-service/settings/settings.service';
 @NgModule({
@@ -17,7 +17,7 @@ import { settingsService } from '../self-common-service/settings/settings.servic
     TranslateModule,
     TabsPageRoutingModule
   ],
-  declarations: [TabsPage,previewPage],
+  declarations: [TabsPage],
   providers: [settingsService]
 })
 export class TabsPageModule {}

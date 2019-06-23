@@ -11,10 +11,14 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-details:any;
-policyDetail:any;
-sms:any;
+  
+  details:any;
+  policyDetail:any;
+  sms:any;
   selectedSegment:any="first"; 
+  healthDetailList:any[]=[];
+  alergiesList:any[]=[];
+  currentMedicationList:any[]=[];
   //contact declarations
   user_type: any;
   care_giver:boolean=false;
@@ -22,6 +26,9 @@ sms:any;
   doctor:boolean=false;
   info:any=[{'doctor':[],'emergency':[],'care_giver':[]}];
   contact_details:any;
+  navigateHealth:NavigationExtras;
+  navigatePreview:NavigationExtras;
+  navigateProfile:NavigationExtras;
   constructor(public alertController: AlertController, public modalController: ModalController,private router: Router, public route:ActivatedRoute, public settingService: settingsService) {
 
   }
@@ -34,65 +41,81 @@ sms:any;
   // About segment code
 
   ionViewWillEnter(){
-  this.info=[{'doctor':[],'emergency':[],'care_giver':[]}];
+    this.info=[{'doctor':[],'emergency':[],'care_giver':[]}];
     this.settingService.aboutDetail().subscribe(res=>{
-  console.log(res);
-  this.details=res;
-  
-  if(this.details['policies'].length!=0){
-    this.policyDetail = this.details['policies'][0]['attribute_name_value'];  
-  }else{
-    this.policyDetail = this.details['policies'];
-  }
-  
-  console.log(this.policyDetail)
+     
+      this.details=res;
+      
+      if(this.details['policies'].length!=0){
+        this.policyDetail = this.details['policies'][0]['attribute_name_value'];  
+      }else{
+        this.policyDetail = this.details['policies'];
+      }
 
-});
-
-// contact service
- this.settingService.contactDetails().subscribe(res=>{
-   console.log(res);
-   this.contact_details = res;
-   var dineh;
-   for(let i=0;i<this.contact_details.count;i++){
-     this.contact_details.emergency_detail[i].firstleter=this.contact_details.emergency_detail[i].contact_name.charAt(0);
-
-     console.log(this.contact_details.emergency_detail[i])
+    },error=>{
+     console.log(error)
+    });
 
 
-     if(this.contact_details.emergency_detail[i].user_type == 'Emergency'){
-       this.info[0]['emergency'].push(this.contact_details.emergency_detail[i])
-         
-     }
-     else if(this.contact_details.emergency_detail[i].user_type == 'Doctor'){
-       this.info[0]['doctor'].push(this.contact_details.emergency_detail[i])
+    this.settingService.myEmergencyHealthDetail().subscribe(res=>{
+      let emergencyData=res['health_detail'];
+      if(emergencyData.length!=0){
+        this.healthDetailList= emergencyData[0]['attribute_name_value'];
+        this.alergiesList = this.healthDetailList['allergy'];
+        this.currentMedicationList = this.healthDetailList['current_medication']
+      }else{
+        this.healthDetailList=[];
+        this.alergiesList = [];
+        this.currentMedicationList = [];
+      }
+    },error=>{
+     console.log(error)
+    })
 
-     }
-     else if(this.contact_details.emergency_detail[i].user_type == 'Care Giver'){
-        this.info[0]['care_giver'].push(this.contact_details.emergency_detail[i])
+    // contact service
+    this.settingService.contactDetails().subscribe(res=>{
+    
+     this.contact_details = res;
+     var dineh;
+      for(let i=0;i<this.contact_details.count;i++){
+       this.contact_details.emergency_detail[i].firstleter=this.contact_details.emergency_detail[i].contact_name.charAt(0);
 
-     }
-   }
-   console.log(this.info,'info')
-    // console.log("dfdajlshfulik",this.info.emergency_detail[i].user_type)
-     for(let i=0; i<this.info.length; i++){
-       // console.log("dfhuashfgjkagkda",this.info.emergency_detail[i].user_type)
-      if(this.info[0].care_giver.length != 0){
-         this.care_giver=true
-       }else{
-         this.care_giver=false
+
+       if(this.contact_details.emergency_detail[i].user_type == 'Emergency'){
+         this.info[0]['emergency'].push(this.contact_details.emergency_detail[i])
+           
        }
-        if(this.info[0].emergency.length != 0){
-         this.emergency = true;
-       }else{
-         this.emergency = false;
+       else if(this.contact_details.emergency_detail[i].user_type == 'Doctor'){
+         this.info[0]['doctor'].push(this.contact_details.emergency_detail[i])
+
        }
-        if(this.info[0].doctor.length != 0){
-         this.doctor = true;
-       }else{
-         this.doctor = false;
-       } 
-     }
+       else if(this.contact_details.emergency_detail[i].user_type == 'Care Giver'){
+          this.info[0]['care_giver'].push(this.contact_details.emergency_detail[i])
+
+       }
+      }
+      
+      // console.log("dfdajlshfulik",this.info.emergency_detail[i].user_type)
+      for(let i=0; i<this.info.length; i++){
+         // console.log("dfhuashfgjkagkda",this.info.emergency_detail[i].user_type)
+        if(this.info[0].care_giver.length != 0){
+           this.care_giver=true
+         }else{
+           this.care_giver=false
+         }
+          if(this.info[0].emergency.length != 0){
+           this.emergency = true;
+         }else{
+           this.emergency = false;
+         }
+          if(this.info[0].doctor.length != 0){
+           this.doctor = true;
+         }else{
+           this.doctor = false;
+         } 
+       }
+    },error=>{
+      console.log(error)
     })
 
   }
@@ -120,13 +143,13 @@ sms:any;
   
   editProfileDetails(){
     
-    let navigationExtras: NavigationExtras = {
+    this.navigateProfile = {
       queryParams: {
         special: JSON.stringify(this.details)
       }
     }; 
 
-    this.router.navigate(['/self-care-tabs/tabs/tab2/about-update'],navigationExtras)
+    this.router.navigate(['/self-care-tabs/tabs/tab2/about-update'],this.navigateProfile)
   }
 
   /*async openUserModal() {
@@ -145,13 +168,12 @@ sms:any;
  
   previewData(){
 
-    console.log(this.details['user_info']['user_uid'])
-    let navigationExtra: NavigationExtras = {
+    this.navigatePreview = {
       queryParams: {
         user_id:this.details['user_info']['user_uid']
       }
     }; 
-    this.router.navigate(['/self-care-tabs/preview'],navigationExtra)
+    this.router.navigate(['/self-care-tabs/tabs/tab2/preview'],this.navigatePreview)
   }
 
 
@@ -166,8 +188,8 @@ async deleteItem(id){
 
 
   const alert = await this.alertController.create({
-      header: 'Alert',
-      message: 'Are you sure?',
+      header: 'Contact',
+      message: 'Are you sure want to delete?',
       mode: 'ios',
       buttons: [
         {
@@ -194,9 +216,16 @@ async deleteItem(id){
 }
 
 
-// Health segment code
-updateHealth(){
-     this.router.navigate(['/self-care-tabs/tabs/tab2/health-update'])
+  // Health segment code
+  updateHealth(){
 
-}
+       this.navigateHealth = {
+        queryParams: {
+          special: JSON.stringify(this.healthDetailList)
+        }
+       };
+
+       this.router.navigate(['/self-care-tabs/tabs/tab2/health-update'],this.navigateHealth)
+
+  }
 }

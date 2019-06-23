@@ -7,8 +7,9 @@
 </ion-header>
 
 <ion-content class="ion-text-center">
-
+  <button (click)="play()">Play</button>
   <h1 class="timer">{{time}}</h1>
+  <button (click)="upload()">Play</button>
     <div class="footer ion-padding">
       <ion-button color="light" [disabled]="!isenabled" (click)="start()">
           <i class="ion-margin" *ngIf="!Pause">

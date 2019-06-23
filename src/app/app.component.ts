@@ -22,10 +22,10 @@ export class AppComponent {
   initializeApp() {
     
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
+      // this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.statusBar.overlaysWebView(true);
-    this.statusBar.backgroundColorByHexString('#ffffff');
+      // this.statusBar.overlaysWebView(true);
+    this.statusBar.backgroundColorByHexString('#483df6');
 
       if(localStorage.getItem('token')!=undefined){
         if(localStorage.getItem('rold_id')=="1"){

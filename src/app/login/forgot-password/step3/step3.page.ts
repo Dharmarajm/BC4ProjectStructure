@@ -17,10 +17,9 @@ export class Step3Page implements OnInit {
   registerProgress:boolean=false;
   constructor(public userservice: UsermanagementService, public route:ActivatedRoute, public router:Router, private fb: FormBuilder,public navCtrl: NavController, public toastController: ToastController) {
      this.route.queryParams.subscribe(params => {
-       console.log(params)
-    console.log(params['user'])
-    this.userData=params['user'];
-   });
+       
+      this.userData=params['user'];
+     });
    }
 
 
@@ -49,16 +48,15 @@ export class Step3Page implements OnInit {
   }
 
   updatePassword(val){
-      console.log(val)
-      console.log(this.user.valid)
-      console.log(this.user)
+      
+      
       let data:any={"password": val['password'],"user_id":this.userData};
       console.log(data,'datapwd')
       if(val['password'] == val['re_password'] ){
         this.registerProgress=true;
         this.userservice.pwdUpdate(data).subscribe(res=>{
             let pwdDetails=res;
-            console.log(pwdDetails)
+            
             this.registerProgress=false;
             this.router.navigate(['/login'])
           },error=>{

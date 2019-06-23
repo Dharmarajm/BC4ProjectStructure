@@ -61,8 +61,20 @@ export class settingsService {
     return this.http.delete(environment.apiUrl+"events/"+id)
   }
 
-  healthDiaryRecord(record){
+  commonPost(record){
     return this.http.post(environment.apiUrl+"events",record)
+  }
+
+  myEmergencyHealthDetail(){
+    return this.http.get(environment.apiUrl+"health_details")
+  }
+
+  myEmergencyHealthUpdate(data){
+    return this.http.post(environment.apiUrl+"health_details",data)
+  }
+
+  myEmergencyPreview(){
+    return this.http.get(environment.apiUrl+"users/user_details?user_uid="+localStorage.getItem('user'))
   }
 
   private extractData(res) {

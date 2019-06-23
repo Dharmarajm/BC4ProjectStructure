@@ -5,7 +5,7 @@
 </ion-header>
 <ion-content class="ion-padding">
   
-  <form class="footerform" [formGroup]="health" (ngSubmit)="save(health.value)">
+  <form class="footerform" [formGroup]="health" *ngIf="health" (ngSubmit)="save(health.value)">
     <ion-list>
       <ion-item-group class="alergies">
         <ion-item>
@@ -13,14 +13,14 @@
           <ion-input formControlName="allergies" type="text" autofocus="true" #alergy_name (keyup)="Input_alergy($event.target.value)"></ion-input> 
           <!-- #alergy (keyup)="Input_alergy(alergy.value)" -->
         </ion-item>
-        <ion-item button class="autocomplete" (click)="alergyselect(data1)" *ngIf="autopopulate">
+        <ion-item button class="autocomplete" (click)="alergyselect(data1)" *ngIf="autopopulate && data1!=''">
           <ion-label color="primary" class="select">{{data1}}</ion-label>
           <ion-note color="primary" slot="end">Select</ion-note>
         </ion-item>
         
         <ion-chip #chip1 mode="md" *ngFor="let ship of alergyChip; let i=index">
           <ion-label>{{ship}}</ion-label>
-          <ion-icon name="close" (click)="deletealergyChip(chip1)"></ion-icon>
+          <ion-icon name="close" (click)="deleteAlergyChip(i)"></ion-icon>
         </ion-chip>
       </ion-item-group>
       <ion-item>
@@ -76,13 +76,13 @@
           <ion-input formControlName="curent_medication" type="text" #medication
             (keyup)="Input_medication(medication.value)"></ion-input>
         </ion-item>
-        <ion-item button class="autocomplete" (click)="medication_select(medication_name)" *ngIf="autopopulate2">
+        <ion-item button class="autocomplete" (click)="medication_select(medication_name)" *ngIf="autopopulate2 && medication_name!=''">
           <ion-label color="primary" class="select">{{medication_name}}</ion-label>
           <ion-note color="primary" slot="end">Select</ion-note>
         </ion-item>
-        <ion-chip #chip mode="md" *ngFor="let madication of madicationChip; let i=index">
-          <ion-label>{{madication}}</ion-label>
-          <ion-icon name="close" (click)="deleteChip(chip)"></ion-icon>
+        <ion-chip #chip mode="md" *ngFor="let medication of medicationChip; let i=index">
+          <ion-label>{{medication}}</ion-label>
+          <ion-icon name="close" (click)="deleteMedicationChip(i)"></ion-icon>
         </ion-chip>
       </ion-item-group>
       <ion-item>

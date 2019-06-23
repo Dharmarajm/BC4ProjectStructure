@@ -24,9 +24,9 @@ export class AboutPage implements OnInit {
      this.getPolicyData=data['policies'][0]['attribute_name_value']; */
    
     this.route.queryParams.subscribe(params => {
-      console.log(params['special'],'spec')
+      
       this.update_details=JSON.parse(params['special']);
-      console.log(this.update_details,'data');
+      
       this.getUpdateData=this.update_details['user_info'];
       if(this.update_details['policies'].length!=0){
         this.getPolicyData=this.update_details['policies'][0]['attribute_name_value'];
@@ -57,10 +57,8 @@ export class AboutPage implements OnInit {
 
 
   updateValues(update){
-    console.log(update);
+    
     if( this.update.valid){
-    console.log(update)
-
 
      let data:any=  { 
                       "user": {
@@ -75,7 +73,7 @@ export class AboutPage implements OnInit {
                        }               
                     }
         this.userservice.aboutUpdate(data).subscribe(res=>{
-          console.log(res);
+          
            this.presentToast('Emergency Details updated successfully');  
            this.router.navigate(['/self-care-tabs/tabs/tab2'])
         });

@@ -13,11 +13,12 @@ import { contactListPage } from '../contact-list/contact-list.page';
   styleUrls: ['./contact.page.scss'],
 })
 export class ContactPage implements OnInit {
-user_type: any;
+//user_type: any;
 contactForm: FormGroup
 contact_details:any;
+contactType:any;
 tabBar:any;
-dataDetail: any=[{label:"Emergency",user_type:1},
+userContactType: any=[{label:"Emergency",user_type:1},
                  {label:"Doctor",user_type:2},
                  {label:"Care Giver",user_type:3}]
   constructor(private router: Router, public route:ActivatedRoute, private fb: FormBuilder, private contacts: Contacts, private fileChooser: FileChooser, public userservice: settingsService,public toastController: ToastController,public modalController: ModalController) { 
@@ -26,11 +27,11 @@ dataDetail: any=[{label:"Emergency",user_type:1},
   }
 
     ngOnInit() {
-
+       this.contactType=this.userContactType[0]['user_type'] 
     	 this.contactForm=this.fb.group({
        
     	'contact_name': [null,[Validators.required]],
-    	'emergency_no': [null,[Validators.required, Validators.minLength(10), Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
+    	'emergency_no': [null,[Validators.required, Validators.minLength(10)]],
       
      });
     }
@@ -41,24 +42,27 @@ dataDetail: any=[{label:"Emergency",user_type:1},
 
         this.contacts.find(['*']).then((contacts)=>{
         alert(JSON.stringify(contacts[4]));
-        console.log(JSON.stringify(contacts))
+        
         this.contact_details=contacts;
       })
     }
-    chooseUserType(data){
+   /* chooseUserType(data){
      this.user_type=data;
-    }
+    }*/
 
     savecontact(val){
     	if(this.contactForm.valid){
         let user_details:any=val;
-        user_details['user_type']=this.user_type
+        user_details['user_type']=this.contactType
           this.userservice.addContacts(user_details).subscribe(res=>{
         	
             this.presentToast('Contact has been added successfully');
           	this.router.navigate(['self-care-tabs/tabs/tab2'])
           },error=>{
-             this.presentToast('Please enter all the details');
+            console.log(error)
+            if(error.status==422){
+             this.presentToast('Contact Number has already been taken');
+            }
           });
 
     	 

@@ -56,27 +56,27 @@ export class LoginPage implements OnInit {
   }
 
   translatetest(lang){
-    console.log(lang);
+    
     this.translate.use(lang);
     let data=lang;
-    console.log(data)
+    
     localStorage.setItem('language',data);
-    console.log(localStorage.getItem('language'))
+    
   } 
 
   login_values(credentials){
-    console.log(credentials)
+    
     this.formSubmitted=true;
     if(this.loginForm.valid){
        this.userservice.login_credential(credentials).subscribe(res=>{
-       console.log(res);
+      
        let data:any=res["token"];
        let role:any=res["user"];
-
-       console.log(data,"token")
+       let u_uid=role['user_uid']
+       
        localStorage.setItem('token',data);
-       localStorage.setItem('rold_id',role["role_id"]);
-       localStorage.setItem('user',role);
+       localStorage.setItem('role_id',role["role_id"]);
+       localStorage.setItem('user',u_uid);
        if(role["role_id"]==1){
          //this.presentToast('You have Logged in successfully');
          this.router.navigate(['/self-care-tabs/tabs/tab1']);
@@ -91,7 +91,7 @@ export class LoginPage implements OnInit {
        }
         
     },error=>{
-      console.log(error.status==401)
+      
       if(error.status==401){
        this.presentToast('Please enter the valid crendentials'); 
       }else{

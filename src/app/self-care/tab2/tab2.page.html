@@ -30,7 +30,7 @@
   </ion-segment>
 
   <ng-container *ngIf="selectedSegment=='first'">
-    <div class="ion-padding-top ion-padding-start ion-padding-end qr_preview ion-text-center">
+    <div class="qr_preview ion-text-center">
       <ion-thumbnail>
         <img src= "../../../assets/img/QR.png">
         <!-- {{details?.qrcode_image}} -->
@@ -150,13 +150,11 @@
       <ion-item-divider>
         <ion-label>Alergies</ion-label>
       </ion-item-divider>
-      <ion-chip>
-        <ion-label>Dust</ion-label>
-        <ion-icon mode="md" name="close"></ion-icon>
+      <ion-chip *ngFor="let alergy of alergiesList; let i=index">
+        <ion-label>{{alergy}}</ion-label>
       </ion-chip>
-      <ion-chip>
-        <ion-label>Insect Stings</ion-label>
-        <ion-icon mode="md" name="close"></ion-icon>
+      <ion-chip *ngIf="alergiesList.length==0">
+        <ion-label>No Alergies</ion-label>
       </ion-chip>
     </ion-item-group>
 
@@ -166,23 +164,23 @@
       </ion-item-divider>
       <ion-item>
         <ion-label>Heart Conditions</ion-label>
-        <ion-label><span>Pacemaker</span></ion-label>
+        <ion-label><span>{{ healthDetailList?.heart_condition || 'No' }}</span></ion-label>
       </ion-item>
       <ion-item>
         <ion-label>Diabetes</ion-label>
-        <ion-label><span>Insulin</span></ion-label>
+        <ion-label><span>{{ healthDetailList?.diabetes || 'No' }}</span></ion-label>
       </ion-item>
       <ion-item>
         <ion-label>Blood Pressure</ion-label>
-        <ion-label><span>Low</span></ion-label>
+        <ion-label><span>{{ healthDetailList?.blood_pressure || 'Normal' }}</span></ion-label>
       </ion-item>
       <ion-item>
         <ion-label>Implants</ion-label>
-        <ion-label><span>Plate implanted in right leg</span></ion-label>
+        <ion-label><span>{{ healthDetailList?.implants || '-' }}</span></ion-label>
       </ion-item>
       <ion-item>
         <ion-label>Cancer</ion-label>
-        <ion-label><span>No</span></ion-label>
+        <ion-label><span>{{ healthDetailList?.cancer || 'No' }}</span></ion-label>
       </ion-item>
     </ion-item-group>
 
@@ -190,21 +188,11 @@
       <ion-item-divider>
         <ion-label>Current Medications</ion-label>
       </ion-item-divider>
-      <ion-chip>
-        <ion-label>Medication 1</ion-label>
-        <ion-icon mode="md" name="close"></ion-icon>
+      <ion-chip *ngFor="let medication of currentMedicationList; let i=index">
+        <ion-label>{{medication}}</ion-label>
       </ion-chip>
-      <ion-chip>
-        <ion-label>Medication 2</ion-label>
-        <ion-icon mode="md" name="close"></ion-icon>
-      </ion-chip>
-      <ion-chip>
-        <ion-label>Medication 3</ion-label>
-        <ion-icon mode="md" name="close"></ion-icon>
-      </ion-chip>
-      <ion-chip>
-        <ion-label>Medication 4</ion-label>
-        <ion-icon mode="md" name="close"></ion-icon>
+      <ion-chip *ngIf="currentMedicationList.length==0">
+        <ion-label>No current Medications</ion-label>
       </ion-chip>
     </ion-item-group>
 
@@ -213,7 +201,7 @@
         <ion-label>Recent Surgeries</ion-label>
       </ion-item-divider>
       <ion-item>
-        <ion-label class="ion-no-margin" text-wrap>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</ion-label>
+        <ion-label class="ion-no-margin" text-wrap>{{healthDetailList?.recent_surgeries || 'No'}}</ion-label>
       </ion-item>
     </ion-item-group>
   </ng-container>

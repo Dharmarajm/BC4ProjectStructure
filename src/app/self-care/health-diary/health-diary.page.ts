@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { settingsService } from '../self-common-service/settings/settings.service';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'app-health-diary',
@@ -9,13 +10,17 @@ import { settingsService } from '../self-common-service/settings/settings.servic
 })
 export class HealthDiaryPage implements OnInit {
   health_records:any=[];
-  constructor(private router: Router,public settingService: settingsService) { }
-  
-  ngOnInit(){
-
+  tabBar:any;
+  constructor(private statusBar: StatusBar,private router: Router,public settingService: settingsService) { 
+    this.tabBar = document.getElementById('myTabBar').childNodes[0];
+    this.tabBar.classList.remove("tab-selected");
   }
+  
+  ngOnInit(){}
 
   ionViewWillEnter() {
+    this.statusBar.backgroundColorByHexString('#ff68ab');
+
     this.settingService.healthDiaryList().subscribe(res=>{
       let list=res;
 
@@ -24,7 +29,6 @@ export class HealthDiaryPage implements OnInit {
 
     })
   }
-
   onSearchChange(event){
   
    let search=event.detail.value;
@@ -48,4 +52,8 @@ export class HealthDiaryPage implements OnInit {
     //this.health_records=res['event_list'];
    })
   }
+  ionViewWillLeave(){
+    this.tabBar.classList.add("tab-selected");
+    this.statusBar.backgroundColorByHexString('#483df6');
+   } 
 }

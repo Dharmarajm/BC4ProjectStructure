@@ -11,17 +11,16 @@ import { settingsService } from '../self-common-service/settings/settings.servic
 })
 export class Tab1Page {
 pic:any;
-insialLogo:any;
+initialLogo:any;
 profile_pic:any;
-  constructor( public serv: settingsService,private router: Router) {}
+tabBar:any;
+  constructor( public service: settingsService,private router: Router) {}
   ionViewWillEnter(){
-  	this.serv.setting().subscribe(res => {
+  	this.service.setting().subscribe(res => {
       this.pic = res;
       this.profile_pic = this.pic.profile_pic
-      this.insialLogo = this.pic.user_info.name.charAt(0);
-      console.log(this.insialLogo)
-      console.log(this.pic.user_info.name.charAt(0))
-      console.log(this.pic) 
+      this.initialLogo = this.pic.user_info.name.charAt(0);
+      
     })
   }
   // test(){
