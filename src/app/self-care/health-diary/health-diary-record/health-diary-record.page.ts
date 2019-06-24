@@ -6,6 +6,7 @@ import { Platform,AlertController,ToastController } from '@ionic/angular';
 import { settingsService } from '../../self-common-service/settings/settings.service';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { environment } from '../../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-health-diary-record',
@@ -38,7 +39,7 @@ export class healthDiaryRecord {
   event_name:any;
   progress?: number = 0;
 
-  constructor(public toastController: ToastController,private transfer: FileTransfer,private mediaCapture: MediaCapture,private media: Media,private file: File,public platform: Platform,public alertController: AlertController,public service:settingsService,public _zone: NgZone) {
+  constructor(private router: Router,public toastController: ToastController,private transfer: FileTransfer,private mediaCapture: MediaCapture,private media: Media,private file: File,public platform: Platform,public alertController: AlertController,public service:settingsService,public _zone: NgZone) {
     this.show=3;
     this.tabBar = document.getElementById('myTabBar');
     this.tabBar.style.display = 'none';
