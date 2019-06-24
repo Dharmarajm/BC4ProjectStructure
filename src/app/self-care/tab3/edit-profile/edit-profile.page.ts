@@ -37,7 +37,7 @@ export class EditProfilePage implements OnInit {
   editprofile:any;
   cdvFilePath:any = null;
   audioFileName:any;
-
+  cdvFilePath1:any;
   constructor(private base64: Base64, private fb: FormBuilder,public sanitizer: DomSanitizer, public route:ActivatedRoute, private file: File, private transfer: FileTransfer, private camera: Camera, private imagePicker: ImagePicker, private webview: WebView, private crop: Crop, public serv:settingsService,public navParams: NavParams,public modalController: ModalController,public toastController: ToastController) { 
 
   // this.route.queryParams.subscribe(params => {
@@ -59,7 +59,7 @@ export class EditProfilePage implements OnInit {
 
    this.editprofile=this.navParams.get('pics');
    
-   this.cdvFilePath=this.editprofile['profile_pic']
+   this.cdvFilePath1=this.editprofile['profile_pic']
    this.initialLogo = this.editprofile.user_info.name.charAt(0);
    
   }
@@ -103,7 +103,9 @@ export class EditProfilePage implements OnInit {
 
     fileTransfer.upload(this.cdvFilePath,environment.apiUrl+'users/profile_picture',options).then(res=>{
       this.presentToast('Profile updated successfully');
-      console.log(res);
+      console.log(res,'res');
+
+
     }).catch();
 
   }
@@ -119,7 +121,8 @@ export class EditProfilePage implements OnInit {
          this.crop.crop(this.img, { quality: 100 })
           .then(newImage => {
             console.log(newImage)
-          
+          this.cdvFilePath1=this.webview.convertFileSrc(newImage);
+
           //this.reduceImages(results).then(() => {});
           this.file.resolveLocalFilesystemUrl(newImage).then((fileEntry: FileEntry) => {
             return new Promise((resolve, reject) => {
@@ -129,6 +132,7 @@ export class EditProfilePage implements OnInit {
               console.log(fileMeta)
               this.audioFileName = fileMeta.name;
               this.cdvFilePath = fileMeta['localURL'];
+              console.log(this.cdvFilePath,'filepath')
               this.sample();   
           })
          },error => console.error('Error cropping image', error));

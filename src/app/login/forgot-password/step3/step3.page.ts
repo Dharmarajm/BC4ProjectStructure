@@ -27,8 +27,8 @@ export class Step3Page implements OnInit {
     console.log("Step 3");
 
     this.user = new FormGroup({
-     password: new FormControl('', [Validators.required]),
-     re_password: new FormControl('', [Validators.required,this.equalto('password')])
+     password: new FormControl('', [Validators.required,Validators.minLength(8)]),
+     re_password: new FormControl('', [Validators.required,Validators.minLength(8),this.equalto('password')])
     });
   }
 
@@ -76,6 +76,18 @@ export class Step3Page implements OnInit {
         duration: 2000
       });
       toast.present();
+    }
+
+    _keyPress(event: any) {
+      const pattern = /[0-9]/;
+      let inputChar = String.fromCharCode(event.charCode);
+      
+      if(event.charCode!=0){
+        if (!pattern.test(inputChar)) {
+        // invalid character, prevent input
+        event.preventDefault();
+        }
+      }
     }
 
 

@@ -19,8 +19,10 @@ export class HealthPage implements OnInit {
   autopopulate:boolean = false;
   autopopulate2:boolean = false;
   health:FormGroup;
-  medicationChip:any=[];
-  alergyChip:any=[]
+  
+  medicationChiptest:any[]=[];
+  
+  alergyChiptest:any[]=[]
   tabBar:any;
   allHealthData:any;
   diabetes_medications=["Insulin","Tablets"];
@@ -28,17 +30,23 @@ export class HealthPage implements OnInit {
     this.tabBar = document.getElementById('myTabBar');
     this.tabBar.style.display = 'none';
     this.route.queryParams.subscribe(params => {
+      console.log(JSON.parse(params['special']))
       this.allHealthData=JSON.parse(params['special']);
       
-      this.medicationChip = this.allHealthData['current_medication'];
-      this.alergyChip = this.allHealthData['allergy'];
+      this.medicationChiptest = this.allHealthData['current_medication'] || [];
+      this.alergyChiptest = this.allHealthData['allergy'] || [];
+      if(this.allHealthData['current_medication']==undefined){
+         this.medicationChiptest=[];
+      }else if(this.allHealthData['current_medication']==undefined){
+         this.alergyChiptest=[];   
+      }
     })
   }
 
   ngOnInit() {
     this.changeRef.detectChanges();
-    let heart_condition;
-    let pacemaker;
+    let heart_condition:string;
+    let pacemaker:string;
     if(this.allHealthData['heart_condition']=='Pacemaker'){
        heart_condition = 'Yes';
        pacemaker = 'Yes';
@@ -50,8 +58,8 @@ export class HealthPage implements OnInit {
        pacemaker = 'No';
     }
     
-    let diabetes;
-    let diabetes_through;
+    let diabetes:string;
+    let diabetes_through:string;
     if(this.allHealthData['diabetes']=='Insulin'){
        diabetes = 'Yes';
        diabetes_through = 'Insulin';
@@ -65,8 +73,8 @@ export class HealthPage implements OnInit {
      
     this.health=this.fb.group({
       "allergies": [''],
-      "heart_conditions":[ heart_condition],
-      "pacemaker" : [ pacemaker ],
+      "heart_conditions":[heart_condition],
+      "pacemaker" : [pacemaker ],
       "diabetes": [diabetes],
       "diabetes_medication": [diabetes_through],
       "bloodpressure":[this.allHealthData['blood_pressure'] || 'Normal'],
@@ -107,16 +115,16 @@ export class HealthPage implements OnInit {
       }else{
         diabetes="No"; 
       }
-
+  
       let data={
          "attribute_name_value":{
-                    "allergy":this.alergyChip,
+                    "allergy":this.alergyChiptest,
                     "heart_condition":heart_conditions,
                     "diabetes":diabetes,
                     "blood_pressure":val["bloodpressure"],
                     "implants":val["implant"],
                     "cancer":val["cancer"],
-                    "current_medication":this.medicationChip,
+                    "current_medication":this.medicationChiptest,
                     "recent_surgeries":val["recent_surgeries"]   
          }
       }; 
@@ -137,17 +145,20 @@ export class HealthPage implements OnInit {
   //     //this.medication_input.setFocus();
   // }
 
-  medication_select(val){
-    this.medicationChip.push(val);
-    this.health.value["curent_medication"]="";
+  medication_select(val:any){
+    console.log(val)
+    this.medicationChiptest.push(val);
+    
+    this.health.value["curent_medication"]="";  
     this.medication_input.value="";
     this.medication_input.setFocus();
     this.autopopulate2 = false;
   }
 
-  alergyselect(val){
-    this.alergyChip.push(val);
-    this.health.value["curent_medication"]="";
+  alergyselect(val:any){
+    console.log(val)
+    this.alergyChiptest.push(val);
+    this.health.value["allergies"]="";
     this.alergies_input.value="";
     this.alergies_input.setFocus();
     this.autopopulate = false;
@@ -164,15 +175,15 @@ export class HealthPage implements OnInit {
     this.autopopulate = true;
   }
 
-  deleteMedicationChip(index){
-    this.medicationChip.splice(index,1)
+  deleteMedicationChip(index:number){
+    this.medicationChiptest.splice(index,1)
   }
 
-  deleteAlergyChip(index){
-    this.alergyChip.splice(index,1);
+  deleteAlergyChip(index:number){
+    this.alergyChiptest.splice(index,1);
   }
 
-  async presentToast(message) {
+  async presentToast(message:string) {
       const toast = await this.toastController.create({
         message: message,
         duration: 2000

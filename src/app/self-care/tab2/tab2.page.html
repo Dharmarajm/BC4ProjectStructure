@@ -153,7 +153,7 @@
       <ion-chip *ngFor="let alergy of alergiesList; let i=index">
         <ion-label>{{alergy}}</ion-label>
       </ion-chip>
-      <ion-chip *ngIf="alergiesList.length==0">
+      <ion-chip *ngIf="alergiesList?.length==0">
         <ion-label>No Alergies</ion-label>
       </ion-chip>
     </ion-item-group>
@@ -191,7 +191,7 @@
       <ion-chip *ngFor="let medication of currentMedicationList; let i=index">
         <ion-label>{{medication}}</ion-label>
       </ion-chip>
-      <ion-chip *ngIf="currentMedicationList.length==0">
+      <ion-chip *ngIf="currentMedicationList?.length==0">
         <ion-label>No current Medications</ion-label>
       </ion-chip>
     </ion-item-group>

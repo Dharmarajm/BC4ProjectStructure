@@ -3,7 +3,7 @@ import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { settingsService } from '../self-common-service/settings/settings.service';
 import { ModalController } from '@ionic/angular';
 import { AboutPage } from './about/about.page';
-import { AlertController } from '@ionic/angular';
+import { AlertController,ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -29,7 +29,7 @@ export class Tab2Page {
   navigateHealth:NavigationExtras;
   navigatePreview:NavigationExtras;
   navigateProfile:NavigationExtras;
-  constructor(public alertController: AlertController, public modalController: ModalController,private router: Router, public route:ActivatedRoute, public settingService: settingsService) {
+  constructor(public toastController: ToastController,public alertController: AlertController, public modalController: ModalController,private router: Router, public route:ActivatedRoute, public settingService: settingsService) {
 
   }
 
@@ -197,7 +197,8 @@ async deleteItem(id){
           handler: () => {
             console.log('Confirm Ok');
             this.settingService.deleteData(id).subscribe(res=>{
-                 this.ionViewWillEnter()
+                 this.ionViewWillEnter();
+                 this.presentToast('Contact has been deleted successfully');
             })
           }
         },
@@ -214,7 +215,16 @@ async deleteItem(id){
    await alert.present();
 
 }
+ 
 
+
+  async presentToast(message:string) {
+      const toast = await this.toastController.create({
+        message: message,
+        duration: 2000
+      });
+      toast.present();
+  }
 
   // Health segment code
   updateHealth(){

@@ -18,7 +18,7 @@
           <ion-note color="primary" slot="end">Select</ion-note>
         </ion-item>
         
-        <ion-chip #chip1 mode="md" *ngFor="let ship of alergyChip; let i=index">
+        <ion-chip #chip1 mode="md" *ngFor="let ship of alergyChiptest; let i=index">
           <ion-label>{{ship}}</ion-label>
           <ion-icon name="close" (click)="deleteAlergyChip(i)"></ion-icon>
         </ion-chip>
@@ -80,7 +80,7 @@
           <ion-label color="primary" class="select">{{medication_name}}</ion-label>
           <ion-note color="primary" slot="end">Select</ion-note>
         </ion-item>
-        <ion-chip #chip mode="md" *ngFor="let medication of medicationChip; let i=index">
+        <ion-chip #chip mode="md" *ngFor="let medication of medicationChiptest; let i=index">
           <ion-label>{{medication}}</ion-label>
           <ion-icon name="close" (click)="deleteMedicationChip(i)"></ion-icon>
         </ion-chip>

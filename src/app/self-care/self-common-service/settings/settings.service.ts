@@ -74,7 +74,7 @@ export class settingsService {
   }
 
   myEmergencyPreview(){
-    return this.http.get(environment.apiUrl+"users/user_details?user_uid="+localStorage.getItem('user'))
+    return this.http.get(environment.apiUrl+"users/preview")
   }
 
   private extractData(res) {

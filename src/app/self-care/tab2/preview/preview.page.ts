@@ -19,6 +19,10 @@ export class previewPage implements OnInit {
   healthDetailList:any;
   alergiesList:any[]=[];
   currentMedicationList:any[]=[];
+  healthDetails:any;
+  policyDetail:any;
+  user:any;
+  
 
   constructor(public modalController: ModalController,public service: settingsService,private changeRef: ChangeDetectorRef) { 
    
@@ -31,14 +35,28 @@ export class previewPage implements OnInit {
   ionViewWillEnter() {
     this.service.myEmergencyPreview().subscribe(res=>{
        this.previewData=res;
+       this.healthDetails=this.previewData['health_detail'];
+       if(this.healthDetails!=null){
+         this.alergiesList = this.healthDetails['attribute_name_value']['allergy']  || [];
+         this.currentMedicationList = this.healthDetails['attribute_name_value']['current_medication'] || [];
+       }else{
+         this.alergiesList=[];
+         this.currentMedicationList=[];
+       }
+
+
+       this.user = this.previewData['user'];
+       this.policyDetail = this.previewData['policy_details'];
+       console.log(this.previewData)
         for(let i=0;i<this.previewData['contacts'].length;i++){
+            console.log(this.previewData['contacts'].length)
          this.previewData['contacts'][i].firstleter=this.previewData['contacts'][i].contact_name.charAt(0);
          if(this.previewData['contacts'][i].user_type == 'Emergency'){
            this.Contactinfo[0]['emergency'].push(this.previewData['contacts'][i])
              
          }
          else if(this.previewData['contacts'][i].user_type == 'Doctor'){
-           this.Contactinfo[0]['doctor'].push(this.previewData['contacts'][i])
+           this.Contactinfo[  0]['doctor'].push(this.previewData['contacts'][i])
 
          }
          else if(this.previewData['contacts'][i].user_type == 'Care Giver'){
@@ -65,12 +83,8 @@ export class previewPage implements OnInit {
              this.doctor = false;
            } 
        }
-        
-       
 
-        this.healthDetailList= this.previewData['health_detail']['attribute_name_value'];
-        this.alergiesList = this.healthDetailList['allergy'];
-        this.currentMedicationList = this.healthDetailList['current_medication']
+
     })
   }
 

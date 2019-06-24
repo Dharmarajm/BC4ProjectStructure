@@ -1,8 +1,8 @@
-import { Component , OnInit } from '@angular/core';
+import { Component , OnInit , NgZone } from '@angular/core';
 import { MediaCapture, MediaFile, CaptureError, CaptureAudioOptions, CaptureImageOptions } from '@ionic-native/media-capture/ngx';
 import { File,FileEntry, IFile } from '@ionic-native/file/ngx';
 import { Media, MediaObject } from '@ionic-native/media/ngx';
-import { Platform,AlertController } from '@ionic/angular';
+import { Platform,AlertController,ToastController } from '@ionic/angular';
 import { settingsService } from '../../self-common-service/settings/settings.service';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { environment } from '../../../../environments/environment';
@@ -35,7 +35,10 @@ export class healthDiaryRecord {
   Stop:boolean = false;
   Pause:boolean =false;
   tabBar:any;
-  constructor(private transfer: FileTransfer,private mediaCapture: MediaCapture,private media: Media,private file: File,public platform: Platform,public alertController: AlertController,public service:settingsService) {
+  event_name:any;
+  progress?: number = 0;
+
+  constructor(public toastController: ToastController,private transfer: FileTransfer,private mediaCapture: MediaCapture,private media: Media,private file: File,public platform: Platform,public alertController: AlertController,public service:settingsService,public _zone: NgZone) {
     this.show=3;
     this.tabBar = document.getElementById('myTabBar');
     this.tabBar.style.display = 'none';
@@ -46,54 +49,54 @@ export class healthDiaryRecord {
   
 
   start(){
-
-	if(this.audioTrack==false && this.recordStart==false){
-        
-        this.fileName = 'record'+new Date().getDate()+new Date().getMonth()+new Date().getFullYear()+new Date().getHours()+new Date().getMinutes()+new Date().getSeconds()+'.mp3';
-         
-         this.file.createFile(this.file.externalDataDirectory ,this.fileName, true).then(() => {
-            this.filePath = this.file.externalDataDirectory.replace(/file:\/\//g, '') + this.fileName;
+ 
+      if(this.audioTrack==false && this.recordStart==false){
             
-            this.audio = this.media.create(this.filePath);
-            this.audioTrack=true;
-            this.Stop=true;
-            this.Pause=true;
-            this.audio.startRecord();
+            this.fileName = 'record'+new Date().getDate()+new Date().getMonth()+new Date().getFullYear()+new Date().getHours()+new Date().getMinutes()+new Date().getSeconds()+'.mp3';
+             
+             this.file.createFile(this.file.externalDataDirectory ,this.fileName, true).then(() => {
+                this.filePath = this.file.externalDataDirectory.replace(/file:\/\//g, '') + this.fileName;
+                
+                this.audio = this.media.create(this.filePath);
+                this.audioTrack=true;
+                this.Stop=true;
+                this.Pause=true;
+                this.audio.startRecord();
 
-            this.audio.onSuccess.subscribe(() => console.log('Action is successful'));
+                this.audio.onSuccess.subscribe(() => console.log('Action is successful'));
 
-            this.audio.onError.subscribe(error => console.log('Error!', error));
-            this.recording = true;
-            this.show = 1;      
-       
-            this.time ="00:00:00";
-            this.sec=0;   
-            this.interval =setInterval(() => {
-            this.sec +=1 ;
-            this.time= this.secondsToTime(this.sec)
-            }, 1000);
-            this.recording = true; 
-         }).catch(e => console.log(e));
-    }else{
-      if(this.recordStart==false){
-         this.audioTrack=false;
-         this.Pause=false;
-         this.recordStart=true;
-         this.audio.pauseRecord();
-         clearInterval(this.interval);
-         
-       }else{
-         this.audioTrack=true;
-         this.recordStart=false;
-         this.Pause=true;
-         this.audio.resumeRecord();
-         this.interval =setInterval(() => {
-          this.sec +=1 ;
-          this.time= this.secondsToTime(this.sec)
-         }, 1000);
-         
-       }
-    }       
+                this.audio.onError.subscribe(error => console.log('Error!', error));
+                this.recording = true;
+                this.show = 1;      
+           
+                this.time ="00:00:00";
+                this.sec=0;   
+                this.interval =setInterval(() => {
+                this.sec +=1 ;
+                this.time= this.secondsToTime(this.sec)
+                }, 1000);
+                this.recording = true; 
+             }).catch(e => console.log(e));
+        }else{
+          if(this.recordStart==false){
+             this.audioTrack=false;
+             this.Pause=false;
+             this.recordStart=true;
+             this.audio.pauseRecord();
+             clearInterval(this.interval);
+             
+           }else{
+             this.audioTrack=true;
+             this.recordStart=false;
+             this.Pause=true;
+             this.audio.resumeRecord();
+             this.interval =setInterval(() => {
+              this.sec +=1 ;
+              this.time= this.secondsToTime(this.sec)
+             }, 1000);
+             
+           }
+        }       
   }
 
   stop(){ 
@@ -103,7 +106,7 @@ export class healthDiaryRecord {
         clearInterval(this.interval);
         this.audio.stopRecord();
         this.audio.release();
-        
+        this.upload();
     }
 
 
@@ -161,12 +164,12 @@ export class healthDiaryRecord {
         let fileName = this.fileName;
         
         const alert = await this.alertController.create({
-          header: 'Do you want to save this audio!',
-          message: '<p>File Name:'+fileName+'</p>',
+          header: 'Health Record',
+          message: '<p>File:'+fileName+'</p>',
           inputs: [
             {
-              name: 'File name',
-              placeholder: 'Enter File Name',
+              name: 'related_to',
+              placeholder: 'Related to',
             },
             {
               name: 'description',
@@ -180,18 +183,19 @@ export class healthDiaryRecord {
               cssClass: 'secondary',
               handler: (blah) => {
                 console.log('Confirm Cancel: blah');
+                this.router.navigate(['self-care-tabs/tabs/tab1/health-diary'])
               }
             }, {
               text: 'Okay',
               handler: (data) => {
                 console.log(data)
                 this.description = data["description"];
-                let file_name = data['File name'];
+                this.event_name = data['related_to'];
                 
                 let fromDirectory = this.file.externalDataDirectory ;
                 let toDirectory = this.file.externalDataDirectory 
                 let OldfileName= this.fileName;
-                let NewfileName= file_name+'.mp3';
+                let NewfileName= this.event_name+'.mp3';
                 this.file.copyFile(fromDirectory , OldfileName , toDirectory , NewfileName).then((res) => {
                   console.log(res)
                   this.OriginalFileName=res['name'];
@@ -208,11 +212,12 @@ export class healthDiaryRecord {
                      let dir = fileMeta['localURL']
                      this.audioRecordPath=dir;
                       //this.playPath=this.uploadURI;
+                      
 
                       const fileTransfer: FileTransferObject = this.transfer.create();
     
                       let recordParams={
-                        "event_name": "Blood Pressure",
+                        "event_name": this.event_name,
                         "description": this.description,
                         "event_type": "health_diary"
                       }
@@ -227,17 +232,24 @@ export class healthDiaryRecord {
                       }
 
                       fileTransfer.upload(this.audioRecordPath,environment.apiUrl+'events',options).then(res=>{
-
+                           this.presentToast('Health diary record updated successfully')
+                           this.router.navigate(['self-care-tabs/tabs/tab1/health-diary'])
                       }).catch();
 
-                     
+                      fileTransfer.onProgress((progressEvent) => {
+     
+                        this._zone.run(() => {
+                          if (progressEvent.lengthComputable) {
+                            var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+                            this.progress=perc;
+                          }
+                        })
+                      });
+
                   }).catch(err=>console.log(err)); 
                 },err => {
                   console.log('err: ', err);
                 });
-                localStorage.setItem("audiolist",JSON.stringify(this.filePath));
-               
-                localStorage.setItem("fileNameaudio",JSON.stringify(this.fileName));
                 
               }
             }
@@ -248,6 +260,52 @@ export class healthDiaryRecord {
         
 
     }
+  
+
+     async presentToast(message) {
+      const toast = await this.toastController.create({
+        message: message,
+        duration: 2000
+      });
+      toast.present();
+    }
+
+    /*fileUpload(){
+        this.progress=0;
+        const fileTransfer: FileTransferObject = this.transfer.create();
+
+        let recordParams={
+          "event_name": this.event_name,
+          "description": this.description,
+          "event_type": "health_diary"
+        }
+
+        let options: FileUploadOptions = {
+         fileKey: 'event_assets',
+         fileName: this.fileName,
+         mimeType: 'multipart/form-data',
+         params:recordParams,
+         chunkedMode: false,
+         headers:{ 'Authorization': 'Bearer '+localStorage.getItem('token') }
+        }
+
+        fileTransfer.upload(this.audioRecordPath,environment.apiUrl+'events',options).then(res=>{
+
+        }, (err) => {
+          console.log(err)
+        })
+        
+        fileTransfer.onProgress((progressEvent) => {
+     
+          this._zone.run(() => {
+            if (progressEvent.lengthComputable) {
+              var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+              this.progress=perc;
+            }
+          })
+        });
+
+    }*/
 
     play(){
        console.log(this.filePath)

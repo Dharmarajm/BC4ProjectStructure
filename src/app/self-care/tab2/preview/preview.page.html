@@ -8,22 +8,22 @@
 
 <ion-content class="ion-padding">
     <div class="qr_preview ion-text-center">	
-       <h1>{{previewData?.user.name}}</h1>
+       <h1>{{user?.name}}</h1>
     </div>
     <ion-list class="ion-padding-start ion-padding-end">
         <ion-item>
-        <ion-label>Blood Group:&nbsp;{{previewData?.user.blood_group || '-'}}</ion-label>
-        <ion-label class="ion-text-end">Age:&nbsp;{{previewData?.user.age || '-'}}</ion-label>
+        <ion-label>Blood Group:&nbsp;{{user?.blood_group || '-'}}</ion-label>
+        <ion-label class="ion-text-end">Age:&nbsp;{{user?.age || '-'}}</ion-label>
       </ion-item>
 
       <ion-item>
         <ion-label>Mediclaim Policy#</ion-label> 
-        <ion-label class="ion-text-end">{{previewData?.mediclaim_policy || '-'}}</ion-label>  
+        <ion-label class="ion-text-end">{{policyDetail?.attribute_name_value.mediclaim_policy || '-'}}</ion-label>  
       </ion-item>
 
       <ion-item>
         <ion-label>Policy Issuer# </ion-label>
-        <ion-label class="ion-text-end">{{previewData?.mediclaim_policy || '-'}}</ion-label>  
+        <ion-label class="ion-text-end">{{policyDetail?.attribute_name_value.policy_issuer || '-'}}</ion-label>  
       </ion-item>
     </ion-list>  
 
@@ -92,23 +92,23 @@
       </ion-item-divider>
       <ion-item>
         <ion-label>Heart Conditions</ion-label>
-        <ion-label><span>{{ healthDetailList?.heart_condition || 'No' }}</span></ion-label>
+        <ion-label><span>{{ healthDetails?.attribute_name_value.heart_condition || 'No' }}</span></ion-label>
       </ion-item>
       <ion-item>
         <ion-label>Diabetes</ion-label>
-        <ion-label><span>{{ healthDetailList?.diabetes || 'No' }}</span></ion-label>
+        <ion-label><span>{{ healthDetails?.attribute_name_value.diabetes || 'No' }}</span></ion-label>
       </ion-item>
       <ion-item>
         <ion-label>Blood Pressure</ion-label>
-        <ion-label><span>{{ healthDetailList?.blood_pressure || 'Normal' }}</span></ion-label>
+        <ion-label><span>{{ healthDetails?.attribute_name_value.blood_pressure || 'Normal' }}</span></ion-label>
       </ion-item>
       <ion-item>
         <ion-label>Implants</ion-label>
-        <ion-label><span>{{ healthDetailList?.implants || '-' }}</span></ion-label>
+        <ion-label><span>{{healthDetails?.attribute_name_value.implants || '-' }}</span></ion-label>
       </ion-item>
       <ion-item>
         <ion-label>Cancer</ion-label>
-        <ion-label><span>{{ healthDetailList?.cancer || 'No' }}</span></ion-label>
+        <ion-label><span>{{ healthDetails?.attribute_name_value.cancer || 'No' }}</span></ion-label>
       </ion-item>
     </ion-item-group>
 
