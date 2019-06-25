@@ -27,7 +27,7 @@ export class Step2Page implements OnInit {
 
 
 verify(code){
- if(code!="" || code!=undefined || code!=null){ 
+ if(code!="" && code!=undefined && code!=null){ 
   this.registerProgress=true;
   
   this.userservice.VerifyCode(code,this.emailDetails['user_id']).subscribe(res=>{
@@ -40,7 +40,7 @@ verify(code){
          }
       };
       this.router.navigate(['/step3'],navigationExtras);
-    }else{
+    }else if(res['status'] == false){
       this.presentToast("Please enter the valid code")
     }
   

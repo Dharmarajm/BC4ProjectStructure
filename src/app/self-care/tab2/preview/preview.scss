@@ -1,0 +1,64 @@
+@import "../../../app.scss";
+
+ion-item {
+  --background: #ffffff;
+  --border-width: 0;
+  --border-style: unset;
+  --color: #2c2c2c;
+  --inner-padding-end: 0;
+  --inner-padding-start: 0;
+  --padding-end: 0;
+  --padding-start: 0;
+  --padding-top: 6px;
+  --padding-bottom: 6px;
+
+  &:not(:last-child) {
+    @include border(0 0 1px 0, solid, #e3e3ef);
+  }
+
+  &:first-child {
+    background: #2c2c2c;
+    ion-label.ion-text-end {
+      max-width: 80px;
+    }
+  }
+
+  h3 {
+    @include font(1rem, 400, 0, unset, inherit, inherit, $font_color);
+  }
+
+  p {
+    @include font(0.8rem, 400, 0, unset, inherit, inherit, $dark_grey);
+  }
+}
+ion-list-header {
+  padding-left: 0px;
+  min-height: 0;
+  @include font(0.8rem, 400, 0, unset, inherit, inherit, $primary);
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #ececec;
+    z-index: -1;
+  }
+  ion-label {
+    background: #ffffff;
+    padding-right: 5px;
+  }
+}
+ion-avatar {
+  height: 30px;
+  width: 30px;
+  @include font(1rem, 400, 0, unset, inherit, inherit, $white);
+  &.profile {
+    height: 80px;
+    width: 80px;
+    span {
+      @include font(2rem, 400, 0, unset, inherit, inherit, $white);
+    }
+  }
+}

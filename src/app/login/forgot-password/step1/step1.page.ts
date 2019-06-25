@@ -17,17 +17,18 @@ export class Step1Page implements OnInit {
       
     }
 
-
+ 
     next(mail){
-      
-      if(mail!="" || mail!=undefined || mail!=null){
+     
+      if(this.email!="" && this.email!=undefined && this.email!=null){
         this.registerProgress=true;
-         this.userservice.emailVerify(mail).subscribe(res=>{
+        let e_id:any=mail.toLowerCase();
+         this.userservice.emailVerify(e_id).subscribe(res=>{
         
         let verify_details: any=res;
-            verify_details['email']=mail;
-           
-         this.registerProgress=false;   
+        console.log(verify_details)      
+         this.registerProgress=false; 
+
         if(verify_details['status']== true){
         
             let navigationExtras: NavigationExtras = {
@@ -36,10 +37,10 @@ export class Step1Page implements OnInit {
               }
             };
         
-        
+           this.presentToast('Verification code has been sent to your Email ID');
            this.router.navigate(['/step2'], navigationExtras)
         }
-        else{
+        else if(verify_details['status']== false){
         //alert("Enter Valid Email-ID")
         this.presentToast('Enter your valid Email ID')
         }

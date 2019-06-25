@@ -15,6 +15,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Base64 } from '@ionic-native/base64/ngx';
 import { EditProfilePage } from './edit-profile/edit-profile.page';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
+
 @NgModule({
   imports: [
     IonicModule,
@@ -33,7 +35,8 @@ import { EditProfilePage } from './edit-profile/edit-profile.page';
   File,
   Base64,
   WebView,
-  AlertController,
+  Clipboard,
+  AlertController
   ],
 
 })

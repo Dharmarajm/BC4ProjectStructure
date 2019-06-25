@@ -8,6 +8,8 @@ import { ModalController } from '@ionic/angular';
 import { TermsConditionsPage } from '../../login/terms-conditions/terms-conditions.page';
 import { AboutPage } from '../../login/about/about.page';
 import { EditProfilePage } from './edit-profile/edit-profile.page'
+import { Clipboard } from '@ionic-native/clipboard/ngx';
+
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
@@ -19,10 +21,10 @@ export class Tab3Page {
   img:any;
   caregiver:any;
   data:any = "5 days";
-  data1:any = "5 days";
+  data1:any = "James Edwin";
   data2:any = "Never";
   initialLogo:any;
-  constructor(public modalController: ModalController, public sanitizer: DomSanitizer, public serv: settingsService, public actionSheetController: ActionSheetController, public router:Router, public alertController: AlertController) { }
+  constructor(public modalController: ModalController, public sanitizer: DomSanitizer, public serv: settingsService, public actionSheetController: ActionSheetController, public router:Router, public alertController: AlertController,private clipboard: Clipboard) { }
 
   ngOnInit() {
   
@@ -81,7 +83,7 @@ export class Tab3Page {
 
      const alert = await this.alertController.create({
       header: 'CareGiver',
-
+      value: 'James Edwin',
       backdropDismiss: false,
       inputs: [
         {
@@ -163,12 +165,12 @@ async aboutAsDuration(){
 const alert2 = await this.alertController.create({
       header: 'Choose Auto Update Days',
       backdropDismiss: false,
-      inputs:  [{name:'day1',type:'radio',label:'1 Day',value:"1 Day"},
+      inputs:  [{name:'never',type:'radio',label:'Never',value:"Never"},
+                {name:'day1',type:'radio',label:'1 Day',value:"1 Day"},
                 {name:'day2',type:'radio',label:'3 Days',value:"3 Days"},
                 {name:'day3',type:'radio',label:'5 Days',value:"5 Days"},
                 {name:'day4',type:'radio',label:'10 Days',value:"10 Days"},
-                {name:'day5',type:'radio',label:'15 Days',value:"15 Days"},
-                {name:'never',type:'radio',label:'Never',value:"Never"}
+                {name:'day5',type:'radio',label:'15 Days',value:"15 Days"}
               ],
       buttons: [
         {
@@ -237,6 +239,10 @@ async logout() {
     });
 
     await alert.present();
+  }
+
+  copyText(CopyTextAreaText){
+    this.clipboard.copy(CopyTextAreaText);
   }
 
 }

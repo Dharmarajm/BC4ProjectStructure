@@ -2,7 +2,7 @@
 	<ion-img src="../../assets/img/Login-logo.png"></ion-img>
 	<form [formGroup]="loginForm" (ngSubmit)="login_values(loginForm.value)" novalidate>
 		<ion-item>
-			<ion-label position="floating">Email</ion-label>
+			<ion-label position="floating">Email ID</ion-label>
 			<ion-input type="email" name="email" #myInput formControlName="email" autofocus="true"></ion-input>
 		</ion-item>
 		<ion-item class="icon">

@@ -23,7 +23,7 @@ export class careGiverRegisterPage {
   checkStatus:boolean=false;
   registerProgress:boolean=false;
 
-  constructor(public modalController: ModalController, private fb: FormBuilder,private router:Router,public user_service: UsermanagementService,  private translate: TranslateService,public navCtrl: NavController, public toastController: ToastController) { 
+  constructor(public modalController: ModalController, private fb: FormBuilder,private router:Router,public user_service: UsermanagementService,private translate: TranslateService,public navCtrl: NavController, public toastController: ToastController) { 
    // this.language=localStorage.getItem('language');
    // console.log(this.language,'ss');
     this.translate.use('en');    
@@ -35,13 +35,14 @@ export class careGiverRegisterPage {
      this.giverForm=this.fb.group({
       'user_uid':      ['',[Validators.required]], 
     	'name':      ['',[Validators.required]],
-    	'mobile_no': ['',[Validators.required,,Validators.minLength(10)]],
+    	'mobile_no': ['',[Validators.required,Validators.minLength(10)]],
       'password':  ['',[Validators.required, Validators.minLength(8)]],
       'password1': ['', [Validators.required, Validators.minLength(8),this.equalto('password')]],
       'email':     ['',[Validators.compose([
                     Validators.required,
                     Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
                   ])]],
+      'role_id':[2,[]],
       'checkStatus':[this.checkStatus,[Validators.pattern('true')]]
      });
       this.giverForm.controls['user_uid'].valueChanges.subscribe(val=>{     
@@ -73,12 +74,18 @@ export class careGiverRegisterPage {
   }*/
 
   CareGiverDetail(giver_detail){
+    console.log(giver_detail)
+    
     if(this.giverForm.valid){
       this.registerProgress=true;
-      let role_id;
-      let care_data= giver_detail;
-      care_data[role_id]=2
-      this.user_service.CGdetails(care_data).subscribe(res=>{
+      // let role_id;
+      // let care_data= giver_detail;
+      // care_data[role_id]=2
+
+      let data:any=giver_detail['email'].toLowerCase();
+      let value:any={'email':data,'user_uid':giver_detail['user_uid'],'name':giver_detail['name'],'mobile_no':giver_detail['mobile_no'],'password':giver_detail['password'],'role_id':2,}
+
+      this.user_service.CGdetails(value).subscribe(res=>{
        this.registerProgress=false; 
        this.presentToast('You have registered successfully')  
        this.router.navigate(['/care-giver-tabs/tabsc/tab1c']);

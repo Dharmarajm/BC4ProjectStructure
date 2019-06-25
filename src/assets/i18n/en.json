@@ -3,7 +3,7 @@
 { 
 
 	      "b-care":   "B-Cared 4",
-	      "email":    "Email",
+	      "email":    "Email ID",
 	      "password": "Password",
 	      "forgot":   "Forgot Password",
 	      "login":    "Login",
@@ -29,7 +29,6 @@
           
           "category_process":"Choose the category for further process",
           "name": "Name",
-          "email_id": "Email ID",
           "mail_hint":"Communication will be send to this ID",
           "set_pwd": "Set Password",
           "confirm_pwd":"Confirm Password",

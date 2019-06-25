@@ -45,11 +45,12 @@ payment(){
       }
     };
 
-
+  let router=this.router;
   var successCallback = function(success) {
-    alert('payment_id: ' + success.razorpay_payment_id)
+    
     var orderId = success.razorpay_order_id
     var signature = success.razorpay_signature
+    router.navigate(['register/payment-success'])
   }
 
   var cancelCallback = function(error) {

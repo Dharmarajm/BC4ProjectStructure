@@ -49,14 +49,14 @@ export class Step3Page implements OnInit {
 
   updatePassword(val){
       
-      
+     if(this.user.valid) {
       let data:any={"password": val['password'],"user_id":this.userData};
       console.log(data,'datapwd')
       if(val['password'] == val['re_password'] ){
         this.registerProgress=true;
         this.userservice.pwdUpdate(data).subscribe(res=>{
             let pwdDetails=res;
-            
+            this.presentToast("Your password has been updated")
             this.registerProgress=false;
             this.router.navigate(['/login'])
           },error=>{
@@ -67,8 +67,11 @@ export class Step3Page implements OnInit {
         //alert('Enter Correct Password')
         this.presentToast("your Password doesn't match")
       }
-                   
-  }
+     }else{
+       this.presentToast("your Password doesn't match")
+      }
+     }              
+  
 
     async presentToast(message) {
       const toast = await this.toastController.create({

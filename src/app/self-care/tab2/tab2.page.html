@@ -89,10 +89,10 @@
       </ion-list-header>
       <ion-item *ngFor="let i of info[0]?.doctor" > 
         <ion-avatar slot="start">
-          <span>{{i?.firstleter}}</span>
+          <span>{{i?.firstleter | uppercase}}</span>
         </ion-avatar>
         <ion-label>
-          <h3>{{i?.contact_name | uppercase}}</h3>
+          <h3>{{i?.contact_name }}</h3>
           <p>{{i?.emergency_no}}</p>
         </ion-label>
         <ion-button class="trans_btn" (click)="deleteItem(i.id)">

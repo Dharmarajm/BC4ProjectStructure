@@ -38,10 +38,10 @@ export class LoginPage implements OnInit {
        password: [null,[Validators.required]],
      }); */
      this.loginForm = this.fb.group({
-       email: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
-       password: new FormControl('', Validators.compose([
+         email: new FormControl('', Validators.compose([
+         Validators.required,
+         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
+         password: new FormControl('', Validators.compose([
          Validators.required,
          Validators.minLength(8)
          ])),
@@ -65,10 +65,13 @@ export class LoginPage implements OnInit {
   } 
 
   login_values(credentials){
-    
+    console.log(credentials)
+    let data:any=credentials['email'].toLowerCase();
+    console.log(data)
+    let value:any={'email':data,'password':credentials['password']}
     this.formSubmitted=true;
     if(this.loginForm.valid){
-       this.userservice.login_credential(credentials).subscribe(res=>{
+       this.userservice.login_credential(value).subscribe(res=>{
       
        let data:any=res["token"];
        let role:any=res["user"];

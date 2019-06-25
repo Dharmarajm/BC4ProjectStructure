@@ -4,6 +4,7 @@ import { UsermanagementService } from '../../core/services/usermanagement.servic
 import { NavController,ToastController } from '@ionic/angular';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 import { TermsConditionsPage } from '../../login/terms-conditions/terms-conditions.page';
 @Component({
 	selector: 'app-self-care-register',
@@ -15,7 +16,9 @@ export class selfCareRegisterPage {
 	showBackdrop: boolean = false;
 	checkStatus:boolean=false;
     registerProgress:boolean=false;
-	constructor(public modalController: ModalController, private router: Router, private fb: FormBuilder, public user_service: UsermanagementService, public toastController: ToastController) { }
+	constructor(private translate: TranslateService,public modalController: ModalController, private router: Router, private fb: FormBuilder, public user_service: UsermanagementService, public toastController: ToastController) { 
+      this.translate.use('en');
+	}
 
 	ngOnInit() {
 		this.detailForm = this.fb.group({
@@ -40,10 +43,11 @@ export class selfCareRegisterPage {
 		
 	  if(this.detailForm.valid){
 	  	this.registerProgress=true;
+	  	let id:any=detail['email'].toLowerCase()
 	  	 let data = {
 			"user": {
 				'name': detail.name,
-				'email': detail.email,
+				'email': id,
 				'password': detail.password,
 				'password1': detail.password1,
 				'mobile_no': detail.mobile_no,

@@ -6,7 +6,7 @@ import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-preview',
   templateUrl: './preview.page.html',
-  styleUrls: ['../tab2.page.scss']
+  styleUrls: ['./preview.scss']
 })
 export class previewPage implements OnInit {
   previewData:any;
@@ -22,10 +22,12 @@ export class previewPage implements OnInit {
   healthDetails:any;
   policyDetail:any;
   user:any;
+  tabBar:any;
   
 
   constructor(public modalController: ModalController,public service: settingsService,private changeRef: ChangeDetectorRef) { 
-   
+    this.tabBar = document.getElementById('myTabBar');
+    this.tabBar.style.display = 'none';
   }
   
   ngOnInit(){
@@ -90,6 +92,10 @@ export class previewPage implements OnInit {
 
 	close() {
 		this.modalController.dismiss();
-	}
+  }
+
+  ionViewWillLeave(){
+     this.tabBar.style.display = 'flex'; 
+  }
 
 }

@@ -78,7 +78,7 @@ export class HealthPage implements OnInit {
       "diabetes": [diabetes],
       "diabetes_medication": [diabetes_through],
       "bloodpressure":[this.allHealthData['blood_pressure'] || 'Normal'],
-      "implant":[this.allHealthData['implants'] || ''],
+      "implant":[this.allHealthData['implants'] || '', [Validators.maxLength(20)]],
       "cancer":[this.allHealthData['cancer'] || 'No'],
       "curent_medication":[''],
       "recent_surgeries": [this.allHealthData['recent_surgeries'] || '']
@@ -198,4 +198,10 @@ export class HealthPage implements OnInit {
   close(){
     this.router.navigate(['self-care-tabs/tabs/tab2'])
   }
+
+  // _keyPress(event: any) {
+  //      if (condition) {
+  //        // code...
+  //      }
+  //   }
 }

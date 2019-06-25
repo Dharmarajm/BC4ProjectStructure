@@ -26,6 +26,7 @@ export class Tab2Page {
   doctor:boolean=false;
   info:any=[{'doctor':[],'emergency':[],'care_giver':[]}];
   contact_details:any;
+  contect_limitation:any;
   navigateHealth:NavigationExtras;
   navigatePreview:NavigationExtras;
   navigateProfile:NavigationExtras;
@@ -60,7 +61,7 @@ export class Tab2Page {
     this.settingService.myEmergencyHealthDetail().subscribe(res=>{
       let emergencyData=res['health_detail'];
       if(emergencyData.length!=0){
-        this.healthDetailList= emergencyData[0]['attribute_name_value'];
+        this.healthDetailList = emergencyData[0]['attribute_name_value'];
         this.alergiesList = this.healthDetailList['allergy'];
         this.currentMedicationList = this.healthDetailList['current_medication']
       }else{
@@ -76,7 +77,8 @@ export class Tab2Page {
     this.settingService.contactDetails().subscribe(res=>{
     
      this.contact_details = res;
-     var dineh;
+     this.contect_limitation=this.contact_details.count
+       console.log(this.contact_details.count);     
       for(let i=0;i<this.contact_details.count;i++){
        this.contact_details.emergency_detail[i].firstleter=this.contact_details.emergency_detail[i].contact_name.charAt(0);
 
@@ -180,9 +182,11 @@ export class Tab2Page {
 // contact segment code
 
 addContact(){
-
-   this.router.navigate(['/self-care-tabs/tabs/tab2/contact-add'])
-
+  if (this.contect_limitation == 5) {
+    this.presentToast("Maximum 5 contacts allowed")
+  }else{
+    this.router.navigate(['/self-care-tabs/tabs/tab2/contact-add'])
+  }
 }
 async deleteItem(id){
 
