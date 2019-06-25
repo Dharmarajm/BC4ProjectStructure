@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input, ViewChild } from '@angular/core';
 import { ImagePicker, ImagePickerOptions  } from '@ionic-native/image-picker/ngx';
 import { Crop } from '@ionic-native/crop/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
@@ -13,12 +13,15 @@ import { environment } from '../../../../environments/environment'
 import { Base64 } from '@ionic-native/base64/ngx';
 import { NavParams, ModalController, ToastController } from '@ionic/angular';
 
+// import { Clipboard } from '@ionic-native/clipboard/ngx';
+
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.page.html',
   styleUrls: ['./edit-profile.page.scss'],
 })
 export class EditProfilePage implements OnInit {
+  @ViewChild('name') namefocus;
   userphoneupdate:any;
   useremailupdate:any;
   usernameupdate  :any;
@@ -38,6 +41,7 @@ export class EditProfilePage implements OnInit {
   cdvFilePath:any = null;
   audioFileName:any;
   cdvFilePath1:any;
+
   constructor(private base64: Base64, private fb: FormBuilder,public sanitizer: DomSanitizer, public route:ActivatedRoute, private file: File, private transfer: FileTransfer, private camera: Camera, private imagePicker: ImagePicker, private webview: WebView, private crop: Crop, public serv:settingsService,public navParams: NavParams,public modalController: ModalController,public toastController: ToastController) { 
 
   // this.route.queryParams.subscribe(params => {
@@ -84,6 +88,11 @@ export class EditProfilePage implements OnInit {
      this.usernameupdate = this.editprofile.user_info.name;
 
      
+
+  }
+  ionViewDidEnter(){
+    this.namefocus.setFocus();
+
 
   }
 

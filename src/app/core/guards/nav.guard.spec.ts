@@ -1,4 +1,4 @@
-/*import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, async, inject } from '@angular/core/testing';
 
 import { NavGuard } from './nav.guard';
 
@@ -12,4 +12,4 @@ describe('NavGuard', () => {
   it('should ...', inject([NavGuard], (guard: NavGuard) => {
     expect(guard).toBeTruthy();
   }));
-});*/
+});

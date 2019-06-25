@@ -11,44 +11,45 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./health-diary.page.scss'],
 })
 export class HealthDiaryPage implements OnInit {
-  health_records:any=[];
-  tabBar:any;
-  constructor(public toastController: ToastController,private statusBar: StatusBar,private router: Router,public settingService: settingsService,public alertController: AlertController) { 
+  health_records: any = [];
+  tabBar: any;
+  status: boolean = false;
+  constructor(public toastController: ToastController, private statusBar: StatusBar, private router: Router, public settingService: settingsService, public alertController: AlertController) {
     this.tabBar = document.getElementById('myTabBar').childNodes[0];
     this.tabBar.classList.remove("tab-selected");
   }
-  
-  ngOnInit(){}
+
+  ngOnInit() { }
 
   ionViewWillEnter() {
     this.statusBar.backgroundColorByHexString('#ff68ab');
 
-    this.settingService.healthDiaryList().subscribe(res=>{
-      let list=res;
-
+    this.settingService.healthDiaryList().subscribe(res => {
+      let list = res;
       console.log(list)
-      this.health_records=res['event_list'];
-
+      this.health_records = res['event_list'];
+      debugger;
+      this.status = true;
     })
   }
-  onSearchChange(event){
-  
-   let search=event.detail.value;
-   this.settingService.healthDiarySearchList(search).subscribe(res=>{
-     console.log(res)
-     this.health_records=res['event_list'];
-   })
+  onSearchChange(event) {
+
+    let search = event.detail.value;
+    this.settingService.healthDiarySearchList(search).subscribe(res => {
+      console.log(res)
+      this.health_records = res['event_list'];
+    })
   }
 
-  healthRecord(){
+  healthRecord() {
     this.router.navigate(['/self-care-tabs/tabs/tab1/health-diary/health-diary-record'])
   }
 
-  onCancel(event){
+  onCancel(event) {
     console.log(event);
   }
-  
-  async deleteEvent(id){
+
+  async deleteEvent(id) {
 
     const alert = await this.alertController.create({
       header: 'Contact',
@@ -58,14 +59,14 @@ export class HealthDiaryPage implements OnInit {
         {
           text: 'Confirm',
           handler: () => {
-              this.settingService.healthDiaryDeleteEvent(id).subscribe(res=>{
-               console.log(res)
-               this.presentToast("Record Deleted Successfully");
-               this.ionViewWillEnter();
+            this.settingService.healthDiaryDeleteEvent(id).subscribe(res => {
+              console.log(res)
+              this.presentToast("Record Deleted Successfully");
+              this.ionViewWillEnter();
               //this.health_records=res['event_list'];
-             },error=>{
-               console.log(error)
-             })
+            }, error => {
+              console.log(error)
+            })
           }
         },
         {
@@ -76,20 +77,20 @@ export class HealthDiaryPage implements OnInit {
             console.log('Confirm Cancel');
           }
         }
-       ]
-      });
-      await alert.present();    
+      ]
+    });
+    await alert.present();
   }
 
-  ionViewWillLeave(){
+  ionViewWillLeave() {
     this.tabBar.classList.add("tab-selected");
     this.statusBar.backgroundColorByHexString('#483df6');
-   } 
-   async presentToast(message:string) {
-      const toast = await this.toastController.create({
-        message: message,
-        duration: 2000
-      });
-      toast.present();
+  }
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000
+    });
+    toast.present();
   }
 }

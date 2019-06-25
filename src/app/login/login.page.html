@@ -3,7 +3,7 @@
 	<form [formGroup]="loginForm" (ngSubmit)="login_values(loginForm.value)" novalidate>
 		<ion-item>
 			<ion-label position="floating">Email ID</ion-label>
-			<ion-input type="email" name="email" #myInput formControlName="email" autofocus="true"></ion-input>
+			<ion-input type="email" name="email"  formControlName="email" #email_auto></ion-input>
 		</ion-item>
 		<ion-item class="icon">
 			<ion-label position="floating">Password</ion-label>

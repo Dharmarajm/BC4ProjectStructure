@@ -27,17 +27,7 @@ export class AppComponent {
       // this.statusBar.overlaysWebView(true);
     this.statusBar.backgroundColorByHexString('#483df6');
 
-      if(localStorage.getItem('token')!=undefined){
-        if(localStorage.getItem('rold_id')=="1"){
-          this.router.navigate(['self-care-tabs/tabs/tab1']);
-        }else if(localStorage.getItem('rold_id')=="2"){
-          this.router.navigate(['care-giver-tabs/tabsc/tab1c']);
-        }else{
-
-        }
-      }else{
-        this.router.navigate(['login']);
-      }
+      
     });
   }
 }

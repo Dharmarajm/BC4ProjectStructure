@@ -12,7 +12,7 @@
 <ion-content class="ion-padding">
 	<ion-item>
 		<ion-label position="floating">Email ID</ion-label>
-		<ion-input type="email" [(ngModel)]="email" autofocus="true"></ion-input>
+		<ion-input type="email" [(ngModel)]="email" #mail></ion-input>
 	</ion-item>
 	<ion-note><span>Note:</span><br>Please enter your authorized email ID to send a verification code.</ion-note>
 	<ion-button type="submit" (click)="next(email)" color="secondary" expand="block" [disabled]="registerProgress">Next<ion-icon name="arrow-forward">

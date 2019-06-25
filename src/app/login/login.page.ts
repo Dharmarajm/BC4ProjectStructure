@@ -17,8 +17,8 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
   formSubmitted:boolean=false;
   show:boolean=false;
-
-  @ViewChild('myInput') myInput ;
+  
+  @ViewChild('email_auto') email_focus ; 
   constructor(private fb: FormBuilder, private router: Router, public userservice: UsermanagementService, public navCtrl: NavController, private translate: TranslateService,public toastController: ToastController) { 
   this.translate.setDefaultLang('en');
    
@@ -29,6 +29,8 @@ export class LoginPage implements OnInit {
     this.translate.use(language);
 }*/
   ngOnInit() {
+
+   
 
     /*this.loginForm = this.fb.group({
        email: [null,[Validators.compose([
@@ -47,13 +49,15 @@ export class LoginPage implements OnInit {
          ])),
      });
   }
-  
-
-  ionViewDidLoad(){
-    window.setTimeout(() => {
-          this.myInput.setFocus();
-    }, 600);
+  ionViewDidEnter(){
+     this.email_focus.setFocus();
   }
+
+  // ionViewDidLoad(){
+  //   window.setTimeout(() => {
+  //         this.myInput.setFocus();
+  //   }, 600);
+  // }
 
   translatetest(lang){
     
@@ -78,6 +82,7 @@ export class LoginPage implements OnInit {
        let u_uid=role['user_uid']
        
        localStorage.setItem('token',data);
+       console.log(data)
        localStorage.setItem('role_id',role["role_id"]);
        localStorage.setItem('user',u_uid);
        if(role["role_id"]==1){
@@ -135,4 +140,7 @@ export class LoginPage implements OnInit {
   { 
    this.subscription = this.platform.backButton.subscribe(()=>{ navigator['app'].exitApp(); });
   } */
+  ngOnDestroy(){
+    this.loginForm.reset();
+  }
 }

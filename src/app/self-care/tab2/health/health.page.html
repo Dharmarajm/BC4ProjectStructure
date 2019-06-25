@@ -10,7 +10,7 @@
       <ion-item-group class="alergies">
         <ion-item>
           <ion-label position="floating">Allergies</ion-label>
-          <ion-input formControlName="allergies" type="text" autofocus="true" #alergy_name (keyup)="Input_alergy($event.target.value)"></ion-input> 
+          <ion-input formControlName="allergies" type="text" #alergy_name (keyup)="Input_alergy($event.target.value)"></ion-input> 
           <!-- #alergy (keyup)="Input_alergy(alergy.value)" -->
         </ion-item>
         <ion-item button class="autocomplete" (click)="alergyselect(data1)" *ngIf="autopopulate && data1!=''">

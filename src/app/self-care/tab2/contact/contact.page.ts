@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {Validators, FormBuilder, FormGroup, FormControl, AbstractControl  } from '@angular/forms';
 import { Contacts, Contact, ContactField, ContactFieldType } from '@ionic-native/contacts/ngx';
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
@@ -14,6 +14,7 @@ import { contactListPage } from '../contact-list/contact-list.page';
 })
 export class ContactPage implements OnInit {
 //user_type: any;
+@ViewChild('name_focus') name_focus;
 contactForm: FormGroup
 contact_details:any;
 contactType:any;
@@ -37,7 +38,9 @@ userContactType: any=[{label:"Emergency",user_type:1},
     }
 
   
-
+    ionViewDidEnter(){
+     this.name_focus.setFocus();
+  }
     contact(){
 
         this.contacts.find(['*']).then((contacts)=>{

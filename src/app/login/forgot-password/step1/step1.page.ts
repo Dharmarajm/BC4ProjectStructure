@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild} from '@angular/core';
 import { UsermanagementService } from '../../../core/services/usermanagement.service';
 import { Router, NavigationExtras } from '@angular/router';
 import { ToastController } from '@ionic/angular';
@@ -9,6 +9,8 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./step1.page.scss'],
 })
 export class Step1Page implements OnInit {
+  @ViewChild('mail') email_input;
+
   email:any;
   registerProgress:boolean=false;
   constructor(public userservice: UsermanagementService, public router:Router,public toastController: ToastController) { }
@@ -17,6 +19,9 @@ export class Step1Page implements OnInit {
       
     }
 
+  ionViewDidEnter(){
+    this.email_input.setFocus();
+  }
  
     next(mail){
      

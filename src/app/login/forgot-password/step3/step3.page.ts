@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsermanagementService } from '../../../core/services/usermanagement.service';
 import { ActivatedRoute , Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup, FormControl, ValidatorFn,AbstractControl  } from '@angular/forms';
@@ -10,6 +10,7 @@ import { NavController,ToastController } from '@ionic/angular';
   styleUrls: ['./step3.page.scss'],
 })
 export class Step3Page implements OnInit {
+   @ViewChild('pwd') password_verify;
   new_pwd:any;
   confirm_pwd: any;
   userData: any;
@@ -30,6 +31,10 @@ export class Step3Page implements OnInit {
      password: new FormControl('', [Validators.required,Validators.minLength(8)]),
      re_password: new FormControl('', [Validators.required,Validators.minLength(8),this.equalto('password')])
     });
+  }
+
+  ionViewDidEnter(){
+    this.password_verify.setFocus();
   }
 
   equalto(field_name): ValidatorFn {
@@ -68,7 +73,7 @@ export class Step3Page implements OnInit {
         this.presentToast("your Password doesn't match")
       }
      }else{
-       this.presentToast("your Password doesn't match")
+       this.presentToast("Please enter password fields")
       }
      }              
   

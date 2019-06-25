@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { Validators, FormBuilder, FormGroup, FormControl  } from '@angular/forms';
 import { settingsService } from '../../self-common-service/settings/settings.service';
@@ -10,6 +10,7 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./about.page.scss'],
 })
 export class AboutPage implements OnInit {
+  @ViewChild('bloodgroup') bloodgroup;
   update:FormGroup
   update_details:any;
   policy:any;
@@ -53,7 +54,9 @@ export class AboutPage implements OnInit {
 
   }
 
-
+ionViewDidEnter(){
+    this.bloodgroup.setFocus();
+  }
 
 
   updateValues(update){

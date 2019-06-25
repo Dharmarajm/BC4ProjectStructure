@@ -10,11 +10,11 @@
 
     <ion-item>
       <ion-label position="floating">Name</ion-label>
-      <ion-input type="text" formControlName="contact_name" autofocus="true"></ion-input>
+      <ion-input type="text" formControlName="contact_name" #name_focus></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Contact</ion-label>
-      <ion-input formControlName="emergency_no" (keypress)="_keyPress($event)" type="phone"></ion-input>
+      <ion-label position="floating">Contact#</ion-label>
+      <ion-input formControlName="emergency_no" (keypress)="_keyPress($event)" type="tel"></ion-input>
       <!-- <ion-icon name="contact" (click)="presentModal()"></ion-icon> -->
     </ion-item>
     <ion-radio-group [(ngModel)]="contactType" [ngModelOptions]="{standalone: true}">

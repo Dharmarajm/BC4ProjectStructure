@@ -7,12 +7,12 @@
   <form class="footerform" [formGroup]="update" (ngSubmit)="updateValues(update.value)">
     <ion-item>
       <ion-label position="floating">Blood group</ion-label>
-      <ion-input type="text" formControlName="blood_group" autofocus="true"></ion-input>
+      <ion-input type="text" maxLength="11" formControlName="blood_group" #bloodgroup></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Age</ion-label>
-      <ion-input type="text" formControlName="age" (keypress)="_keyPress($event)"></ion-input>
+      <ion-input maxLength="2" type="tel" formControlName="age" (keypress)="_keyPress($event)"></ion-input>
     </ion-item>
 
     <ion-item>

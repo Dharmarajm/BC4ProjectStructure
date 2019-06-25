@@ -62,3 +62,69 @@ ion-avatar {
     }
   }
 }
+ion-item-group {
+  ion-item-divider {
+    --padding-end: 0;
+    --padding-start: 0;
+    margin-bottom: 12px;
+    @include font(1rem, 500, 0, unset, inherit, inherit, $font_color);
+  }
+
+  ion-item {
+    --border-color: #3880ff;
+    --padding-bottom: 4px;
+    --padding-top: 4px;
+    --min-height: 0;
+  }
+
+  ion-chip {
+    @include font(0.9rem, 400, 0, unset, inherit, inherit, none);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    padding: 5px 15px;
+    height: 24px;
+
+    ion-icon {
+      font-size: 14px;
+    }
+  }
+
+  &.pre_conditon {
+    ion-item {
+      ion-label {
+        &:not(:last-child) {
+          @include font(0.9rem, 500, 0, unset, inherit, inherit, $font_color);
+          margin-right: 10px;
+        }
+
+        &:last-child {
+          margin: 0;
+          overflow: visible;
+          text-align: right;
+
+          span {
+            background: $health;
+            border-radius: 20px;
+            padding: 5px 15px;
+            @include font(0.9rem, 400, 0, unset, inherit, inherit, $white);
+          }
+        }
+      }
+
+      &:nth-child(5) {
+        ion-label {
+          &:not(:last-child) {
+            max-width: 60px;
+          }
+        }
+      }
+    }
+  }
+
+  &.recent {
+    ion-item {
+      ion-label {
+        font-size: 14px;
+      }
+    }
+  }
+}

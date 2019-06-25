@@ -83,7 +83,6 @@ export class Tab3Page {
 
      const alert = await this.alertController.create({
       header: 'CareGiver',
-      value: 'James Edwin',
       backdropDismiss: false,
       inputs: [
         {
@@ -91,6 +90,7 @@ export class Tab3Page {
           type: 'radio',
           label: 'James Edwin',
           value: 'James Edwin',
+          checked: true
          
         },
         {
@@ -131,7 +131,7 @@ const alert1 = await this.alertController.create({
       backdropDismiss: false,
       inputs:  [{name:'day1',type:'radio',label:'1 Day',value:"1 Day"},
                 {name:'day2',type:'radio',label:'3 Days',value:"3 Days"},
-                {name:'day3',type:'radio',label:'5 Days',value:"5 Days"},
+                {name:'day3',type:'radio',label:'5 Days',value:"5 Days",checked: true},
                 {name:'day4',type:'radio',label:'10 Days',value:"10 Days"},
                 {name:'day5',type:'radio',label:'15 Days',value:"15 Days"}
               ],
@@ -165,7 +165,7 @@ async aboutAsDuration(){
 const alert2 = await this.alertController.create({
       header: 'Choose Auto Update Days',
       backdropDismiss: false,
-      inputs:  [{name:'never',type:'radio',label:'Never',value:"Never"},
+      inputs:  [{name:'never',type:'radio',label:'Never',value:"Never",checked: true},
                 {name:'day1',type:'radio',label:'1 Day',value:"1 Day"},
                 {name:'day2',type:'radio',label:'3 Days',value:"3 Days"},
                 {name:'day3',type:'radio',label:'5 Days',value:"5 Days"},

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , ViewChild} from '@angular/core';
 import { ActivatedRoute,Router,NavigationExtras } from '@angular/router';
 import {Validators, FormBuilder, FormGroup, FormControl, AbstractControl, ValidatorFn  } from '@angular/forms';
 import { UsermanagementService } from '../../core/services/usermanagement.service';
@@ -13,7 +13,7 @@ import { TermsConditionsPage } from '../../login/terms-conditions/terms-conditio
   styleUrls: ['../main/main.page.scss'],
 })
 export class careGiverRegisterPage {
-  
+  @ViewChild('unique_id') unique_identification;
   giverForm: FormGroup;
   passwordType: string = 'password';
   passwordIcon: string = 'eye-off';
@@ -29,6 +29,9 @@ export class careGiverRegisterPage {
     this.translate.use('en');    
   }
 
+ionViewDidEnter(){
+    this.unique_identification.setFocus();
+  }
 
   ngOnInit() {
      

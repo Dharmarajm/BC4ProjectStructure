@@ -1,1 +1,1 @@
-//export * from './nav.guard';
+export * from './nav.guard';

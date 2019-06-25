@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl,ValidatorFn,AbstractControl } from '@angular/forms';
 import { UsermanagementService } from '../../core/services/usermanagement.service';
 import { NavController,ToastController } from '@ionic/angular';
@@ -12,6 +12,7 @@ import { TermsConditionsPage } from '../../login/terms-conditions/terms-conditio
 	styleUrls: ['../main/main.page.scss'],
 })
 export class selfCareRegisterPage {
+	 @ViewChild('name_auto') name_focus ;
 	detailForm: FormGroup
 	showBackdrop: boolean = false;
 	checkStatus:boolean=false;
@@ -21,6 +22,7 @@ export class selfCareRegisterPage {
 	}
 
 	ngOnInit() {
+		
 		this.detailForm = this.fb.group({
 			'name': ['', [Validators.required]],
 			'email': ['', [Validators.compose([
@@ -38,6 +40,10 @@ export class selfCareRegisterPage {
 
 		});
 	}
+
+	ionViewDidEnter(){
+     this.name_focus.setFocus();
+  }
 
 	self_detail(detail) {
 		

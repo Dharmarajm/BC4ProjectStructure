@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsermanagementService } from '../../../core/services/usermanagement.service';
 import { ActivatedRoute , Router, NavigationExtras} from '@angular/router';
 import { NavController,ToastController } from '@ionic/angular';
@@ -9,6 +9,7 @@ import { NavController,ToastController } from '@ionic/angular';
   styleUrls: ['./step2.page.scss'],
 })
 export class Step2Page implements OnInit {
+   @ViewChild('code') verify_input;
   user_id: any;
   emailDetails: any;
   verify_code:any;
@@ -25,6 +26,10 @@ export class Step2Page implements OnInit {
     console.log("step2")
   }
 
+ionViewDidEnter(){
+    this.verify_input.setFocus();
+  }
+  
 
 verify(code){
  if(code!="" && code!=undefined && code!=null){ 
