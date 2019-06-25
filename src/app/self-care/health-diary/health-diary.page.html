@@ -30,7 +30,7 @@
 
 
  <div *ngIf="status">
-  <ion-list *ngFor="let data of health_records | groupby">
+  <ion-list *ngFor="let data of health_records | groupby" (click)="playHealthRecord(health_records,data)">
     <ion-list-header>
       <ion-label>{{data.created_at | date:"dd MMMM,y"}}</ion-label>
     </ion-list-header>

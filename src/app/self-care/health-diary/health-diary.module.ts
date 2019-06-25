@@ -15,6 +15,7 @@ import { MediaCapture, MediaFile, CaptureError, CaptureAudioOptions, CaptureImag
 import { File } from '@ionic-native/file/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { Media, MediaObject } from '@ionic-native/media/ngx';
+import { StreamingMedia, StreamingVideoOptions, StreamingAudioOptions } from '@ionic-native/streaming-media/ngx';
 
 const routes: Routes = [
   {
@@ -35,7 +36,7 @@ const routes: Routes = [
     PipesModule,
     RouterModule.forChild(routes)
   ],
-  providers: [MediaCapture,File,Media,FileTransfer],
+  providers: [MediaCapture,File,Media,FileTransfer,StreamingMedia],
   declarations: [HealthDiaryPage,healthDiaryRecord]
 })
 export class HealthDiaryPageModule {}
