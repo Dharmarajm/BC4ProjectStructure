@@ -34,10 +34,10 @@
     <ion-list-header>
       <ion-label>{{data.created_at | date:"dd MMMM,y"}}</ion-label>
     </ion-list-header>
-    <ion-item button *ngFor="let event of data.events" (click)="playHealthRecord(health_records,data)">
+    <ion-item *ngFor="let event of data.events">
       <ion-label text-wrap>
-        <h3>{{event.event_name}}</h3>
-        <p>{{event.description}}</p>
+        <h3 (click)="playHealthRecord(health_records,data)">{{event.event_name}}</h3>
+        <p (click)="playHealthRecord(health_records,data)">{{event.description}}</p>
         <h6>
           <span>
             {{event.created_at | date:'shortTime'}}

@@ -1,11 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { formatDate } from '@angular/common'
+//import { DatePipe } from '@angular/common'
 
 @Pipe({
   name: 'groupby'
 })
 export class GroupbyPipe implements PipeTransform {
-
+  
+  constructor(/*private datePipe: DatePipe*/) {}
 
   transform(collection: Array<any>, property: string = 'created_at'): Array<any> {
     if(!collection) {

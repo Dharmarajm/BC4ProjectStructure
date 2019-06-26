@@ -4,6 +4,7 @@ import { settingsService } from '../self-common-service/settings/settings.servic
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AlertController,ToastController } from '@ionic/angular';
 import { StreamingMedia, StreamingVideoOptions, StreamingAudioOptions } from '@ionic-native/streaming-media/ngx';
+//import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-health-diary',
@@ -17,6 +18,8 @@ export class HealthDiaryPage implements OnInit {
   constructor(private streamingMedia: StreamingMedia,public toastController: ToastController, private statusBar: StatusBar, private router: Router, public settingService: settingsService, public alertController: AlertController) {
     this.tabBar = document.getElementById('myTabBar').childNodes[0];
     this.tabBar.classList.remove("tab-selected");
+    console.log("2019-06-26T04:22:22.534Z".toString())
+    //this.datePipe.transform("2019-06-26T04:22:22.534Z", 'yyyy-MM-dd')
   }
 
   ngOnInit() { }

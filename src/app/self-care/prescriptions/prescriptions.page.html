@@ -1,9 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>prescriptions</ion-title>
+    <ion-title>patient-prescription</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+ <ion-card>
+   <ion-card-content *ngFor="let tab of tab_details">
+     <div (click)="addPrescription(tab)">
+	      <B>{{tab.doc_name}}</B>
+	      <p>{{tab.description}}</p>
+     </div>
+        <ion-icon name="trash" class="ion-float-right"></ion-icon>
+   </ion-card-content>
+
+  </ion-card>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="create" (click)="addPrescription('add Prescription')"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>

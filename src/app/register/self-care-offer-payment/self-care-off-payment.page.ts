@@ -45,21 +45,19 @@ payment(){
       }
     };
 
-  let router=this.router;
+  
   var successCallback = function(success) {
     
     var orderId = success.razorpay_order_id
     var signature = success.razorpay_signature
-    router.navigate(['register/payment-success'])
+    this.router.navigate(['register/payment-success'])
   }
 
   var cancelCallback = function(error) {
     alert(error.description + ' (Error '+error.code+')')
   }
 
-  RazorpayCheckout.on('payment.success', successCallback)
-  RazorpayCheckout.on('payment.cancel', cancelCallback)
-  RazorpayCheckout.open(options)
+  RazorpayCheckout.open(options,successCallback,cancelCallback)
 
 }
 

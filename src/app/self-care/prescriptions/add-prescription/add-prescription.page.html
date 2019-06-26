@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-float-center">BC4</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<form [formGroup]="prescriptionForm" (ngSubmit) = "prescriptionDetails(prescriptionForm.value)">
+
+	<ion-item>
+	      <ion-input placeholder="Doctor Name" type= "text"  formControlName="doc_name"></ion-input>
+	</ion-item>
+    <ion-item>
+	      <ion-input placeholder="Prescription Date" type= "text"  formControlName="prescription_date"></ion-input>
+	</ion-item>
+    <ion-item>
+	      <ion-input placeholder="Description" type= "text"  formControlName="description"></ion-input>
+	</ion-item>
+    <ion-label>Prescription images</ion-label>
+  
+	<ion-item class="ion-float-right">
+	      <ion-button type= "submit" [disabled]="prescriptionForm.invalid">Save</ion-button>
+	</ion-item>
+</form>
+</ion-content>

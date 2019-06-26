@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'self-care-tabs', loadChildren: './self-care/tabs/tabs.module#TabsPageModule',canActivate: [NavGuard]  },
   { path: 'care-giver-tabs', loadChildren: './care-giver/tabs/tabs.module#TabsPageModule', canActivate: [NavGuard] },
   { path: 'register', loadChildren: './register/register.module#registerPageModule' },
-  { path: 'terms_conditions',component: TermsConditionsPage}
+  { path: 'terms_conditions',component: TermsConditionsPage},
   /*{ path: 'medications', loadChildren: './self-care/alerts/medications/medications.module#MedicationsPageModule' },
   { path: 'vitals', loadChildren: './self-care/alerts/vitals/vitals.module#VitalsPageModule' },
   { path: 'others', loadChildren: './self-care/alerts/others/others.module#OthersPageModule' }*/

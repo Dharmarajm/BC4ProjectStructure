@@ -66,7 +66,7 @@ export class AppComponent {
 initializeBackButtonCustomHandler(): void {
   this.unsubscribeBackEvent = this.platform.backButton.subscribeWithPriority(999999,()=> {
    console.log(this.router.url);
-    if(this.router.url == "/" || this.router.url == "/login"){
+    if(this.router.url == "/" || this.router.url == "/self-care-tabs/tabs/tab1" || this.router.url == "/care-giver-tabs/tabsc/tab1c" || this.router.url == "/login"){
       if (this.counter == 0) {
         this.counter++;
         this.presentToast();
@@ -75,7 +75,7 @@ initializeBackButtonCustomHandler(): void {
         // console.log("exitapp");
         navigator['app'].exitApp();
       }
-    navigator['app'].exitApp();
+    //navigator['app'].exitApp();
    }else{
     // alert("false");
      console.log("false");
