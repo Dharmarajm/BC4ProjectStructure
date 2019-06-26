@@ -4,6 +4,7 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
+  <ion-progress-bar color="tertiary" [value]="progress" *ngIf="proBar"></ion-progress-bar>
 </ion-header>
 
 <ion-content class="ion-text-center">
@@ -63,3 +64,4 @@
   <!-- <button (click)="play()">Play</button> -->
 
 </ion-content>
+<ion-backdrop *ngIf="proBar"></ion-backdrop>

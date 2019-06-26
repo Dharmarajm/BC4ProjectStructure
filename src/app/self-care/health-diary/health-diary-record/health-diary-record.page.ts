@@ -38,6 +38,7 @@ export class healthDiaryRecord {
   tabBar:any;
   event_name:any;
   progress?: number = 0;
+  proBar:boolean=false;
 
   constructor(private router: Router,public toastController: ToastController,private transfer: FileTransfer,private mediaCapture: MediaCapture,private media: Media,private file: File,public platform: Platform,public alertController: AlertController,public service:settingsService,public _zone: NgZone) {
     this.show=3;
@@ -187,9 +188,11 @@ export class healthDiaryRecord {
                 this.router.navigate(['self-care-tabs/tabs/tab1/health-diary'])
               }
             }, {
-              text: 'Okay',
+              text: 'Save',
               handler: (data) => {
+
                 console.log(data)
+              if(data["description"]!="" && data['related_to']!=""){
                 this.description = data["description"];
                 this.event_name = data['related_to'];
                 
@@ -203,6 +206,7 @@ export class healthDiaryRecord {
                   let nativeFileURL=res['nativeURL'];
                   let localPlayURL = this.file.externalDataDirectory.replace(/file:\/\//g, '') + this.OriginalFileName;
                   console.log(nativeFileURL)
+                  this.proBar=true;
                   this.file.resolveLocalFilesystemUrl(nativeFileURL).then((fileEntry: FileEntry) => {
                     return new Promise((resolve, reject) => {
                      fileEntry.file(meta => resolve(meta), error => reject(error));
@@ -220,7 +224,8 @@ export class healthDiaryRecord {
                       let recordParams={
                         "event_name": this.event_name,
                         "description": this.description,
-                        "event_type": "health_diary"
+                        "event_type": "health_diary",
+                        "event_option":{ "file_name":this.fileName }
                       }
 
                       let options: FileUploadOptions = {
@@ -233,9 +238,12 @@ export class healthDiaryRecord {
                       }
 
                       fileTransfer.upload(this.audioRecordPath,environment.apiUrl+'events',options).then(res=>{
+                           this.proBar=false;
                            this.presentToast('Health diary record updated successfully')
                            this.router.navigate(['self-care-tabs/tabs/tab1/health-diary'])
-                      }).catch();
+                      },error=>{
+                           this.proBar=false;
+                      })
 
                       fileTransfer.onProgress((progressEvent) => {
      
@@ -252,7 +260,12 @@ export class healthDiaryRecord {
                   console.log('err: ', err);
                 });
                 
+              }else{
+                  
+                  this.presentToast('Please enter the fields')
+                  return false;
               }
+             }
             }
           ]
         });

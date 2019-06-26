@@ -17,7 +17,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-toolbar class="action_tools">
+  <ion-toolbar *ngIf="status" class="action_tools">
     <ion-searchbar *ngIf="status" slot="start" placeholder="Search" (ionChange)="onSearchChange($event)" [debounce]="250" mode="ios" (ionCancel)="onCancel($event)"></ion-searchbar>
     <ion-buttons *ngIf="status" slot="end" color="secondary">
       <ion-button class="btn" (click)="healthRecord()">
@@ -30,11 +30,11 @@
 
 
  <div *ngIf="status">
-  <ion-list *ngFor="let data of health_records | groupby" (click)="playHealthRecord(health_records,data)">
+  <ion-list *ngFor="let data of health_records | groupby">
     <ion-list-header>
       <ion-label>{{data.created_at | date:"dd MMMM,y"}}</ion-label>
     </ion-list-header>
-    <ion-item button *ngFor="let event of data.events">
+    <ion-item button *ngFor="let event of data.events" (click)="playHealthRecord(health_records,data)">
       <ion-label text-wrap>
         <h3>{{event.event_name}}</h3>
         <p>{{event.description}}</p>

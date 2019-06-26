@@ -1,4 +1,4 @@
-/*import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Router,CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 
@@ -13,9 +13,9 @@ export class NavGuard implements CanActivate  {
   
     if(localStorage.getItem('token')!=undefined){
         if(localStorage.getItem('rold_id')=="1"){
-          this.router.navigate(['self-care-tabs/tabs/tab1']);
+          return true;
         }else if(localStorage.getItem('rold_id')=="2"){
-          this.router.navigate(['care-giver-tabs/tabsc/tab1c']);
+          return true;
         }
       }else{
         this.router.navigate(['login']);
@@ -25,4 +25,3 @@ export class NavGuard implements CanActivate  {
     return true;
   }
 }
-*/

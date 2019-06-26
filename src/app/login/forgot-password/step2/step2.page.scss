@@ -13,12 +13,6 @@ ion-item {
   ion-label {
     --color: #bcbbcf;
   }
-
-  & + a{
-    font-weight: 500;
-    text-decoration: underline;
-  }
-
 }
 
 ion-note {
@@ -40,5 +34,17 @@ ion-button {
 	  max-width: 260px;
 	  min-height: 50px;
 	  --box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-	}
+  }
+  &.trans_btn{
+    @include font(0.9rem, 500, 0, capitalize, center, inherit, $primary);
+    --border-radius: 0px;
+    --box-shadow: none;
+    margin: 0;
+    max-width: auto;
+    min-height: auto;
+    --box-shadow: none;
+    --padding-start: 0;
+    --padding-end: 0;
+    text-decoration: underline;
+  }
 }

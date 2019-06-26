@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { settingsService } from '../self-common-service/settings/settings.service';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { AlertController } from '@ionic/angular';
-import { ToastController } from '@ionic/angular';
+import { AlertController,ToastController } from '@ionic/angular';
 import { StreamingMedia, StreamingVideoOptions, StreamingAudioOptions } from '@ionic-native/streaming-media/ngx';
 
 @Component({
@@ -24,12 +23,12 @@ export class HealthDiaryPage implements OnInit {
 
   ionViewWillEnter() {
     this.statusBar.backgroundColorByHexString('#ff68ab');
-
+    this.tabBar = document.getElementById('myTabBar').childNodes[0];
+    this.tabBar.classList.remove("tab-selected");
     this.settingService.healthDiaryList().subscribe(res => {
       let list = res;
       console.log(list)
       this.health_records = res['event_list'];
-      debugger;
       this.status = true;
     })
   }
@@ -83,13 +82,12 @@ export class HealthDiaryPage implements OnInit {
     await alert.present();
   }
 
-  ionViewWillLeave() {
-    this.tabBar.classList.add("tab-selected");
-    this.statusBar.backgroundColorByHexString('#483df6');
-  }
+  
 
   playHealthRecord(record,data){
      console.log(record,data['events'][0]['event_assets'][0]['url']);
+     let url='http://182.72.104.66:8101'+data['events'][0]['event_assets'][0]['url'];
+     console.log(url);
 
      var options: StreamingAudioOptions = {
         bgColor: "#FFFFFF",
@@ -105,8 +103,6 @@ export class HealthDiaryPage implements OnInit {
         }
       }; 
 
-      let url='http://http://182.72.104.66:8101'+data['events'][0]['event_assets'][0]['url'];
-      console.log(url)
      this.streamingMedia.playAudio(url, options);
    }
 
@@ -122,6 +118,9 @@ export class HealthDiaryPage implements OnInit {
     this.streamingMedia.resumeAudio();
    }
 
+
+
+
   
   async presentToast(message: string) {
     const toast = await this.toastController.create({
@@ -129,5 +128,10 @@ export class HealthDiaryPage implements OnInit {
       duration: 2000
     });
     toast.present();
+  }
+
+  ionViewWillLeave() {
+    this.tabBar.classList.add("tab-selected");
+    this.statusBar.backgroundColorByHexString('#483df6');
   }
 }

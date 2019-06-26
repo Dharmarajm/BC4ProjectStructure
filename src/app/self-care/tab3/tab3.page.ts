@@ -241,8 +241,9 @@ async logout() {
     await alert.present();
   }
 
-  copyText(CopyTextAreaText){
-    this.clipboard.copy(CopyTextAreaText);
+  copyText(CopyText:any){
+    console.log(CopyText)
+    this.clipboard.copy(CopyText);
   }
 
 }

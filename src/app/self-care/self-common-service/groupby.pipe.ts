@@ -1,9 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { formatDate } from '@angular/common'
 
 @Pipe({
   name: 'groupby'
 })
 export class GroupbyPipe implements PipeTransform {
+
 
   transform(collection: Array<any>, property: string = 'created_at'): Array<any> {
     if(!collection) {
@@ -14,11 +16,13 @@ export class GroupbyPipe implements PipeTransform {
         if(!previous[current[property]]) {
             previous[current[property]] = [];
         }
+            
             previous[current[property]].push(current);
+            console.log(previous[current[property]])
         return previous;
     }, {});
-    console.log(gc)
-    return Object.keys(gc).map(date => ({ created_at: date, events: gc[date] }));
-  }  
 
+    return Object.keys(gc).map(date =>({created_at: date, events: gc[date]}))
+
+}
 }
